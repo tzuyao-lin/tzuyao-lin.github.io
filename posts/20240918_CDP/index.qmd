@@ -1,0 +1,393 @@
+---
+title: "Multinomial Logistic Regression Aanalysis"
+author: "Tzu-Yao Lin"
+date: 2024-09-18
+categories:
+ - "r"
+ - "statistics"
+ - "consultant"
+execute:
+  warning: false
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    self-contained: true
+    code-fold: show
+    code-tools: true
+---
+
+# Data preprocessing
+
+Load packages and data (`Final_data.csv`) which were preprocessed by YuFong.
+
+```{r}
+#| label: load-packages-and-settings
+#| warning: false
+#| message: false 
+
+library(tidyverse)
+library(nnet)
+library(epiDisplay)
+library(lmtest)
+library(gt)
+```
+
+```{r}
+#| label: load-data
+
+data <- read_csv("Final_data.csv", na = c("", "NA", "-999", "-888"))
+```
+
+Here, I retain the variables that will be analyzed in following.
+
+```{r}
+#| label: transform-variables
+
+diabetes_with_na <- data |>
+    mutate(Diabetes = factor(N_Diabetes_WHO, labels = c("NGM", "Pre", "T2DM"), ordered = TRUE),
+           IsDiabetes = factor(N_DIABETES_2b),
+           PRS = factor(PRS_tertiles, labels = c("Low", "Medium", "High")), 
+           Coffee = factor(coffee_tertiles, labels = c("Low", "Medium", "High")),
+           Sex = factor(SEX, labels = c("Male", "Female")),
+           Age = Age,
+           BMI = bmi,
+           Alcohol = NIT_alcoholtot,
+           Smoking = factor(smoking_3cat, labels = c("Never", "Former", "Current")),
+           Step_wake = mean_step_min_wake_T,
+           DHD = DHD_sum, 
+           KCal = NIT_kcal, 
+           CVD = factor(N_CVD, labels = c("No", "Yes")),
+           Chol = Tot_chol,
+           # HT = factor(N_HT, labels = c("No", "Yes")),
+           OMAP = N_OMAP,
+           Med_HT = factor(med_HT, labels = c("No", "Yes")),
+           Med_LP = factor(med_LP, labels = c("No", "Yes")),
+           Sugar = FIT_suikerg,
+           B1_VD1 = factor(B1_VD1_2.6.29, labels = c("Yes", "No", "Unknow")),
+           Education = factor(N_Education_3cat, labels = c("Low", "Medium", "High")),
+           .keep = "none") 
+
+skimr::skim(diabetes_with_na)
+```
+
+You may notice that there are some misssing. However, the `Step_wake` has more than a thousand of missing. It will be influenced if I remove all of these missing data.
+
+```{r}
+#| label: remove-na-data
+
+diabetes <- diabetes_with_na |> drop_na()
+
+print(diabetes, width = Inf)
+```
+
+::: callout-warning
+## Missing data
+
+I'm not sure how Yufong dealt with the missing data. Here, I remove the subject's data if he/she has at least one missing value (denoted by `NA`, `-999`, or `-888`) in the selected 20 variables.
+
+There is another issue if we want to make model selection or comparison by AICs or likelihood ratio tests, we need to have the same data (after removing the missing) when fitting to each model.
+:::
+
+::: callout-important
+## Questions
+
+1.  What is the reason that we make PRS and Coffee variable from a continuous scale to three ordinal categories (low, medium, and high) for each? Why not four or more, or just keep it continuous? I think it needs more explanation (Testing for trend).
+
+2.  Does it have any advantage of using *tertiles* to separate three categories?
+:::
+
+# Data analysis
+
+## Models
+
+The dependent variable has three (ordinal?) categories. It is usually to use oridinal logistic regression to fit the data. One of the assumptions underlying ordinal logistic (and ordinal probit) regression is that the relationship between each pair of outcome groups is the same. In other words, ordinal logistic regression assumes that the coefficients that describe the relationship between, say, the lowest versus all higher categories of the response variable are the same as those that describe the relationship between the next lowest category and all higher categories, etc.
+
+```{r}
+#| label: check-poprtional-assump
+
+olm <- MASS::polr(Diabetes ~ PRS + Coffee + Age + Sex + BMI + Alcohol + Smoking + Step_wake + DHD + KCal + CVD + Chol + OMAP + Med_HT + Med_LP + Sugar + B1_VD1 + Education, data = diabetes, Hess = TRUE)
+brant::brant(olm)
+```
+
+However, we found the assumption does not hold in our data. because it did not pass the parallel ratio check (link)?
+
+Therefore, we tried to use
+
+$$
+\begin{align}
+\log\left(\frac{p_{\text{Pre}}}{p_{\text{NGM}}}\right) = \alpha_{1} + \beta_{11} E_1 + \gamma_{11} C \\
+\log\left(\frac{p_{\text{T2DM}}}{p_{\text{NGM}}}\right) = \alpha_{2} + \beta_{21} E_1 + \gamma_{21} C
+\end{align}
+$$
+
+Two binary vs. One multinomial
+
+There are many potential models that are discussed in the manuscript. I list them in Table below.
+
+|     Exposure     | Covariate set 1 | Covariate set 2 | Covariate set 3 |
+|:----------------:|:---------------:|:---------------:|:---------------:|
+|       PRS        |      prs1       |      prs2       |      prs3       |
+|       Cof        |      cof1       |      cof2       |      cof3       |
+|     PRS+Cof      |    prs_cof1     |    prs_cof2     |    prs_cof3     |
+| PRS+Cof+PRS\*Cof |   prs_cof_i1    |   prs_cof_i2    |   prs_cof_i3    |
+
+: Candidate models {#tbl-models}
+
+```{r}
+#| label: formula 
+
+## Check the PRS effect (Table 3)
+prs1 <- formula(Diabetes ~ PRS + Age + Sex)
+prs2 <- update(prs1, . ~ . + BMI + Alcohol + Smoking + Step_wake + DHD + KCal)
+prs3 <- update(prs2, . ~ . + CVD + Chol + OMAP + Med_HT + Med_LP + Sugar + B1_VD1 + Education)
+
+## Check the Coffee effect (Table 4)
+cof1 <- update(prs1, . ~ Coffee - PRS + .)
+cof2 <- update(prs2, . ~ Coffee - PRS + .) 
+cof3 <- update(prs3, . ~ Coffee - PRS + .)
+
+## Check the PRS and Coffe effect (Table 5)
+prs_cof1 <- update(prs1, . ~ Coffee + .)
+prs_cof2 <- update(prs2, . ~ Coffee + .)    
+prs_cof3 <- update(prs3, . ~ Coffee + .)
+
+prs_cof_i1 <- update(prs_cof1, . ~ PRS:Coffee + .)
+prs_cof_i2 <- update(prs_cof2, . ~ PRS:Coffee + .)
+prs_cof_i3 <- update(prs_cof3, . ~ PRS:Coffee + .)
+```
+
+## Check the PRS effect (reproduce Table 2)
+
+### Implement in two binary logistic regression
+
+#### NGM vs. Prediabetes
+
+```{r}
+#| label: Prediabetes-dataset
+
+prediabetes <- diabetes |> filter(Diabetes %in% c("NGM", "Pre"))
+dim(prediabetes)
+table(prediabetes$Diabetes)
+```
+
+```{r}
+#| label: prs-bl-Pre
+prs3_bl_pre <- glm(prs3, family = binomial(link = "logit"), data = prediabetes)
+summary(prs3_bl_pre)
+
+logistic.display(prs3_bl_pre)
+```
+
+#### NGM vs. T2DS
+
+```{r}
+#| label: T2DS-dataset
+t2dm <- diabetes |> filter(Diabetes %in% c("NGM", "T2DM"))
+dim(t2dm)
+table(t2dm$Diabetes)
+```
+
+```{r}
+#| label: prs-bl-T2DM
+
+prs3_bl_t2dm <- glm(prs3, family = binomial(link = "logit"), data = t2dm)
+summary(prs3_bl_t2dm)
+
+logistic.display(prs3_bl_t2dm)
+```
+
+### Implement in a multinomial logistic regression
+
+```{r}
+#| label: prs-ml
+
+prs3_ml <- multinom(prs3, data = diabetes)
+summary(prs3_ml)
+
+mlogit.display(prs3_ml)
+```
+
+The results from a multinomial logistic model is almost the same as the results getting from two binary logistic models.
+
+::: {callout-warning}
+Issue of selecting one multinomial logistic or two binary logistic
+
+1.  Data use
+
+2.  Variable exclusive -\> predicition\
+:::
+
+```{r}
+#| label: prs-ml-comp
+prs1_ml <- multinom(prs1, data = diabetes)
+prs2_ml <- multinom(prs2, data = diabetes)
+
+lrtest(prs1_ml, prs2_ml, prs3_ml)
+```
+
+```{r}
+#| label: get-or-ci
+
+get_OR_CI <- function(multi_model, DV_level, EV_level, alpha = 0.05) {
+  esti <- coef(multi_model)[DV_level, , drop = FALSE]
+  .cov_mat <- vcov(multi_model)
+  .select_variable <- str_detect(colnames(.cov_mat), DV_level)
+  cov_mat <- .cov_mat[.select_variable, .select_variable]
+  
+  cont <- matrix(multi_model$coefnames %in% EV_level, nrow = 1)
+  l <- cont %*% t(esti)
+  OR <- exp(l) |> round(2)
+  SE <- sqrt(cont %*% cov_mat %*% t(cont))
+  lower_CI <- exp(l - qnorm(1-alpha/2) * SE) |> round(2)
+  upper_CI <- exp(l + qnorm(1-alpha/2) * SE) |> round(2)
+  
+  str_glue("{OR} <br> ({lower_CI}, {upper_CI})")
+}
+
+```
+
+```{r}
+#| label: tbl-prs-effect
+#| tbl-cap: "Association between PRS and Prediabetes/T2DM"
+levels <- c("Low", "Medium", "High") 
+PRSlevels <- str_glue("PRS{levels}")
+
+prs_OR_table <- tibble(
+  level = levels ,
+  Pre_prs1 = map_chr(PRSlevels, ~ get_OR_CI(prs1_ml, "Pre", .)),
+  Pre_prs2 = map_chr(PRSlevels, ~ get_OR_CI(prs2_ml, "Pre", .)),
+  Pre_prs3 = map_chr(PRSlevels, ~ get_OR_CI(prs3_ml, "Pre", .)),
+  T2DM_prs1 = map_chr(PRSlevels, ~ get_OR_CI(prs1_ml, "T2DM", .)),
+  T2DM_prs2 = map_chr(PRSlevels, ~ get_OR_CI(prs2_ml, "T2DM", .)),
+  T2DM_prs3 = map_chr(PRSlevels, ~ get_OR_CI(prs3_ml, "T2DM", .)))
+
+gt(prs_OR_table, rowname_col = "level") |>
+  tab_stubhead(label = "PRS") |>
+  tab_spanner(label = "Pre", columns = starts_with("Pre")) |>
+  tab_spanner(label = "T2DM", columns = starts_with("T2DM")) |>
+  cols_label(ends_with("1") ~ "M1",
+             ends_with("2") ~ "M2",
+             ends_with("3") ~ "M3") |>
+  fmt_markdown()
+```
+
+## Check the PRS effect (reproduce Table 3)
+
+```{r}
+#| label: cof-ml
+
+cof1_ml <- multinom(cof1, data = diabetes)
+cof2_ml <- multinom(cof2, data = diabetes)
+cof3_ml <- multinom(cof3, data = diabetes)
+
+```
+
+```{r}
+#| label: tbl-cof-effect
+#| tbl-cap: "Association between Coffee and Prediabetes/T2DM"
+
+Coflevels <- str_glue("Coffee{levels}")
+
+cof_OR_table <- tibble(
+  level = levels ,
+  Pre_cof1 = map_chr(Coflevels, ~ get_OR_CI(cof1_ml, "Pre", .)),
+  Pre_cof2 = map_chr(Coflevels, ~ get_OR_CI(cof2_ml, "Pre", .)),
+  Pre_cof3 = map_chr(Coflevels, ~ get_OR_CI(cof3_ml, "Pre", .)),
+  T2DM_cof1 = map_chr(Coflevels, ~ get_OR_CI(cof1_ml, "T2DM", .)),
+  T2DM_cof2 = map_chr(Coflevels, ~ get_OR_CI(cof2_ml, "T2DM", .)),
+  T2DM_cof3 = map_chr(Coflevels, ~ get_OR_CI(cof3_ml, "T2DM", .)))
+
+gt(cof_OR_table, rowname_col = "level") |>
+  tab_stubhead(label = "Coffee") |>
+  tab_spanner(label = "Pre", columns = starts_with("Pre")) |>
+  tab_spanner(label = "T2DM", columns = starts_with("T2DM")) |>
+  cols_label(ends_with("1") ~ "M1",
+             ends_with("2") ~ "M2",
+             ends_with("3") ~ "M3") |>
+  fmt_markdown()
+
+
+```
+
+## Check the PRS and coffee interaction (reproduce Table 4)
+
+```{r}
+#| label: prs-cof-inter
+
+prs_cof1_ml <- multinom(prs_cof1, data = diabetes)
+prs_cof_i1_ml <- multinom(prs_cof_i1, data = diabetes)
+prs_cof1_ml
+mlogit.display(prs_cof1_ml)
+mlogit.display(prs_cof_i1_ml)
+lrtest(prs_cof1_ml, prs_cof_i1_ml)
+
+prs_cof2_ml <- multinom(prs_cof2, data = diabetes)
+prs_cof_i2_ml <- multinom(prs_cof_i2, data = diabetes)
+lrtest(prs_cof2_ml, prs_cof_i2_ml)
+
+prs_cof3_ml <- multinom(prs_cof3, data = diabetes)
+prs_cof_i3_ml <- multinom(prs_cof_i3, data = diabetes)
+lrtest(prs_cof3_ml, prs_cof_i3_ml)
+```
+
+In each case, the model with and without interaction terms (between Coffee and PRS) are **not** statistical significant. Thus, we would choose the model without interaction terms (i.e., `prs_cof1`, `prs_cof2`, and `prs_cof3`) as the final results.
+
+Now, I reproduce Table 4 in the paper
+
+To illustrate how to calculate the odds(-like) ratios in two **categorical** exposure variabes, I take Model `prs_cof1` for example. The model for Pre vs. NGM is
+
+$$
+\ln\left(\frac{p_{\text{Pre}}}{p_{\text{NGM}}} \right) = \alpha_{11} + \beta_{11} \text{CoffeeMedium} + \beta_{12} \text{CoffeeHigh} + \beta_{13} \text{PRSMedium} + \beta_{14} \text{PRSHigh} + \gamma_{11} \text{Age} + \gamma_{12} \text{SexFemale}
+$$
+
+Let \$l\_{\text{CoffeeLevel, PRSLevel}} = \$ , where $C \in \{\}$ for Coffee and $Y = Y The general odds ratio formula is:$\$ OR = e\^l. $$ 
+and the 95% CI of OR is:
+$$ (1-\alpha)%\~CI = e\^{l \pm Z\_{1-\alpha/2}\sqrt{Var(l)}} $$
+where the variance of $l$ is
+$$ Var(l) = \sqrt{\sum_{i = 1}^4 + ....} \$\$
+
+If I want to know the OR when Coffe level is medium and PRS level is high, it means
+
+$$
+\text{CoffeeMedium} = \text{PRSHigh} = 1 \quad \& \quad \text{CoffeeHight} = \text{PRSMedium} = 0 
+$$
+
+$$
+OR_{MH} = e^{\beta{11} + \beta{14}}
+$$
+
+we let .....
+
+```{r}
+#| label: tbl-pre-cof-effect
+#| tbl-cap: "Association between PRES, Coffee and Prediabetes/T2DM"
+
+PRSlevels = paste0("PRS", rep(levels, times = 3))
+Coflevels = paste0("Coffee", rep(levels, each = 3))
+
+prs_cof_OR_table <- tibble(
+  Cof_levels = rep(levels, each = 3),
+  PRS_levels = rep(levels, times = 3),
+  Pre_prs_cof1 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof1_ml, "Pre", c(.x, .y))),
+  Pre_prs_cof2 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof2_ml, "Pre", c(.x, .y))),
+  Pre_prs_cof3 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof3_ml, "Pre", c(.x, .y))),
+  T2DM_prs_cof1 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof1_ml, "T2DM", c(.x, .y))),
+  T2DM_prs_cof2 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof2_ml, "T2DM", c(.x, .y))),
+  T2DM_prs_cof3 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof3_ml, "T2DM", c(.x, .y))))
+
+gt(prs_cof_OR_table,
+   rowname_col = "PRS_level", 
+   groupname_col = "Cof_levels", 
+   row_group_as_column = TRUE) |>
+  tab_stubhead(label = c("Coffee", "PRS")) |>
+  tab_spanner(label = "Pre", columns = starts_with("Pre")) |>
+  tab_spanner(label = "T2DM", columns = starts_with("T2DM")) |>
+  cols_label(ends_with("1") ~ "M1",
+             ends_with("2") ~ "M2",
+             ends_with("3") ~ "M3") |>
+  fmt_markdown()
+```
+
+It is not necessary to strtify the data into differnt data sets and then do logistic analysis for each.

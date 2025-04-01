@@ -1,0 +1,56 @@
+---
+title: "Resource to find a PhD (or researcher) position"
+author: "Tzu-Yao Lin"
+date: 2023-07-23
+categories: 
+  - "academia"
+image: find-a-phd.png
+---
+
+# Mailing lists 
+
+先從你感興趣的領域獲取資訊
+
+- allstat@JISCMAIL.AC.UK (https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=allstat) 統計相關的職缺，可能會有實驗室招博士生的訊息
+- MathPsych (https://mathpsych.org/page/mailing-lists) 數理心理學、心理計量等的博士缺
+- PsycCareers (https://www.psyccareers.com/) 主要是提供心理學家在美國的工作缺
+
+
+# Databases
+
+- [ScholarshipDb.Net](https://scholarshipdb.net/scholarships)：整理世界各地各種學術研究的缺，包括：教職、PhD、Postdoc ... 等，且有良好的搜尋分類功能。
+- [VACANCY EDU](https://vacancyedu.com/) ：每天會 Po 一篇某間學校 PhD 或 Postdoc 缺。
+- [Scholar Idea](https://scholaridea.com/) ：也是整理各個學校 PhD 或 Postdoc 缺，但有分學科整理。
+- [Keystone Phdstudies](https://www.phdstudies.com/)
+- [Academic Positions](https://academicpositions.com/find-jobs) 
+- [Fastepo](https://fastepo.com/) 
+
+
+# European PhD websites
+
+## Overall in Euro
+
+- [EURAXESS](https://euraxess.ec.europa.eu/jobs/search)
+- [Marie Skłodowska-Curie Actions](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/how-to-apply#PhD)
+
+## Country-based
+
+- 荷蘭：[AcademicTransfer](https://www.academictransfer.com/en/)
+- 德國：[jobvector](https://www.jobvector.com/)
+- 英國：[FindAPhD](https://www.findaphd.com/)
+- 法國：[PhD in France](https://doctorat.campusfrance.org/en/phd/offers)
+- 瑞典：[varbi](https://www.varbi.com/en/search-jobs/?limit=100&offset=0)
+- 挪威：[Jobbnorge](https://www.jobbnorge.no/search)
+
+
+# University
+
+自記從感興趣的學校從招生頁面找，例如：
+
+- KU Leuven: [Jobsited KU Lueven](https://www.kuleuven.be/personeel/jobsite/jobs/staff?type=NoIgCgFgIiC6Q)
+
+
+
+# Twitter
+
+追蹤自己感興趣的領域的大咖，他們有時會分享實驗室的職缺

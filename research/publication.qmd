@@ -1,0 +1,24 @@
+---
+title: "Publication"
+page-layout: full
+title-block-banner: true
+---
+
+## Working paper
+
+**Lin, T.-Y.**, Tuerlinckx F., Vanbelle, S.\* (In progress). Reliability in intensive longitudinal studies: A state-space vs.linear mixed model approach. 
+
+Lo, C.\*, **Lin, T.-Y.**, & XXXX (In progress). VHS
+
+Rao, Y., Yu, E. Y.-W., **Lin, T.-Y.**, Chen, Y., Qin, Y.,Koster A., Eussen, S., Bosma, H., Berendschot, T.J.M, van der Kallen, C. , van Greevenbroek M., de Galan, B., Zeegers, M., Wesselius A. (Submitted). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study.
+
+
+## Published
+
+**Lin, T.-Y.**, Tuerlinckx F., & Vanbelle, S.\* (2025). Reliability for multilevel data: A correlation approach. *Psychological Methods*, *X*(X), XX-XX. <https://doi.org/10.1037/met0000738>
+
+Yu, K.\*, **Lin, T.-Y.**, Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. *Behavior Research Methods*, *57*(5), 127. <https://doi.org/10.3758/s13428-025-02650-1>
+
+## Master thesis
+
+**Lin T.-Y.**, & Hsu Y.-F. (2022). Incorporating the Luce-Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study. 

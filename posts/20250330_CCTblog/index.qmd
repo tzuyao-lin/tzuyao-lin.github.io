@@ -1,0 +1,17 @@
+---
+title: "Building a website to record your research"
+author: "Tzu-Yao Lin"
+date: 2022-12-22
+categories: 
+  - "CCT"
+  - "rmarkdown"
+  - "blogdown"
+  - "netlify"
+#image: "image.jpg"
+---
+
+
+時間可能得追逤 2021 年  ...
+
+
+https://cct.netlify.app/

@@ -1,31 +1,31 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "Tzu-Yao Lin"
-  #site-url: https://www.myblogexample.io
-  #description: "A great sample blog"
+  title: "Tzu-Yao's Blog"
+  site-url: https://xup6y3ul6.github.io
+  description: "Tzu-Yao's Psychology and Data Sciences World"
   #google-analytics: ""
   navbar:
-    right:
-      - href: about.qmd
-        text: "About"
+    left:
       - href: blog.qmd
         text: "Posts"
       - href: project.qmd
         text: "Projects"
       - text: "Research"
         menu: 
-          - text: "Papers"
-            href: research/papers.qmd
+          - text: "Publications"
+            href: research/publication.qmd
           - text: "Presentations"
-            href: research/presentations.qmd
+            href: research/presentation.qmd
+    right:
+      - href: about.qmd
+        text: "About Me"
       - icon: rss
         href: index.xml
-      # - icon: github
-      #   href: https://github.com/
-      # - icon: twitter
-      #   href: https://twitter.com
+      - icon: github
+        href: https://github.com/xup6y3ul6
 format:
   html:
     theme: 
@@ -33,5 +33,5 @@ format:
       dark: darkly
     css: styles.css
 
-editor: visual
+editor: source
 

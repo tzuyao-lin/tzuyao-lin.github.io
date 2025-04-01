@@ -1,0 +1,88 @@
+---
+title: "Presentations"
+page-layout: full
+title-block-banner: true
+---
+
+## 2025
+
+## 2024
+
+**Conference:** [IMPS 2024](https://www.psychometricsociety.org/imps-2024)
+- **Location:** Prague University, Czech Republic
+- **Time:** 2024-07-16 \~ 2024-07-19
+- **Title:** Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach
+- **Slide:**
+
+```{=html}
+<object 
+  data="https://1drv.ms/p/s!AlL4lr1NqCjqiKdmxgaO_wQsvxuZLA?e=4fzKFl" 
+  type="application/pdf" 
+  width="640px" 
+  height="360px"
+>
+  <embed src="https://1drv.ms/p/s!AlL4lr1NqCjqiKdmxgaO_wQsvxuZLA?e=4fzKFl">
+    <p>This browser does not support PDFs. Please download the PDF to view it: 
+      <a href="https://1drv.ms/p/s!AlL4lr1NqCjqiKdmxgaO_wQsvxuZLA?e=4fzKFl">Download PDF
+      </a>.
+    </p>
+  </embed>
+</object>
+```
+::: {layout-ncol="2"}
+![](figures/eam2023_1.jpg)
+
+![](figures/eam2023_2.jpg)
+:::
+
+
+## 2023
+
+**Conference:** [The 10th European Congress of Methodology (EAM 2023)](https://eam2023.ugent.be/)
+- **Location:** Ghent University, Belgium
+- **Time:** 10-07-2023 \~ 13-07-2023
+- **Title:** Reliability for multilevel data: A correlation approach
+- **Slide:**
+
+```{=html}
+<object 
+  data="https://1drv.ms/b/s!AlL4lr1NqCjqh5hujGx1maiZmBRfkA?e=n14sAP" 
+  type="application/pdf" 
+  width="640px" 
+  height="360px"
+>
+  <embed src="https://1drv.ms/b/s!AlL4lr1NqCjqh5hujGx1maiZmBRfkA?e=n14sAP">
+    <p>This browser does not support PDFs. Please download the PDF to view it: 
+      <a href="https://1drv.ms/b/s!AlL4lr1NqCjqh5hujGx1maiZmBRfkA?e=n14sAP">Download PDF
+      </a>.
+    </p>
+  </embed>
+</object>
+```
+::: {layout-ncol="2"}
+![](figures/eam2023_1.jpg)
+
+![](figures/eam2023_2.jpg)
+:::
+
+**Conference:** [MathPsych/ICCM/EMPG 2023](https://mathpsych.org/conference/12/)
+- **Location:** University of Amsterdam, the Netherlands
+- **Time:** 18-07-2023 \~ 21-07-2023
+- **Title:** [Incorporating the Luce-Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study](https://mathpsych.org/presentation/980)
+- **Slide:**
+
+```{=html}
+<object    
+  data="https://1drv.ms/b/s!AlL4lr1NqCjqh5hxyBu04QwY9vC47A?e=HKyRhs"
+  type="application/pdf"
+  width="640px"
+  height="360px" 
+>   
+  <embed src="https://1drv.ms/b/s!AlL4lr1NqCjqh5hxyBu04QwY9vC47A?e=HKyRhs">     
+    <p>This browser does not support PDFs. Please download the PDF to view it:          <a href="https://1drv.ms/b/s!AlL4lr1NqCjqh5hxyBu04QwY9vC47A?e=HKyRhs">Download PDF       
+      </a>.     
+    </p>   
+  </embed> 
+</object>
+```
+![](figures/mathpsych2023.jpg)

@@ -2,7 +2,7 @@
 title: "Tzu-Yao Lin"
 image: profile.jpg
 about:
-  template: trestles
+  template: jolla
   links:
     - icon: file-person-fill
       text: CV
@@ -26,18 +26,30 @@ page-layout: full
 
 ## Bio
 
-Hi there! I'm a global/joint PhD student at Maastricht University and KU Leuven. My research focuses on decision-making, reliability, mathematical or computational modeling, and intensive longitudinal data analysis. Beyond that, I am also an R lover, a lindy hopper, and a fire dancer.
+Hi there! I'm a joint PhD student at Maastricht University and KU Leuven, studying reliability for intensive longitudinal data. I'm also an R enthusiast, a fire dancer, and a Lindy hopper. In my blog, I aim to share useful knowledge and interesting things. On one hand, I hope to explain concepts in simple language. On the other hand, I want to organize my thoughts structurally and deepen their place in my memory. I firmly believe that writing aids thinking, and now is the time to put that into practice – even though I've disliked writing for as long as I can remember!
+
+## Research interests
+
+decision-making
+reliability
+mathematical or computational modeling
+intensive longitudinal data analysis
 
 ## Education
 
 **KU Leuven** \| Belgium\
-PhD student in Psychology \| Oct. 2022 - Present
+PhD candidate at Research Group of Quantitative Psychology and Individual Differences \| Oct. 2022 - Present
 
-**Maastricht University** \| the Netherlands\
-PhD student in Methodology and Statistics \| Oct. 2022 - Present
+**Maastricht University** \| The Netherlands\
+PhD candidate at Department of Methodology and Statistics \| Oct. 2022 - Present
 
 **National Taiwan University** \| Taiwan\
 MS in Psychology \| Sep. 2019 - Jun. 2022
 
 **National Taiwan University** \| Taiwan\
 BS in Psychology (major) and Forestry (minor) \| Sep. 2014 - Jun. 2019
+
+## Skills
+
+**Programming**: R, Linux, Stan, Python, Matlab
+**Language**: Mandarin, English, Dutch (new learner)

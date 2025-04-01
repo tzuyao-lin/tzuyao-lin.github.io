@@ -1,0 +1,35 @@
+---
+title: "Welcome To My Blog"
+author: "Tzu-Yao Lin"
+date: 2023-07-03
+categories: 
+  - "news"
+---
+
+Welcome to my blog, where I'll be sharing my academic research progress, including my papers, study notes, and my work with R language, statistics, and psychology. Of course, I'll also be sharing my personal thoughts and experiences.
+
+So, why I want to build a personal blog. The reason is simple. It's time to share what I know!
+
+<div>
+
+<blockquote class="twitter-tweet tw-align-center">
+
+<p lang="en" dir="ltr">
+
+When you've written the same code 3 times, write a function<br><br>When you've given the same in-person advice 3 times, write a blog post
+
+</p>
+
+--- David Robinson (\@drob) <a href="https://twitter.com/drob/status/928447584712253440?ref_src=twsrc%5Etfw">November 9, 2017</a>
+
+</blockquote>
+
+```{=html}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+```
+
+</div>
+
+Although I haven't quite figured out what this blog will look like yet, let's get started and worry about the details later. Anyway, thanks for joining me on this journey!
+
+![The sunrise in Kinderdijk (Children dike), the Netherlands](kinderdijk_and_sunrise.jpg)
