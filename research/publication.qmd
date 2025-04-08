@@ -8,7 +8,7 @@ title-block-banner: true
 
 **Lin, T.-Y.**, Tuerlinckx F., Vanbelle, S.\* (In progress). Reliability in intensive longitudinal studies: A state-space vs.linear mixed model approach. 
 
-Lo, C.\*, **Lin, T.-Y.**, & XXXX (In progress). VHS
+Lo, C.\*, **Lin, T.-Y.**, Werneck, G., Domingues, C., Saavedra, R.C., Moore, M., Souza, L.F., & Lomazzi, M. (In progress). Vaccine among Brazilian healthcare workers: the impact of COVID-19 pandemic.
 
 Rao, Y., Yu, E. Y.-W., **Lin, T.-Y.**, Chen, Y., Qin, Y.,Koster A., Eussen, S., Bosma, H., Berendschot, T.J.M, van der Kallen, C. , van Greevenbroek M., de Galan, B., Zeegers, M., Wesselius A. (Submitted). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study.
 
