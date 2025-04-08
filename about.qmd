@@ -52,4 +52,5 @@ BS in Psychology (major) and Forestry (minor) \| Sep. 2014 - Jun. 2019
 ## Skills
 
 **Programming**: R, Linux, Stan, Python, Matlab
+
 **Language**: Mandarin, English, Dutch (new learner)
