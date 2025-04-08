@@ -6,6 +6,7 @@ categories:
  - "r"
  - "statistics"
  - "consultant"
+image: CDP.png
 execute:
   warning: false
 format: 
