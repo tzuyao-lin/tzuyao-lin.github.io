@@ -1,7 +1,7 @@
 ---
 title: "Brazilian Vaccine Attitude Analysis"
-subtitle: "An example of doing factor analysis and logistic regession"
 author: "Tzu-Yao Lin"
+date: last-modified
 date: 2025-03-28
 categories: 
   - "r"
@@ -60,7 +60,7 @@ Key observations from the initial data inspection include:
 - Many variables have the class `haven_labelled`. These labelled variables require careful handling and appropriate transformation before analysis."
 - If `vac_covid %in% c(2, 3)` then `covid_doses <- 0` instead of `NA`.
 
-Next, the variables relevant to this analysis are selected."
+Next, the variables relevant to this analysis are selected.
 
 ```{r}
 data <- rawdata |> 
@@ -287,6 +287,7 @@ fa.diagram(fa3, sort = FALSE)
 fa.diagram(fa4, sort = FALSE)
 fa.diagram(fa5, sort = FALSE)
 ```
+
 :::
 
 
@@ -327,6 +328,7 @@ I prefer the `fa5_ob` model. However, caution is advised regarding the item comp
 
 
 ::: {.column-page}
+
 ```{r}
 #| label: fig-fa-obli
 #| fig-cap: "Diagram of factor structure under the oblique rotation"
@@ -340,6 +342,7 @@ fa.diagram(fa3_ob, sort = FALSE)
 fa.diagram(fa4_ob, sort = FALSE)
 fa.diagram(fa5_ob, sort = FALSE)
 ```
+
 :::
 
 ### Overall comparison
@@ -393,6 +396,7 @@ fa_model_fit
 ```
 
 ::: {.aside}
+
 **模型擬合度指標 (Model Fit Indices)**
 
 這些指標評估模型是否能很好地再現觀察變數之間的相關性。通常，我們會同時考量多個指標，而非僅僅依賴單一指標。
@@ -430,6 +434,7 @@ fa_model_fit
 - 模型簡潔性 (Parsimony)：
   - 意義：在解釋力相似的情況下，選擇較簡潔的模型。
   - 評估：避免過度複雜的模型，因為它們可能難以解釋和應用。
+
 :::
 
 
@@ -445,10 +450,10 @@ Most model fit indices suggest that all explored models provide a reasonably ade
 
 However, considering the theoretical goal of relating the findings to the 5C model of vaccine hesitancy, the 5-factor oblique solution (i.e., `fa5_ob`) is selected as the final model. This choice is motivated by its clearer potential alignment with the theoretical framework and the fact that each factor in this solution has substantial loadings from multiple variables. Furthermore, while not having the absolute lowest BIC, it demonstrates strong performance across other fit indices (e.g., TLI, RMSEA).
 
-It is recommended to report at least the factor loadings for the `fa5_ob` solution (Table @tbl-fa-loadings), potentially using a **cutoff (= 0.26)** for clarity ...
+It is recommended to report at least the factor loadings for the `fa5_ob` solution (Table @tab-fa-loadings), potentially using a **cutoff (= 0.26)** for clarity ...
 
 ```{r}
-#| label: tbl-fa-loadings
+#| label: tab-fa-loadings
 #| tbl-cap: The factor loadings 
 
 #Should be report:  factor loadings
@@ -476,8 +481,6 @@ fa_phi <- fa5_ob$Phi |>
 gt(fa_phi)
 ```
 
-
-
 ```{r}
 #| label: fa-score
 
@@ -486,11 +489,17 @@ fa_scores <- fa5_ob$scores |> as_tibble()
 ```
 
 ::: callout-note
+
 Standard reporting guidelines for factor analysis from relevant literature should be consulted to determine the full set of results to present.
+
 :::
+
 ::: callout-note
+
 ## Why use a EFA instead of a CFA?
+
 An EFA was chosen over a Confirmatory Factor Analysis (CFA) because the original questionnaire was not specifically designed a priori to measure the 5C constructs. EFA allows for exploration of the underlying factor structure without the strong theoretical constraints imposed by CFA.
+
 :::
 
 
@@ -513,7 +522,6 @@ For each sentiment variable (treated as a binary outcome: Agree/Strongly Agree v
 |Fear       |         |         |    +    |    +    |    +    |
 |Knowledge  |         |         |         |    +    |    +    |
 |5Cs        |         |         |         |         |    +    |
-
 
 : The hierarchical logistic regression models for each VS {#tbl-VS-hier-models}
 
@@ -558,8 +566,8 @@ The list of the variables:
   - *Member* (`member`): Recoded into a binary factor 
     - Yes and No
     - (excluding 'I don't know' which seen as a missing value)
-  - *Profession* (`prof`): Treated as a categorical factor with 5 levels
-    - Nurs, Nutr, Phar, Phys and Other (collapsing Othe, Dent, Heal, Midf, Publ, Soci)
+  - *Profession* (`prof`): Treated as a categorical factor with 4 levels
+    - Nutr, Phar, Phys and Other (collapsing Othe, Nurs, Dent, Heal, Midf, Publ, Soci)
   - *Work setting* (`w_setting`): Treated as a categorical factor with 5 levels
     - Comm, Hosp, Priv (collapsing private company and private practice), Univ, and Other
   - *Fear* (`fear`): Treated as continuous predictors.
@@ -580,10 +588,10 @@ lr_data <- lr_rawdata |>
     gender = as_factor(gender) |> droplevels(exclude = "I prefer not to answer"),
     age_class = as_factor(age_class),
     edu = as_factor(edu) |> fct_relabel(~ str_sub(.x, 1, 4)) |> fct_collapse(Othe = c("Othe", "High", "Tech", "Bach", "Mast")),
-    chronic = as_factor(chronic) |> droplevels(exclude = "I prefer not to answer"),
+    chronic = as_factor(chronic) |> droplevels(exclude = "I prefer not to answer") |> fct_rev(),
     # for working variables
-    member = as_factor(member) |> droplevels(exclude = "I don't know"),
-    prof = as_factor(prof) |> fct_relabel(~ str_sub(.x, 1, 4)) |> fct_collapse(Othe = c("Othe", "Dent", "Heal", "Midw", "Publ", "Soci")),
+    member = as_factor(member) |> droplevels(exclude = "I don't know") |> fct_rev(),
+    prof = as_factor(prof) |> fct_relabel(~ str_sub(.x, 1, 4)) |> fct_collapse(Othe = c("Othe", "Nurs", "Dent", "Heal", "Midw", "Publ", "Soci")),
     w_setting = as_factor(w_setting) |> fct_relabel(~ str_sub(.x, 1, 4)),
     # for attitude variables: change labeling from 1245 to 1234
     across(all_of(attitude_var), ~ . - ifelse(. > 3, 1, 0))
@@ -615,7 +623,7 @@ s1_models <- map(list(m1_str, m2_str, m3_str, m4_str, m5_str),
                  ~ glm(as.formula(.), family = binomial, lr_data)) 
 ```
 
-Logistic regression results for S1 are presented in Table @tbl-S1-result.
+Logistic regression results (the odds ratio for each effect) for S1 are presented in Table @tbl-S1-result.
 
 ```{r}
 #| label: tbl-S1-result
@@ -624,14 +632,16 @@ Logistic regression results for S1 are presented in Table @tbl-S1-result.
 extract_esti <- function(lr) {
   coef <- summary(lr)$coefficients
   var_name <- rownames(coef)
-  esti <- round(coef[, 1], 3)
+  esti <- coef[, 1]
+  OR <- exp(esti) |> round(2)
+  se <- coef[, 2]
   p_value <- coef[, 4]
-  conf_l <- round(confint(lr)[, 1], 3)
-  conf_u <- round(confint(lr)[, 2], 3)
+  conf_l <- exp(esti - qnorm(1-0.05/2) * se) |> round(2)
+  conf_u <- exp(esti + qnorm(1-0.05/2) * se) |> round(2)
   p_sig <- cut(p_value, 
                breaks = c(0, 0.001, 0.01, 0.05, 0.1, 1),
                labels = c("***&nbsp;", "**&nbsp;&nbsp;", "*&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;"))
-  result <- str_glue("{format(esti)}{p_sig}<br>[{format(conf_l)}, {format(conf_u)}]")
+  result <- str_glue("{format(OR)}{p_sig}<br>[{format(conf_l)}, {format(conf_u)}]")
   tibble(vars = var_name, esti = result)
 }
 
