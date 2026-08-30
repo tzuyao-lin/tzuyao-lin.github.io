@@ -1,21 +1,70 @@
 /* css styles */
 
+:root {
+  --site-paper: #f7f4ee;
+  --site-surface: #fffdfc;
+  --site-ink: #243238;
+  --site-muted: #5d686b;
+  --site-accent: #2f6f6d;
+  --site-accent-hover: #245856;
+  --site-border: #d8d2c7;
+  --site-note-bg: #f1dfd5;
+  --site-note-text: #7a4230;
+}
+
+body.quarto-light {
+  --bs-body-bg: var(--site-paper);
+  --bs-body-color: var(--site-ink);
+  --bs-heading-color: var(--site-ink);
+  --bs-link-color: var(--site-accent);
+  --bs-link-color-rgb: 47, 111, 109;
+  --bs-link-hover-color: var(--site-accent-hover);
+  --bs-link-hover-color-rgb: 36, 88, 86;
+  --bs-border-color: var(--site-border);
+  --bs-tertiary-bg: var(--site-surface);
+  background-color: var(--site-paper);
+  color: var(--site-ink);
+}
+
+body.quarto-dark {
+  --site-paper: #171c1f;
+  --site-surface: #20282b;
+  --site-ink: #eeeae3;
+  --site-muted: #b8c0c0;
+  --site-accent: #82c0b9;
+  --site-accent-hover: #a0d3cd;
+  --site-border: #364145;
+  --site-note-bg: #493229;
+  --site-note-text: #e4b29a;
+  --bs-body-bg: var(--site-paper);
+  --bs-body-color: var(--site-ink);
+  --bs-heading-color: var(--site-ink);
+  --bs-link-color: var(--site-accent);
+  --bs-link-color-rgb: 130, 192, 185;
+  --bs-link-hover-color: var(--site-accent-hover);
+  --bs-link-hover-color-rgb: 160, 211, 205;
+  --bs-border-color: var(--site-border);
+  --bs-tertiary-bg: var(--site-surface);
+  background-color: var(--site-paper);
+  color: var(--site-ink);
+}
+
 body.quarto-light .navbar {
-  --bs-navbar-brand-color: #1f2933;
-  --bs-navbar-brand-hover-color: #111820;
-  --bs-navbar-color: #4b5560;
-  --bs-navbar-hover-color: #2c5d87;
-  background-color: #fff;
-  border-bottom: 1px solid #e2e6ea;
+  --bs-navbar-brand-color: var(--site-ink);
+  --bs-navbar-brand-hover-color: var(--site-accent-hover);
+  --bs-navbar-color: var(--site-muted);
+  --bs-navbar-hover-color: var(--site-accent);
+  background-color: var(--site-paper);
+  border-bottom: 1px solid var(--site-border);
 }
 
 body.quarto-dark .navbar {
-  --bs-navbar-brand-color: #f1f3f5;
-  --bs-navbar-brand-hover-color: #fff;
-  --bs-navbar-color: #d5d9dd;
-  --bs-navbar-hover-color: #9fc1df;
-  background-color: #1a1e22;
-  border-bottom: 1px solid #343a40;
+  --bs-navbar-brand-color: var(--site-ink);
+  --bs-navbar-brand-hover-color: var(--site-accent-hover);
+  --bs-navbar-color: var(--site-muted);
+  --bs-navbar-hover-color: var(--site-accent);
+  background-color: var(--site-paper);
+  border-bottom: 1px solid var(--site-border);
 }
 
 body.quarto-light .navbar .navbar-brand,
@@ -56,6 +105,21 @@ body.quarto-light .navbar-toggler-icon {
   filter: invert(1);
 }
 
+body.quarto-light .about-link,
+body.quarto-dark .about-link {
+  color: var(--site-ink) !important;
+  background-color: var(--site-surface) !important;
+  border-color: var(--site-border) !important;
+}
+
+body.quarto-light .about-link:hover,
+body.quarto-light .about-link:focus,
+body.quarto-dark .about-link:hover,
+body.quarto-dark .about-link:focus {
+  color: var(--site-accent-hover) !important;
+  border-color: var(--site-accent) !important;
+}
+
 .orcid-icon {
   width: 1rem;
   height: 1rem;
@@ -79,9 +143,10 @@ body.quarto-light .navbar-toggler-icon {
   display: inline-block;
   width: fit-content;
   padding: 0.15rem 0.5rem;
-  border: 1px solid var(--bs-border-color);
+  color: var(--site-note-text);
+  border: 1px solid color-mix(in srgb, var(--site-note-text) 35%, transparent);
   border-radius: 999px;
-  background-color: var(--bs-tertiary-bg);
+  background-color: var(--site-note-bg);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.03em;
