@@ -10,4 +10,7 @@
 # Restricted participant-level data used by the vaccine-attitude post
 /posts/20250328_VHS/*.[dD][tT][aA]
 
+# Restricted participant-level data used by the diabetes/PRS post
+/posts/20240918_CDP/[Ff]inal_data.[Cc][Ss][Vv]
+
 **/*.quarto_ipynb

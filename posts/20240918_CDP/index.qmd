@@ -9,6 +9,7 @@ categories:
 image: CDP.png
 execute:
   warning: false
+  freeze: true
 format: 
   html:
     toc: true
@@ -21,7 +22,7 @@ format:
 
 # Data preprocessing
 
-Load packages and data (`Final_data.csv`) which were preprocessed by YuFong.
+The analysis uses a restricted participant-level dataset preprocessed by YuFong. The dataset is stored separately from this public repository. Authorised researchers can supply its external file path through the `CDP_DATA_PATH` environment variable. See the [data availability and privacy statement](../../data/CDP-data.md) for handling requirements.
 
 ```{r}
 #| label: load-packages-and-settings
@@ -38,8 +39,42 @@ library(gt)
 ```{r}
 #| label: load-data
 
-data <- read_csv("Final_data.csv", na = c("", "NA", "-999", "-888"))
+data_path <- Sys.getenv("CDP_DATA_PATH")
+
+if (!nzchar(data_path)) {
+  stop("Set CDP_DATA_PATH to the restricted dataset outside this project.")
+}
+
+data_path <- normalizePath(data_path, mustWork = TRUE)
+project_dir <- Sys.getenv(
+  "QUARTO_PROJECT_DIR",
+  unset = normalizePath("../..", mustWork = TRUE)
+)
+project_dir <- normalizePath(project_dir, mustWork = TRUE)
+
+if (
+  identical(data_path, project_dir) ||
+    startsWith(data_path, paste0(project_dir, .Platform$file.sep))
+) {
+  stop("CDP_DATA_PATH must point outside the public website project.")
+}
+
+analysis_variables <- c(
+  "N_Diabetes_WHO", "N_DIABETES_2b", "PRS_tertiles",
+  "coffee_tertiles", "SEX", "Age", "bmi", "NIT_alcoholtot",
+  "smoking_3cat", "mean_step_min_wake_T", "DHD_sum", "NIT_kcal",
+  "N_CVD", "Tot_chol", "N_OMAP", "med_HT", "med_LP",
+  "FIT_suikerg", "B1_VD1_2.6.29", "N_Education_3cat"
+)
+
+data <- read_csv(
+  data_path,
+  na = c("", "NA", "-999", "-888"),
+  col_select = all_of(analysis_variables)
+)
 ```
+
+Only variables required by the published analysis are loaded. Public outputs should contain aggregate summaries and model results rather than participant-level records.
 
 Here, I retain the variables that will be analyzed in following.
 
@@ -80,7 +115,10 @@ You may notice that there are some misssing. However, the `Step_wake` has more t
 
 diabetes <- diabetes_with_na |> drop_na()
 
-print(diabetes, width = Inf)
+tibble(
+  complete_cases = nrow(diabetes),
+  excluded_rows = nrow(diabetes_with_na) - nrow(diabetes)
+)
 ```
 
 ::: callout-warning
@@ -379,7 +417,7 @@ prs_cof_OR_table <- tibble(
   T2DM_prs_cof3 = map2_chr(PRSlevels, Coflevels, ~ get_OR_CI(prs_cof3_ml, "T2DM", c(.x, .y))))
 
 gt(prs_cof_OR_table,
-   rowname_col = "PRS_level", 
+   rowname_col = "PRS_levels",
    groupname_col = "Cof_levels", 
    row_group_as_column = TRUE) |>
   tab_stubhead(label = c("Coffee", "PRS")) |>
