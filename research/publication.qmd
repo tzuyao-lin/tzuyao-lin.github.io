@@ -1,5 +1,5 @@
 ---
-title: "Publications"
+title: "Publications & Presentations"
 page-layout: full
 title-block-banner: false
 ---
@@ -21,3 +21,23 @@ Rao, Y., Yu, E. Y.-W., **Lin, T.-Y.**, Chen, Y., Qin, Y., Koster, A., Eussen, S.
 **Lin, T.-Y.**, Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. *Psychological Methods*. <https://doi.org/10.1037/met0000738>
 
 Yu, K., **Lin, T.-Y.**, Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. *Behavior Research Methods*, *57*(5), 127. <https://doi.org/10.3758/s13428-025-02650-1>
+
+## Presentations
+
+- **21 July 2026** — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.
+
+- **5 December 2025** — IQPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.
+
+- **30 September 2025** — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.
+
+- **19 July 2024** — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach.” Oral presentation.
+
+- **12 March 2024** — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.
+
+- **23 November 2023** — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.
+
+- **21 July 2023** — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.
+
+- **13 July 2023** — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.
+
+- **20 June 2023** — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation.
