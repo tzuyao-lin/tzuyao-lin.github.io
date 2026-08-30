@@ -2,6 +2,8 @@
 title: "Welcome To My Blog"
 author: "Tzu-Yao Lin"
 date: 2023-07-03
+status: "Working note"
+image: kinderdijk_and_sunrise.jpg
 categories: 
   - "news"
 ---

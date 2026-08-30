@@ -1,9 +1,34 @@
 ---
-title: "Hi there! Welcome."
-page-layout: full
-title-block-banner: true
+title: "Tzu-Yao Lin"
+subtitle: "Quantitative psychologist studying reliability in multilevel and intensive longitudinal data"
+image: profile-2024.jpg
+about:
+  template: solana
+  links:
+    - icon: file-person-fill
+      text: CV
+      href: https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf
+    - text: '<img src="assets/orcid-id.svg" class="orcid-icon" alt="" aria-hidden="true"> ORCID'
+      href: https://orcid.org/0000-0002-2261-448X
+    - icon: envelope-at-fill
+      text: Email
+      href: mailto:tzu-yao.lin@maastrichtuniversity.nl
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/tzu-yao-nick-lin/
+title-block-banner: false
 ---
 
-# About this blog
+## Research focus
 
-This is the contents of the about page for my blog.
+- **Reliability and measurement.** How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.
+- **Longitudinal and multilevel modelling.** Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
+- **Mathematical and computational modelling.** Models of judgment and decision-making, including cultural consensus and threshold models.
+
+## Background
+
+- **Joint PhD researcher.** KU Leuven, Research Group of Quantitative Psychology and Individual Differences, and Maastricht University, Department of Methodology and Statistics, 2022–present.
+- **MS in Psychology.** National Taiwan University, 2019–2022.
+- **BS in Psychology, minor in Forestry.** National Taiwan University, 2014–2019.
+
+Outside research, I am a fire dancer and Lindy hopper.

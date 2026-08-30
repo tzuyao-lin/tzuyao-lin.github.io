@@ -1,24 +1,23 @@
 ---
-title: "Publication"
+title: "Publications"
 page-layout: full
-title-block-banner: true
+title-block-banner: false
 ---
 
-## Working paper
+## Under review
 
-**Lin, T.-Y.**, Tuerlinckx F., Vanbelle, S.\* (In progress). Reliability in intensive longitudinal studies: A state-space vs.linear mixed model approach. 
-
-Lo, C.\*, **Lin, T.-Y.**, Werneck, G., Domingues, C., Saavedra, R.C., Moore, M., Souza, L.F., & Lomazzi, M. (In progress). Vaccine among Brazilian healthcare workers: the impact of COVID-19 pandemic.
-
-Rao, Y., Yu, E. Y.-W., **Lin, T.-Y.**, Chen, Y., Qin, Y.,Koster A., Eussen, S., Bosma, H., Berendschot, T.J.M, van der Kallen, C. , van Greevenbroek M., de Galan, B., Zeegers, M., Wesselius A. (Submitted). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study.
-
+**Lin, T.-Y.**, Tuerlinckx, F., & Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial.
 
 ## Published
 
-**Lin, T.-Y.**, Tuerlinckx F., & Vanbelle, S.\* (2025). Reliability for multilevel data: A correlation approach. *Psychological Methods*, *X*(X), XX-XX. <https://doi.org/10.1037/met0000738>
+**Lin, T.-Y.**, Tuerlinckx, F., & Vanbelle, S. (2026). Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach. *Psychometrika*. <https://doi.org/10.1017/psy.2026.10133>
 
-Yu, K.\*, **Lin, T.-Y.**, Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. *Behavior Research Methods*, *57*(5), 127. <https://doi.org/10.3758/s13428-025-02650-1>
+**Lin, T.-Y.**, & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. *Journal of Mathematical Psychology*. <https://doi.org/10.1016/j.jmp.2026.102990>
 
-## Master thesis
+Lo, C., **Lin, T.-Y.**, Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., & Lomazzi, M. (2025). The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study. *Journal of Global Health Economics and Policy*, *5*, e2025034. <https://doi.org/10.7189/001c.144190>
 
-**Lin T.-Y.**, & Hsu Y.-F. (2022). Incorporating the Luce-Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study. 
+Rao, Y., Yu, E. Y.-W., **Lin, T.-Y.**, Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., & Wesselius, A. (2025). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study. *European Journal of Nutrition*, *64*, 263. <https://doi.org/10.1007/s00394-025-03782-y>
+
+**Lin, T.-Y.**, Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. *Psychological Methods*. <https://doi.org/10.1037/met0000738>
+
+Yu, K., **Lin, T.-Y.**, Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. *Behavior Research Methods*, *57*(5), 127. <https://doi.org/10.3758/s13428-025-02650-1>

@@ -3,6 +3,7 @@ title: "Brazilian Vaccine Attitude Analysis"
 author: "Tzu-Yao Lin"
 date: 2025-03-28
 date-modified: 2026-08-29
+status: "Working note"
 categories: 
   - "r"
   - "statistics"
@@ -458,10 +459,10 @@ Most model fit indices suggest that all explored models provide a reasonably ade
 
 However, considering the theoretical goal of relating the findings to the 5C model of vaccine hesitancy, the 5-factor oblique solution (i.e., `fa5_ob`) is selected as the final model. This choice is motivated by its clearer potential alignment with the theoretical framework and the fact that each factor in this solution has substantial loadings from multiple variables. Furthermore, while not having the absolute lowest BIC, it demonstrates strong performance across other fit indices (e.g., TLI, RMSEA).
 
-It is recommended to report at least the factor loadings for the `fa5_ob` solution (Table @tab-fa-loadings), potentially using a **cutoff (= 0.26)** for clarity ...
+It is recommended to report at least the factor loadings for the `fa5_ob` solution (Table @tbl-fa-loadings), potentially using a **cutoff (= 0.26)** for clarity ...
 
 ```{r}
-#| label: tab-fa-loadings
+#| label: tbl-fa-loadings
 #| tbl-cap: The factor loadings 
 
 #Should be report:  factor loadings

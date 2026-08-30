@@ -2,6 +2,7 @@
 title: "Multinomial Logistic Regression Aanalysis"
 author: "Tzu-Yao Lin"
 date: 2024-09-18
+status: "Working note"
 categories:
  - "r"
  - "statistics"

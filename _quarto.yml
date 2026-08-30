@@ -2,28 +2,21 @@ project:
   type: website
   output-dir: docs
 
+execute:
+  freeze: true
+
 website:
-  title: "Tzu-Yao's Blog"
-  site-url: https://xup6y3ul6.github.io
-  description: "Tzu-Yao's Psychology and Data Sciences World"
+  title: "Tzu-Yao Lin"
+  site-url: https://xup6y3ul6.github.io/tzuyaolin_blog/
+  description: "Research, statistics, and R by Tzu-Yao Lin"
   #google-analytics: ""
   navbar:
     left:
       - href: blog.qmd
         text: "Posts"
-      - href: project.qmd
-        text: "Projects"
-      - text: "Research"
-        menu: 
-          - text: "Publications"
-            href: research/publication.qmd
-          - text: "Presentations"
-            href: research/presentation.qmd
+      - href: research/publication.qmd
+        text: "Publications"
     right:
-      - href: about.qmd
-        text: "About Me"
-      - icon: rss
-        href: index.xml
       - icon: github
         href: https://github.com/xup6y3ul6
 format:
@@ -34,4 +27,3 @@ format:
     css: styles.css
 
 editor: source
-
