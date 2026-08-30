@@ -1,16 +1,16 @@
 ---
-title: "Welcome To My Blog"
+title: "Welcome to My Blog"
 author: "Tzu-Yao Lin"
 date: 2023-07-03
-status: "Working note"
+date-modified: 2026-08-30
 image: kinderdijk_and_sunrise.jpg
 categories: 
   - "news"
 ---
 
-Welcome to my blog, where I'll be sharing my academic research progress, including my papers, study notes, and my work with R language, statistics, and psychology. Of course, I'll also be sharing my personal thoughts and experiences.
+Welcome to my blog. I started this space to share updates on my research, notes from what I am reading and learning, and things I discover while working with R, statistics, and psychology. I may also write about personal thoughts and experiences along the way.
 
-So, why I want to build a personal blog. The reason is simple. It's time to share what I know!
+Why start a personal blog? The reason is simple: I want to share what I learn instead of keeping it in my own notes.
 
 <div>
 
@@ -32,6 +32,6 @@ When you've written the same code 3 times, write a function<br><br>When you've g
 
 </div>
 
-Although I haven't quite figured out what this blog will look like yet, let's get started and worry about the details later. Anyway, thanks for joining me on this journey!
+I still don't know exactly what this blog will become, but that is part of the point. I would rather start now and let it take shape over time. Thanks for reading.
 
-![The sunrise in Kinderdijk (Children dike), the Netherlands](kinderdijk_and_sunrise.jpg)
+![Sunrise at Kinderdijk, the Netherlands](kinderdijk_and_sunrise.jpg)

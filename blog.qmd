@@ -10,9 +10,6 @@ listing:
     - title
     - date
     - categories
-    - status
-  include:
-    status: "Working note"
   categories: true
   sort-ui: true
   filter-ui: true
@@ -20,6 +17,4 @@ page-layout: full
 title-block-banner: false
 ---
 
-## Working notes
-
-These notes document work in progress and may change as the analyses or resources develop.
+Articles and notes on research, statistics, R, psychology, and academic life.

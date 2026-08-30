@@ -2,7 +2,6 @@
 title: "Resource to find a PhD (or researcher) position"
 author: "Tzu-Yao Lin"
 date: 2023-07-23
-status: "Working note"
 categories: 
   - "academia"
 image: find-a-phd.png

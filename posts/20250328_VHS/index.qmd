@@ -3,7 +3,6 @@ title: "Brazilian Vaccine Attitude Analysis"
 author: "Tzu-Yao Lin"
 date: 2025-03-28
 date-modified: 2026-08-29
-status: "Working note"
 categories: 
   - "r"
   - "statistics"
