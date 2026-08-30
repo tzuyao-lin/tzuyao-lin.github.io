@@ -2,7 +2,7 @@
 title: "Brazilian Vaccine Attitude Analysis"
 author: "Tzu-Yao Lin"
 date: 2025-03-28
-date-modified: 2025-04-07
+date-modified: 2026-08-29
 categories: 
   - "r"
   - "statistics"
@@ -10,6 +10,7 @@ categories:
 image: brazil-vaccine.png
 execute:
   warning: false
+  freeze: true
 bibliography: bibliography.bib
 csl: apa.csl
 format: 
@@ -22,7 +23,7 @@ format:
     code-tools: true
 ---
 
-This article analyzes the attitudes of Brazilian healthcare professionals towards COVID-19 vaccination using the survey data. The results from this analysis will contribute to Hugo’s research paper. This analysis has two main objectives:
+This article analyzes the attitudes of Brazilian healthcare professionals towards COVID-19 vaccination using restricted survey data. Participant-level data are not distributed with this website. The results from this analysis will contribute to Hugo’s research paper. This analysis has two main objectives:
 
 1. Conduct an exploratory factor analysis (EFA) on vaccine hesitancy (VH) attitudes to determine if the identified factors align with the 5C model described in previous literature."
 2. Perform logistic regression analyses using the identified factors and other covariates to examine their association with different vaccine sentiments (VS)."
@@ -44,47 +45,54 @@ library(corrplot) # for correlaion plots
 library(gt)
 ```
 
-The original dataset (`Brazil.dta`) is loaded and its structure examined
+The analysis uses a restricted participant-level dataset that is stored separately from this public repository. Authorised researchers can supply its external file path through the `BRAZIL_DATA_PATH` environment variable.
 
 ```{r}
 #| label: load-data
- 
-rawdata <- read_dta("Brazil.dta")
 
-skimr::skim(rawdata)
+data_path <- Sys.getenv("BRAZIL_DATA_PATH")
+
+if (!nzchar(data_path)) {
+  stop("Set BRAZIL_DATA_PATH to the restricted dataset outside this project.")
+}
+
+data_path <- normalizePath(data_path, mustWork = TRUE)
+project_dir <- Sys.getenv(
+  "QUARTO_PROJECT_DIR",
+  unset = normalizePath("../../..", mustWork = TRUE)
+)
+project_dir <- normalizePath(project_dir, mustWork = TRUE)
+
+if (
+  identical(data_path, project_dir) ||
+    startsWith(data_path, paste0(project_dir, .Platform$file.sep))
+) {
+  stop("BRAZIL_DATA_PATH must point outside the public website project.")
+}
+
+rawdata <- read_dta(data_path) |>
+  select(
+    gender, age_class, member, edu, prof, w_setting, chronic,
+    matches("vac_gen_\\d"),
+    covid_pro_1:covid_oblig_2,
+    covid_leaders:covid_earlyaccess,
+    cov_pro_3, change_vac_1, change_vac_2, change_vac_3,
+    change_HealthSy_1, fear, knowledge
+  )
 ```
 
-Key observations from the initial data inspection include:
+Only variables required by the analyses below are retained in memory. Direct identifiers, network identifiers, precise timestamps, and free-text responses are excluded.
+
+Key observations from the data preparation include:
 
 - Missing values are present, denoted by `NA` for numeric variables and empty strings ("") for character variables.
 - Many variables have the class `haven_labelled`. These labelled variables require careful handling and appropriate transformation before analysis."
-- If `vac_covid %in% c(2, 3)` then `covid_doses <- 0` instead of `NA`.
 
 Next, the variables relevant to this analysis are selected.
 
 ```{r}
-data <- rawdata |> 
-  mutate(across(where(is.character), ~ na_if(., ""))) |> 
-  select(
-    respondent_id, gender, age, age_class, member, edu, prof, w_setting, chronic, # background variables
-    matches("vac_gen_\\d"), # attitudes towards vaccination in general
-    covid_pro_1:covid_oblig_2, # attitudes towards COVID-19 vaccination 
-    covid_leaders:covid_earlyaccess, # the role of leaders and equity of access
-    starts_with("vac_flu"), # past behavior and futre intentions_flu vaccination
-    vac_covid, covid_doses, cov_pro_3,# past behavior and future intentions_COVID-19
-    matches("change_vac_\\d"), # change of sentiment towards vaccination
-    change_HealthSy_1, matches("change_system_\\d"), # change of confidence in ...
-    cov_y_when, # timing of COVID-19 vaccination
-    ends_with("hesitant"), # prevalence of vaccine hesitancy
-    #matches("cov_y_why_\\d"), # reason for COVID-19 vaccine uptake (yes)
-    #matches("cov_n_why_\\d+"), # reason for COVID-19 refusal (no)
-    fear, knowledge, # fear and knowledge about COVID-19 vaccination  
-    adv_patients, adv_ff, # advice to patients, friend, and family
-    last_training, # last training concerning vaccination
-    matches("sources_\\d+") # source of informaion
-  )
-
-data$covid_doses[data$vac_covid %in% c(2, 3)] <- 0
+data <- rawdata |>
+  mutate(across(where(is.character), ~ na_if(., "")))
 ```
 
 # Vaccine hesitancy (VH)
@@ -376,16 +384,16 @@ However, model fit indices are needed to quantitatively evaluate the performance
  
 fa_model_fit <- tibble(models = fa_models, 
                        names = c("fa3", "fa4", "fa5", "fa3_ob", "fa4_ob", "fa5_ob")) |> 
-  mutate(fit = map_dbl(models, `$`, fit),
-         fit.off = map_dbl(models, `$`, fit.off),
-         chi2 = map_dbl(models, `$`, STATISTIC), # chi-square
-         df =  map_dbl(models, `$`, dof), # degree of freedom
-         p.value = map_dbl(models, `$`, PVAL), # p-value of the chi-square test
-         RMS = map_dbl(models, `$`, rms), # root mean square (off diagonal residuals) / df
-         cRMS = map_dbl(models, `$`, crms), # rms adjusted for degrees of freedom
+  mutate(fit = map_dbl(models, "fit"),
+         fit.off = map_dbl(models, "fit.off"),
+         chi2 = map_dbl(models, "STATISTIC"), # chi-square
+         df =  map_dbl(models, "dof"), # degree of freedom
+         p.value = map_dbl(models, "PVAL"), # p-value of the chi-square test
+         RMS = map_dbl(models, "rms"), # root mean square (off diagonal residuals) / df
+         cRMS = map_dbl(models, "crms"), # rms adjusted for degrees of freedom
          RMSEA = map_dbl(models, ~ .$RMSEA[[1]]), # root mean square error of approximation
-         TLI = map_dbl(models, `$`, TLI), # Tucker-Lewis Index (the non-normal fit index)
-         BIC = map_dbl(models, `$`, BIC)) |> 
+         TLI = map_dbl(models, "TLI"), # Tucker-Lewis Index (the non-normal fit index)
+         BIC = map_dbl(models, "BIC")) |>
   select(-models)
 
 #map_dbl(fa_models, `$`, chi) # emperical chi-square

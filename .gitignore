@@ -4,3 +4,10 @@
 .Ruserdata
 
 /.quarto/
+/_site/
+.DS_Store
+
+# Restricted participant-level data used by the vaccine-attitude post
+/posts/20250328_VHS/*.[dD][tT][aA]
+
+**/*.quarto_ipynb
