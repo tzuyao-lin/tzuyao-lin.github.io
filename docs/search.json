@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "Posts",
     "section": "",
-    "text": "These notes document work in progress and may change as the analyses or resources develop."
+    "text": "Articles and notes on research, statistics, R, psychology, and academic life.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBrazilian Vaccine Attitude Analysis\n\n\n\nr\n\nstatistics\n\nconsultant\n\n\n\n\n\n\nMar 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMultinomial Logistic Regression Aanalysis\n\n\n\nr\n\nstatistics\n\nconsultant\n\n\n\n\n\n\nSep 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道\n\n\n\nacademia\n\nphd\n\neurope\n\n\n\n\n\n\nJul 23, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to My Blog\n\n\n\nnews\n\n\n\n\n\n\nJul 3, 2023\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog.html#working-notes",
@@ -58,28 +58,28 @@
   {
     "objectID": "posts/20230703_welcome/index.html",
     "href": "posts/20230703_welcome/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Welcome to My Blog",
     "section": "",
-    "text": "Welcome to my blog, where I’ll be sharing my academic research progress, including my papers, study notes, and my work with R language, statistics, and psychology. Of course, I’ll also be sharing my personal thoughts and experiences.\nSo, why I want to build a personal blog. The reason is simple. It’s time to share what I know!\n\n\n\nWhen you’ve written the same code 3 times, write a functionWhen you’ve given the same in-person advice 3 times, write a blog post\n\n— David Robinson (@drob) November 9, 2017\n\n\n\nAlthough I haven’t quite figured out what this blog will look like yet, let’s get started and worry about the details later. Anyway, thanks for joining me on this journey!\n\n\n\nThe sunrise in Kinderdijk (Children dike), the Netherlands"
+    "text": "Welcome to my blog. I started this space to share updates on my research, notes from what I am reading and learning, and things I discover while working with R, statistics, and psychology. I may also write about personal thoughts and experiences along the way.\nWhy start a personal blog? The reason is simple: I want to share what I learn instead of keeping it in my own notes.\n\n\n\nWhen you’ve written the same code 3 times, write a functionWhen you’ve given the same in-person advice 3 times, write a blog post\n\n— David Robinson (@drob) November 9, 2017\n\n\n\nI still don’t know exactly what this blog will become, but that is part of the point. I would rather start now and let it take shape over time. Thanks for reading.\n\n\n\nSunrise at Kinderdijk, the Netherlands"
   },
   {
     "objectID": "research/publication.html",
     "href": "research/publication.html",
-    "title": "Publications",
+    "title": "Publications & Presentations",
     "section": "",
     "text": "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial."
   },
   {
     "objectID": "research/publication.html#under-review",
     "href": "research/publication.html#under-review",
-    "title": "Publications",
+    "title": "Publications & Presentations",
     "section": "",
     "text": "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial."
   },
   {
     "objectID": "research/publication.html#published",
     "href": "research/publication.html#published",
-    "title": "Publications",
+    "title": "Publications & Presentations",
     "section": "Published",
     "text": "Published\nLin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2026). Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach. Psychometrika. https://doi.org/10.1017/psy.2026.10133\nLin, T.-Y., & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. Journal of Mathematical Psychology. https://doi.org/10.1016/j.jmp.2026.102990\nLo, C., Lin, T.-Y., Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., & Lomazzi, M. (2025). The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study. Journal of Global Health Economics and Policy, 5, e2025034. https://doi.org/10.7189/001c.144190\nRao, Y., Yu, E. Y.-W., Lin, T.-Y., Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., & Wesselius, A. (2025). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study. European Journal of Nutrition, 64, 263. https://doi.org/10.1007/s00394-025-03782-y\nLin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. Psychological Methods. https://doi.org/10.1037/met0000738\nYu, K., Lin, T.-Y., Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. Behavior Research Methods, 57(5), 127. https://doi.org/10.3758/s13428-025-02650-1"
   },
@@ -100,9 +100,9 @@
   {
     "objectID": "posts/20250330_PhD-position/index.html",
     "href": "posts/20250330_PhD-position/index.html",
-    "title": "Resource to find a PhD (or researcher) position",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
     "section": "",
-    "text": "先從你感興趣的領域獲取資訊\n\nallstat@JISCMAIL.AC.UK (https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=allstat) 統計相關的職缺，可能會有實驗室招博士生的訊息\nMathPsych (https://mathpsych.org/page/mailing-lists) 數理心理學、心理計量等的博士缺\nPsycCareers (https://www.psyccareers.com/) 主要是提供心理學家在美國的工作缺"
+    "text": "歐洲沒有統一的 PhD 招生方式。有些博士生職位會像一般工作一樣公開招聘，附有研究主題、聘僱期間與薪資；有些則要先找到指導教授，再申請博士班或研究經費。因此，只依賴一個網站通常不夠。\n這篇文章整理我在尋找歐洲 PhD 與研究職缺時使用或留意過的資訊管道。它不是完整的申請攻略，而是一份可以開始動手搜尋的資源清單。"
   },
   {
     "objectID": "posts/20250330_PhD-position/index.html#overall-in-euro",
@@ -180,5 +180,110 @@
     "title": "Diabetes and polygenic-risk analysis: data availability and privacy",
     "section": "",
     "text": "The participant-level dataset used for this analysis is restricted and is not distributed with this public website repository.\nThe file contains individual-level health, demographic, behavioural, medication, socioeconomic, and polygenic-risk variables. Whether any subset may be shared depends on the original consent, data-use agreement, ethics approval, and applicable institutional requirements; repository publication should not be assumed to be permitted.\nFor local reproduction by an authorised researcher, store the dataset outside the repository and provide its path through the CDP_DATA_PATH environment variable. The analysis rejects paths inside the website project. Do not copy or commit the participant-level file anywhere in this repository.\nOnly variables required by the published analysis are loaded. Public outputs should contain aggregate summaries and model results rather than participant-level records."
+  },
+  {
+    "objectID": "research/publication.html#presentations",
+    "href": "research/publication.html#presentations",
+    "title": "Publications & Presentations",
+    "section": "Presentations",
+    "text": "Presentations\n\n21 July 2026 — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.\n5 December 2025 — IQPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.\n30 September 2025 — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.\n19 July 2024 — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach.” Oral presentation.\n12 March 2024 — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n23 November 2023 — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n21 July 2023 — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.\n13 July 2023 — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n20 June 2023 — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation."
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#euraxess",
+    "href": "posts/20250330_PhD-position/index.html#euraxess",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "EURAXESS",
+    "text": "EURAXESS\nEURAXESS Jobs 是我會優先查看的平台之一。它收錄歐洲各國的研究職缺、funding opportunities 與 hosting offers，也可以依國家、研究領域和職涯階段篩選。\n如果想找博士生職位，可以嘗試搜尋：\n\nPhD position\ndoctoral researcher\ndoctoral candidate\npredoctoral researcher\n自己的研究領域，例如 psychometrics、quantitative psychology 或 statistics\n\n部分 Marie Skłodowska-Curie Actions Doctoral Networks 的博士生職缺也會刊登在 EURAXESS。搜尋時可以加入 MSCA 或 Doctoral Network。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#academic-positions",
+    "href": "posts/20250330_PhD-position/index.html#academic-positions",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "Academic Positions",
+    "text": "Academic Positions\nAcademic Positions 收錄不同國家的 PhD、postdoc、researcher 和 faculty positions，可以按照職位類型、國家與研究領域篩選，也能設定 job alert。\n這個網站適合用來快速了解目前哪些國家或大學正在招聘，但看到有興趣的職缺後，我仍會回到大學或研究機構的官方網站確認資訊。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#findaphd",
+    "href": "posts/20250330_PhD-position/index.html#findaphd",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "FindAPhD",
+    "text": "FindAPhD\nFindAPhD 可以按照學科、國家、研究計畫或指導教授搜尋博士機會。英國的項目尤其多，但也會收錄其他歐洲國家的 PhD projects、programmes 與 funding information。\n使用時要注意，不同結果可能代表不同形式的機會。有些是已經有經費的研究計畫，有些是博士課程介紹，也有些需要申請者另外尋找 funding。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#荷蘭",
+    "href": "posts/20250330_PhD-position/index.html#荷蘭",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "荷蘭",
+    "text": "荷蘭\nAcademicTransfer 是尋找荷蘭研究職缺的重要平台。荷蘭大學、研究機構與大學醫院會在這裡刊登 PhD、postdoc 和其他學術職位，也可以建立帳號並儲存搜尋條件。\n我會先選擇 PhD 類型，再加入自己的方法或研究主題，例如：\n\npsychology\npsychometrics\nmeasurement\nresearch methodology\nstatistics\nlongitudinal data\n\n關鍵字不宜設得太窄。同一類研究可能使用不同名稱，例如 quantitative psychology、behavioural science 或 data science。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#比利時",
+    "href": "posts/20250330_PhD-position/index.html#比利時",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "比利時",
+    "text": "比利時\n比利時的 PhD 職缺可以先從 EURAXESS 和 Academic Positions 開始搜尋。不過，這些跨國平台上的資料取決於招聘單位是否另外刊登，因此不一定涵蓋各大學的所有職缺。比較保險的做法，是把跨國平台當成發現職缺的入口，再定期查看感興趣大學的官方招聘頁面。這不是說跨國平台不可靠，而是不能假設它們一定完整。\n以下是幾所比利時大學的官方職缺頁：\n\nKU Leuven Jobsite：可以查看 PhD、academic staff 和其他校內職缺，也能設定 job alerts。\nGhent University Jobs：包含 PhD students、doctoral fellows、researchers 和其他學術職位。Ghent University 也提到，申請 PhD 除了回應公開職缺，也可能透過聯絡特定教授開始。\nUHasselt Vacancies：可以依 academic staff、research staff 與 PhD scholarships 等類別查看職缺。\nUniversity of Antwerp Vacancies：包含 academic staff、research groups 與合作機構的職缺；英文頁面也提醒，完整名單有時需要一併查看荷蘭文頁面。\nVUB Jobs：可以查看 Vrije Universiteit Brussel 的 PhD、researcher 和 academic personnel 職缺。\n\n如果已經鎖定特定研究團隊，我還會查看該團隊或系所的消息頁面。部分職缺可能先由研究團隊、教授或學術社群分享，之後才出現在大學的中央招聘系統。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#法國",
+    "href": "posts/20250330_PhD-position/index.html#法國",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "法國",
+    "text": "法國\nResearch in France 由 Campus France 維護，可以搜尋 doctoral programmes、博士研究題目、funding 與 doctoral schools。\n法國的職缺或博士題目可能區分為已有經費的職位，以及需要申請者自行取得獎學金的題目。閱讀公告時，要特別確認 funding 欄位與申請方式。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#英國",
+    "href": "posts/20250330_PhD-position/index.html#英國",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "英國",
+    "text": "英國\n英國的博士計畫可以從 FindAPhD 開始，再到各大學的 postgraduate research 或 jobs 頁面確認。\n搜尋結果中可能同時包含 funded studentships 和需要自費或另外申請獎學金的 programmes，因此不能只看研究主題，也要確認 tuition fees、stipend 和國際學生資格。"
+  },
+  {
+    "objectID": "posts/20250330_PhD-position/index.html#挪威",
+    "href": "posts/20250330_PhD-position/index.html#挪威",
+    "title": "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道",
+    "section": "挪威",
+    "text": "挪威\nJobbnorge 是挪威常見的招聘平台之一，除了其他公共部門職缺，也能找到大學與研究機構刊登的 PhD positions。\n部分公告的標題或頁面可能以挪威文顯示，可以直接使用職位名稱、學校名稱或 PhD 搜尋。"
+  },
+  {
+    "objectID": "publication.html",
+    "href": "publication.html",
+    "title": "Publications & Presentations",
+    "section": "",
+    "text": "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial."
+  },
+  {
+    "objectID": "publication.html#under-review",
+    "href": "publication.html#under-review",
+    "title": "Publications & Presentations",
+    "section": "",
+    "text": "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial."
+  },
+  {
+    "objectID": "publication.html#published",
+    "href": "publication.html#published",
+    "title": "Publications & Presentations",
+    "section": "Published",
+    "text": "Published\nLin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2026). Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach. Psychometrika. https://doi.org/10.1017/psy.2026.10133\nLin, T.-Y., & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. Journal of Mathematical Psychology. https://doi.org/10.1016/j.jmp.2026.102990\nLo, C., Lin, T.-Y., Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., & Lomazzi, M. (2025). The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study. Journal of Global Health Economics and Policy, 5, e2025034. https://doi.org/10.7189/001c.144190\nRao, Y., Yu, E. Y.-W., Lin, T.-Y., Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., & Wesselius, A. (2025). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study. European Journal of Nutrition, 64, 263. https://doi.org/10.1007/s00394-025-03782-y\nLin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. Psychological Methods. https://doi.org/10.1037/met0000738\nYu, K., Lin, T.-Y., Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. Behavior Research Methods, 57(5), 127. https://doi.org/10.3758/s13428-025-02650-1"
+  },
+  {
+    "objectID": "publication.html#presentations",
+    "href": "publication.html#presentations",
+    "title": "Publications & Presentations",
+    "section": "Presentations",
+    "text": "Presentations\n21 July 2026 — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.\n5 December 2025 — IOPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.\n30 September 2025 — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.\n19 July 2024 — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach.” Oral presentation.\n12 March 2024 — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n23 November 2023 — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n21 July 2023 — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.\n13 July 2023 — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.\n20 June 2023 — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation."
+  },
+  {
+    "objectID": "assets/fonts/LICENSE-SourceSans3.html",
+    "href": "assets/fonts/LICENSE-SourceSans3.html",
+    "title": "Tzu-Yao Lin",
+    "section": "",
+    "text": "Copyright 2010-2024 Adobe (http://www.adobe.com/), with Reserved Font Name ‘Source’. All Rights Reserved. Source is a trademark of Adobe in the United States and/or other countries.\nThis Font Software is licensed under the SIL Open Font License, Version 1.1.\nThis license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL\n\n\n\nSIL OPEN FONT LICENSE Version 1.1 - 26 February 2007\n\n\n\nPREAMBLE The goals of the Open Font License (OFL) are to stimulate worldwide development of collaborative font projects, to support the font creation efforts of academic and linguistic communities, and to provide a free and open framework in which fonts may be shared and improved in partnership with others.\nThe OFL allows the licensed fonts to be used, studied, modified and redistributed freely as long as they are not sold by themselves. The fonts, including any derivative works, can be bundled, embedded, redistributed and/or sold with any software provided that any reserved names are not used by derivative works. The fonts and derivatives, however, cannot be released under any other type of license. The requirement for fonts to remain under this license does not apply to any document created using the fonts or their derivatives.\nDEFINITIONS “Font Software” refers to the set of files released by the Copyright Holder(s) under this license and clearly marked as such. This may include source files, build scripts and documentation.\n“Reserved Font Name” refers to any names specified as such after the copyright statement(s).\n“Original Version” refers to the collection of Font Software components as distributed by the Copyright Holder(s).\n“Modified Version” refers to any derivative made by adding to, deleting, or substituting – in part or in whole – any of the components of the Original Version, by changing formats or by porting the Font Software to a new environment.\n“Author” refers to any designer, engineer, programmer, technical writer or other person who contributed to the Font Software.\nPERMISSION & CONDITIONS Permission is hereby granted, free of charge, to any person obtaining a copy of the Font Software, to use, study, copy, merge, embed, modify, redistribute, and sell modified and unmodified copies of the Font Software, subject to the following conditions:\n\nNeither the Font Software nor any of its individual components, in Original or Modified Versions, may be sold by itself.\nOriginal or Modified Versions of the Font Software may be bundled, redistributed and/or sold with any software, provided that each copy contains the above copyright notice and this license. These can be included either as stand-alone text files, human-readable headers or in the appropriate machine-readable metadata fields within text or binary files as long as those fields can be easily viewed by the user.\nNo Modified Version of the Font Software may use the Reserved Font Name(s) unless explicit written permission is granted by the corresponding Copyright Holder. This restriction only applies to the primary font name as presented to the users.\nThe name(s) of the Copyright Holder(s) or the Author(s) of the Font Software shall not be used to promote, endorse or advertise any Modified Version, except to acknowledge the contribution(s) of the Copyright Holder(s) and the Author(s) or with their explicit written permission.\nThe Font Software, modified or unmodified, in part or in whole, must be distributed entirely under this license, and must not be distributed under any other license. The requirement for fonts to remain under this license does not apply to any document created using the Font Software.\n\nTERMINATION This license becomes null and void if any of the above conditions are not met.\nDISCLAIMER THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
+  },
+  {
+    "objectID": "assets/fonts/LICENSE-SourceSerif4.html",
+    "href": "assets/fonts/LICENSE-SourceSerif4.html",
+    "title": "Tzu-Yao Lin",
+    "section": "",
+    "text": "Copyright 2014 - 2023 Adobe (http://www.adobe.com/), with Reserved Font Name ‘Source’. All Rights Reserved. Source is a trademark of Adobe in the United States and/or other countries.\nThis Font Software is licensed under the SIL Open Font License, Version 1.1.\nThis license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL\n\n\n\nSIL OPEN FONT LICENSE Version 1.1 - 26 February 2007\n\n\n\nPREAMBLE The goals of the Open Font License (OFL) are to stimulate worldwide development of collaborative font projects, to support the font creation efforts of academic and linguistic communities, and to provide a free and open framework in which fonts may be shared and improved in partnership with others.\nThe OFL allows the licensed fonts to be used, studied, modified and redistributed freely as long as they are not sold by themselves. The fonts, including any derivative works, can be bundled, embedded, redistributed and/or sold with any software provided that any reserved names are not used by derivative works. The fonts and derivatives, however, cannot be released under any other type of license. The requirement for fonts to remain under this license does not apply to any document created using the fonts or their derivatives.\nDEFINITIONS “Font Software” refers to the set of files released by the Copyright Holder(s) under this license and clearly marked as such. This may include source files, build scripts and documentation.\n“Reserved Font Name” refers to any names specified as such after the copyright statement(s).\n“Original Version” refers to the collection of Font Software components as distributed by the Copyright Holder(s).\n“Modified Version” refers to any derivative made by adding to, deleting, or substituting – in part or in whole – any of the components of the Original Version, by changing formats or by porting the Font Software to a new environment.\n“Author” refers to any designer, engineer, programmer, technical writer or other person who contributed to the Font Software.\nPERMISSION & CONDITIONS Permission is hereby granted, free of charge, to any person obtaining a copy of the Font Software, to use, study, copy, merge, embed, modify, redistribute, and sell modified and unmodified copies of the Font Software, subject to the following conditions:\n\nNeither the Font Software nor any of its individual components, in Original or Modified Versions, may be sold by itself.\nOriginal or Modified Versions of the Font Software may be bundled, redistributed and/or sold with any software, provided that each copy contains the above copyright notice and this license. These can be included either as stand-alone text files, human-readable headers or in the appropriate machine-readable metadata fields within text or binary files as long as those fields can be easily viewed by the user.\nNo Modified Version of the Font Software may use the Reserved Font Name(s) unless explicit written permission is granted by the corresponding Copyright Holder. This restriction only applies to the primary font name as presented to the users.\nThe name(s) of the Copyright Holder(s) or the Author(s) of the Font Software shall not be used to promote, endorse or advertise any Modified Version, except to acknowledge the contribution(s) of the Copyright Holder(s) and the Author(s) or with their explicit written permission.\nThe Font Software, modified or unmodified, in part or in whole, must be distributed entirely under this license, and must not be distributed under any other license. The requirement for fonts to remain under this license does not apply to any document created using the Font Software.\n\nTERMINATION This license becomes null and void if any of the above conditions are not met.\nDISCLAIMER THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
   }
 ]

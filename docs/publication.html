@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Posts – Tzu-Yao Lin</title>
+<title>Publications &amp; Presentations – Tzu-Yao Lin</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,65 +77,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -322,11 +262,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publication.html"> 
+    <a class="nav-link active" href="./publication.html" aria-current="page"> 
 <span class="menu-text">Publications</span></a>
   </li>  
 </ul>
@@ -348,21 +288,19 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YWNhZGVtaWE=">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uc3VsdGFudA==">consultant <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXVyb3Bl">europe <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGhk">phd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cg==">r <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Posts</h1>
+<h1 class="title">Publications &amp; Presentations</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -374,146 +312,35 @@ window.Quarto = {
 </header>
 
 
-<p>Articles and notes on research, statistics, R, psychology, and academic life.</p>
+<section id="under-review" class="level2">
+<h2 class="anchored" data-anchor-id="under-review">Under review</h2>
+<p><strong>Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S. (Under review). An intraclass correlation coefficient is a correlation: A tutorial.</p>
+</section>
+<section id="published" class="level2">
+<h2 class="anchored" data-anchor-id="published">Published</h2>
+<p><strong>Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S. (2026). Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach. <em>Psychometrika</em>. <a href="https://doi.org/10.1017/psy.2026.10133" class="uri">https://doi.org/10.1017/psy.2026.10133</a></p>
+<p><strong>Lin, T.-Y.</strong>, &amp; Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. <em>Journal of Mathematical Psychology</em>. <a href="https://doi.org/10.1016/j.jmp.2026.102990" class="uri">https://doi.org/10.1016/j.jmp.2026.102990</a></p>
+<p>Lo, C., <strong>Lin, T.-Y.</strong>, Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., &amp; Lomazzi, M. (2025). The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study. <em>Journal of Global Health Economics and Policy</em>, <em>5</em>, e2025034. <a href="https://doi.org/10.7189/001c.144190" class="uri">https://doi.org/10.7189/001c.144190</a></p>
+<p>Rao, Y., Yu, E. Y.-W., <strong>Lin, T.-Y.</strong>, Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., &amp; Wesselius, A. (2025). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study. <em>European Journal of Nutrition</em>, <em>64</em>, 263. <a href="https://doi.org/10.1007/s00394-025-03782-y" class="uri">https://doi.org/10.1007/s00394-025-03782-y</a></p>
+<p><strong>Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. <em>Psychological Methods</em>. <a href="https://doi.org/10.1037/met0000738" class="uri">https://doi.org/10.1037/met0000738</a></p>
+<p>Yu, K., <strong>Lin, T.-Y.</strong>, Zaman, J., Tuerlinckx, F., &amp; Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. <em>Behavior Research Methods</em>, <em>57</em>(5), 127. <a href="https://doi.org/10.3758/s13428-025-02650-1" class="uri">https://doi.org/10.3758/s13428-025-02650-1</a></p>
+</section>
+<section id="presentations" class="level2">
+<h2 class="anchored" data-anchor-id="presentations">Presentations</h2>
+<p><strong>21 July 2026</strong> — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.</p>
+<p><strong>5 December 2025</strong> — IOPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.</p>
+<p><strong>30 September 2025</strong> — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.</p>
+<p><strong>19 July 2024</strong> — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs.&nbsp;linear mixed model approach.” Oral presentation.</p>
+<p><strong>12 March 2024</strong> — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
+<p><strong>23 November 2023</strong> — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
+<p><strong>21 July 2023</strong> — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.</p>
+<p><strong>13 July 2023</strong> — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
+<p><strong>20 June 2023</strong> — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1743116400000" data-listing-file-modified-sort="1788104757124" data-listing-date-modified-sort="1787954400000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4037">
-<div class="thumbnail"><a href="./posts/20250328_VHS/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250328_VHS/brazil-vaccine.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250328_VHS/index.html" class="no-external">Brazilian Vaccine Attitude Analysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250328_VHS/index.html" class="no-external">
-<div class="listing-date">
-Mar 28, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1726610400000" data-listing-file-modified-sort="1788104757046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2141">
-<div class="thumbnail"><a href="./posts/20240918_CDP/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20240918_CDP/CDP.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20240918_CDP/index.html" class="no-external">Multinomial Logistic Regression Aanalysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20240918_CDP/index.html" class="no-external">
-<div class="listing-date">
-Sep 18, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="YWNhZGVtaWElMkNwaGQlMkNldXJvcGU=" data-listing-date-sort="1690063200000" data-listing-file-modified-sort="1788116336112" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="2" data-listing-word-count-sort="230">
-<div class="thumbnail"><a href="./posts/20250330_PhD-position/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250330_PhD-position/find-a-phd.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWNhZGVtaWE='); return false;">academia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGhk'); return false;">phd</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXVyb3Bl'); return false;">europe</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">
-<div class="listing-date">
-Jul 23, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1688335200000" data-listing-file-modified-sort="1788104756964" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="1" data-listing-word-count-sort="139">
-<div class="thumbnail"><a href="./posts/20230703_welcome/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20230703_welcome/kinderdijk_and_sunrise.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20230703_welcome/index.html" class="no-external">Welcome to My Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20230703_welcome/index.html" class="no-external">
-<div class="listing-date">
-Jul 3, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

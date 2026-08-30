@@ -1,5 +1,45 @@
 /* css styles */
 
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/SourceSerif4-VF.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("assets/fonts/SourceSerif4-Italic-VF.woff2") format("woff2-variations");
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("assets/fonts/SourceSans3-VF.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("assets/fonts/SourceSans3-Italic-VF.woff2") format("woff2-variations");
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("assets/fonts/FiraCode-VF.woff2") format("woff2-variations");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
 :root {
   --site-paper: #f7f4ee;
   --site-surface: #fffdfc;
@@ -10,6 +50,98 @@
   --site-border: #d8d2c7;
   --site-note-bg: #f1dfd5;
   --site-note-text: #7a4230;
+  --site-font-ui: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  --site-font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --site-font-heading: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --site-font-code: "Fira Code", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  --site-space-xs: 0.4rem;
+  --site-space-sm: 0.75rem;
+  --site-space-md: 1.15rem;
+  --site-space-lg: 1.75rem;
+  --site-space-xl: 2.75rem;
+}
+
+body {
+  font-family: var(--site-font-ui);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+main.content,
+.quarto-title .subtitle {
+  font-family: var(--site-font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.title {
+  font-family: var(--site-font-heading);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+
+h1,
+.h1,
+.title {
+  letter-spacing: -0.025em;
+}
+
+code,
+kbd,
+pre,
+samp,
+.sourceCode {
+  font-family: var(--site-font-code) !important;
+  font-variant-ligatures: contextual common-ligatures;
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+
+.navbar {
+  padding-block: var(--site-space-sm);
+}
+
+.quarto-about-solana .about-links {
+  gap: var(--site-space-sm);
+  margin-top: var(--site-space-lg);
+  margin-bottom: var(--site-space-xl);
+}
+
+main.content h1 {
+  margin-bottom: var(--site-space-lg);
+}
+
+main.content h2 {
+  margin-top: var(--site-space-xl);
+  margin-bottom: var(--site-space-md);
+}
+
+main.content h3 {
+  margin-top: var(--site-space-lg);
+  margin-bottom: var(--site-space-sm);
+}
+
+main.content p {
+  margin-bottom: var(--site-space-md);
+}
+
+main.content ul,
+main.content ol {
+  margin-bottom: var(--site-space-lg);
+}
+
+main.content li + li {
+  margin-top: var(--site-space-xs);
 }
 
 body.quarto-light {
@@ -127,8 +259,9 @@ body.quarto-dark .about-link:focus {
 }
 
 .quarto-listing .quarto-post {
-  margin-bottom: 0.75rem;
-  padding-bottom: 1rem;
+  margin-bottom: 0;
+  padding-top: var(--site-space-lg);
+  padding-bottom: var(--site-space-lg);
 }
 
 .quarto-listing .quarto-post .thumbnail-image {
