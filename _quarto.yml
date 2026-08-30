@@ -7,7 +7,7 @@ execute:
 
 website:
   title: "Tzu-Yao Lin"
-  site-url: https://xup6y3ul6.github.io/tzuyaolin_blog/
+  site-url: https://tzuyao-lin.github.io/
   description: "Research, statistics, and R by Tzu-Yao Lin"
   #google-analytics: ""
   navbar:
@@ -18,7 +18,7 @@ website:
         text: "Publications"
     right:
       - icon: github
-        href: https://github.com/xup6y3ul6
+        href: https://github.com/tzuyao-lin
 format:
   html:
     theme: 
