@@ -10,12 +10,12 @@ about:
       href: https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf
     - text: '<img src="assets/orcid-id.svg" class="orcid-icon" alt="" aria-hidden="true"> ORCID'
       href: https://orcid.org/0000-0002-2261-448X
-    - icon: envelope-at-fill
-      text: Email
-      href: mailto:tzu-yao.lin@maastrichtuniversity.nl
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/tzu-yao-nick-lin/
+    - icon: envelope-at-fill
+      text: Email
+      href: mailto:tzu-yao.lin@maastrichtuniversity.nl
 title-block-banner: false
 ---
 
