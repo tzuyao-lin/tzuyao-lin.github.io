@@ -18,12 +18,6 @@ main.content {
   display: none;
 }
 
-.navbar-brand {
-  font-family: var(--site-font-heading);
-  font-size: 1.45rem;
-  font-weight: 600;
-}
-
 .home-shell {
   width: 100vw;
   margin-left: calc(50% - 50vw);
