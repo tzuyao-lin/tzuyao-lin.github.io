@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Posts – Tzu-Yao Lin</title>
+<title>design-qa – Tzu-Yao Lin</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,70 +77,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -307,7 +247,7 @@ window.Quarto = {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -326,7 +266,7 @@ window.Quarto = {
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
@@ -349,175 +289,81 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YWNhZGVtaWE=">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uc3VsdGFudA==">consultant <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXVyb3Bl">europe <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGhk">phd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cg==">r <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Posts</h1>
-</div>
-
-
-
-<div class="quarto-title-meta column-page-left">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Articles and notes on research, statistics, R, psychology, and academic life.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1743116400000" data-listing-file-modified-sort="1788104757124" data-listing-date-modified-sort="1787954400000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4037">
-<div class="thumbnail"><a href="./posts/20250328_VHS/index.html" class="no-external">
 
-<img loading="lazy" src="./posts/20250328_VHS/brazil-vaccine.png" class="thumbnail-image">
+<section id="homepage-hero-design-qa" class="level1">
+<h1>Homepage Hero Design QA</h1>
+<ul>
+<li>Original design reference: <code>/var/folders/kx/g_9_dx8j7t77zp9y81fkc7440000gn/T/codex-clipboard-dc388174-be3e-458e-a50d-1f50ff545dbe.png</code></li>
+<li>Edge-defect reference: <code>/var/folders/kx/g_9_dx8j7t77zp9y81fkc7440000gn/T/codex-clipboard-c5d50bf8-b0d8-4d69-b877-1a5345744a20.png</code></li>
+<li>Before screenshot: <code>/private/tmp/tzuyaolin-home-qa/edge-before-short.png</code></li>
+<li>Implementation screenshot: <code>/private/tmp/tzuyaolin-home-qa/dense-nodes-reference-size.png</code></li>
+<li>Combined comparison: <code>/private/tmp/tzuyaolin-dense-nodes-qa.svg.png</code></li>
+<li>Viewport: 1672 × 941 CSS px, light theme, device-density-normalized 1× screenshot</li>
+<li>Additional evidence: <code>/private/tmp/tzuyaolin-home-qa/dense-nodes-light.png</code>, <code>/private/tmp/tzuyaolin-home-qa/dense-nodes-dark.png</code>, <code>/private/tmp/tzuyaolin-home-qa/dense-nodes-mobile.png</code>, and <code>/private/tmp/tzuyaolin-home-qa/dense-nodes-hover.png</code></li>
+</ul>
+<section id="full-view-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="full-view-comparison">Full-view comparison</h2>
+<p>The approved Hero composition, typography, navbar, copy, calls to action, and trajectory illustration remain unchanged. The overlay now contains 34 small nodes distributed across several trajectory bands, with roughly two-thirds teal and one-third amber. The existing vertical feather still blends the illustration and canvas into the page background.</p>
+</section>
+<section id="focused-region-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="focused-region-comparison">Focused-region comparison</h2>
+<p>The user-requested denser sparkle field is visible across the full longitudinal sequence rather than being concentrated in a few blue points. Amber nodes remain amber in both light and dark themes, while theme-specific luminance keeps them legible without dominating the headline. Pointer proximity increases local glow; without interaction, the same nodes retain their slow drift and pulse. Mobile and desktop captures preserve readable content and show no horizontal overflow.</p>
+</section>
+<section id="required-fidelity-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="required-fidelity-surfaces">Required fidelity surfaces</h2>
+<ul>
+<li>Fonts and typography: unchanged from the approved implementation.</li>
+<li>Spacing and layout rhythm: unchanged; the mask does not affect element geometry.</li>
+<li>Colors and visual tokens: the illustration remains restrained; overlay nodes now use teal and gold-orange theme-aware palettes.</li>
+<li>Image quality and asset fidelity: the supplied trajectory PNG remains the sole illustration. Its existing radial mask is retained, with a separate vertical feather applied to the whole visual layer.</li>
+<li>Copy and content: unchanged.</li>
+</ul>
+</section>
+<section id="findings" class="level2">
+<h2 class="anchored" data-anchor-id="findings">Findings</h2>
+<p>No actionable P0, P1, or P2 findings remain within the requested node-density and two-color scope.</p>
+</section>
+<section id="comparison-history" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-history">Comparison history</h2>
+<ul>
+<li>Pass 1: originally marked passed at a tall desktop viewport. This missed the upper PNG boundary exposed by a shorter Brave viewport.</li>
+<li>User review: P2 image-quality issue identified at the upper trajectory edge; the lower edge had the same structural risk.</li>
+<li>Pass 2: added a symmetric vertical alpha feather to the visual container. The matched short desktop comparison no longer shows a hard horizontal start; tall desktop, mobile, and dark-theme checks also pass.</li>
+<li>User review: requested more sparkling points across the dense sequence and a gold-orange accent in both themes.</li>
+<li>Pass 3: expanded the overlay from 16 to 34 distributed nodes, assigned a two-teal-to-one-amber palette, and verified light, dark, mobile, idle, and pointer-hover states.</li>
+</ul>
+</section>
+<section id="interaction-and-browser-checks" class="level2">
+<h2 class="anchored" data-anchor-id="interaction-and-browser-checks">Interaction and browser checks</h2>
+<ul>
+<li>Ambient node animation and pointer-proximity behavior remain active across all 34 nodes.</li>
+<li>Light desktop, reference-size desktop, mobile, dark-theme, and pointer-hover states were inspected.</li>
+<li>Computed vertical mask is active in the fresh-origin browser check.</li>
+<li>Horizontal overflow: 0 px on desktop and mobile checks.</li>
+</ul>
+</section>
+<section id="follow-up-polish" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up-polish">Follow-up polish</h2>
+<ul>
+<li>P3: node density and the teal-to-amber ratio can be tuned after subjective review without changing layout or interaction logic.</li>
+</ul>
+<p>final result: passed</p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250328_VHS/index.html" class="no-external">Brazilian Vaccine Attitude Analysis</a>
-</h3>
-<div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
+</section>
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250328_VHS/index.html" class="no-external">
-<div class="listing-date">
-Mar 28, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1726610400000" data-listing-file-modified-sort="1788104757046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2141">
-<div class="thumbnail"><a href="./posts/20240918_CDP/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20240918_CDP/CDP.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20240918_CDP/index.html" class="no-external">Multinomial Logistic Regression Aanalysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20240918_CDP/index.html" class="no-external">
-<div class="listing-date">
-Sep 18, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="YWNhZGVtaWElMkNwaGQlMkNldXJvcGU=" data-listing-date-sort="1690063200000" data-listing-file-modified-sort="1788116336112" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="2" data-listing-word-count-sort="230">
-<div class="thumbnail"><a href="./posts/20250330_PhD-position/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250330_PhD-position/find-a-phd.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWNhZGVtaWE='); return false;">academia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGhk'); return false;">phd</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXVyb3Bl'); return false;">europe</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">
-<div class="listing-date">
-Jul 23, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1688335200000" data-listing-file-modified-sort="1788104756964" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="1" data-listing-word-count-sort="139">
-<div class="thumbnail"><a href="./posts/20230703_welcome/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20230703_welcome/kinderdijk_and_sunrise.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20230703_welcome/index.html" class="no-external">Welcome to My Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20230703_welcome/index.html" class="no-external">
-<div class="listing-date">
-Jul 3, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

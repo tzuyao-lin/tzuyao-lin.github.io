@@ -158,7 +158,7 @@
     "href": "index.html",
     "title": "Tzu-Yao Lin",
     "section": "",
-    "text": "Hi, I'm Tzu-Yao.\n      I study reliability in multilevel and intensive longitudinal data.\n      Joint PhD researcher · KU Leuven × Maastricht University\n      \n        \n          View publications\n          \n        \n        \n          Download CV"
+    "text": "Hi, I'm Tzu-Yao.\n      I study reliability in multilevel and intensive longitudinal data.\n      Joint PhD candidate · KU Leuven × Maastricht University\n      \n        \n          View publications\n          \n        \n        \n          Download CV"
   },
   {
     "objectID": "index.html#research-focus",
@@ -291,20 +291,76 @@
     "href": "about.html",
     "title": "Tzu-Yao Lin",
     "section": "",
-    "text": "Reliability and measurement. How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.\nLongitudinal and multilevel modelling. Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.\nMathematical and computational modelling. Models of judgment and decision-making, including cultural consensus and threshold models."
+    "text": "Reliability and measurement. How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.\nLongitudinal and multilevel modeling. Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.\nMathematical and computational modeling. Models of judgment and decision-making, including cultural consensus and threshold models."
   },
   {
     "objectID": "about.html#research-focus",
     "href": "about.html#research-focus",
     "title": "Tzu-Yao Lin",
     "section": "",
-    "text": "Reliability and measurement. How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.\nLongitudinal and multilevel modelling. Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.\nMathematical and computational modelling. Models of judgment and decision-making, including cultural consensus and threshold models."
+    "text": "Reliability and measurement. How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.\nLongitudinal and multilevel modeling. Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.\nMathematical and computational modeling. Models of judgment and decision-making, including cultural consensus and threshold models."
   },
   {
     "objectID": "about.html#background",
     "href": "about.html#background",
     "title": "Tzu-Yao Lin",
     "section": "Background",
-    "text": "Background\n\nJoint PhD researcher. KU Leuven, Research Group of Quantitative Psychology and Individual Differences, and Maastricht University, Department of Methodology and Statistics, 2022–present.\nMS in Psychology. National Taiwan University, 2019–2022.\nBS in Psychology, minor in Forestry. National Taiwan University, 2014–2019.\n\nOutside research, I am a fire dancer and Lindy hopper."
+    "text": "Background\n\n\n2022 — PRESENT\n\n\nJoint PhD candidate\nKU Leuven · Research Group of Quantitative Psychology and Individual Differences\nMaastricht University · Department of Methodology and Statistics\n\n\n2019 — 2022\n\n\nMS in Psychology\nNational Taiwan University · Department of Psychology\n\n\n2014 — 2019\n\n\nBS in Psychology, minor in Forestry\nNational Taiwan University · Department of Psychology\nMinor: School of Forestry and Resource Conservation\n\n\nOutside research, I am a fire dancer and Lindy hopper."
+  },
+  {
+    "objectID": "design-qa.html",
+    "href": "design-qa.html",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "Original design reference: /var/folders/kx/g_9_dx8j7t77zp9y81fkc7440000gn/T/codex-clipboard-dc388174-be3e-458e-a50d-1f50ff545dbe.png\nEdge-defect reference: /var/folders/kx/g_9_dx8j7t77zp9y81fkc7440000gn/T/codex-clipboard-c5d50bf8-b0d8-4d69-b877-1a5345744a20.png\nBefore screenshot: /private/tmp/tzuyaolin-home-qa/edge-before-short.png\nImplementation screenshot: /private/tmp/tzuyaolin-home-qa/dense-nodes-reference-size.png\nCombined comparison: /private/tmp/tzuyaolin-dense-nodes-qa.svg.png\nViewport: 1672 × 941 CSS px, light theme, device-density-normalized 1× screenshot\nAdditional evidence: /private/tmp/tzuyaolin-home-qa/dense-nodes-light.png, /private/tmp/tzuyaolin-home-qa/dense-nodes-dark.png, /private/tmp/tzuyaolin-home-qa/dense-nodes-mobile.png, and /private/tmp/tzuyaolin-home-qa/dense-nodes-hover.png\n\n\n\nThe approved Hero composition, typography, navbar, copy, calls to action, and trajectory illustration remain unchanged. The overlay now contains 34 small nodes distributed across several trajectory bands, with roughly two-thirds teal and one-third amber. The existing vertical feather still blends the illustration and canvas into the page background.\n\n\n\nThe user-requested denser sparkle field is visible across the full longitudinal sequence rather than being concentrated in a few blue points. Amber nodes remain amber in both light and dark themes, while theme-specific luminance keeps them legible without dominating the headline. Pointer proximity increases local glow; without interaction, the same nodes retain their slow drift and pulse. Mobile and desktop captures preserve readable content and show no horizontal overflow.\n\n\n\n\nFonts and typography: unchanged from the approved implementation.\nSpacing and layout rhythm: unchanged; the mask does not affect element geometry.\nColors and visual tokens: the illustration remains restrained; overlay nodes now use teal and gold-orange theme-aware palettes.\nImage quality and asset fidelity: the supplied trajectory PNG remains the sole illustration. Its existing radial mask is retained, with a separate vertical feather applied to the whole visual layer.\nCopy and content: unchanged.\n\n\n\n\nNo actionable P0, P1, or P2 findings remain within the requested node-density and two-color scope.\n\n\n\n\nPass 1: originally marked passed at a tall desktop viewport. This missed the upper PNG boundary exposed by a shorter Brave viewport.\nUser review: P2 image-quality issue identified at the upper trajectory edge; the lower edge had the same structural risk.\nPass 2: added a symmetric vertical alpha feather to the visual container. The matched short desktop comparison no longer shows a hard horizontal start; tall desktop, mobile, and dark-theme checks also pass.\nUser review: requested more sparkling points across the dense sequence and a gold-orange accent in both themes.\nPass 3: expanded the overlay from 16 to 34 distributed nodes, assigned a two-teal-to-one-amber palette, and verified light, dark, mobile, idle, and pointer-hover states.\n\n\n\n\n\nAmbient node animation and pointer-proximity behavior remain active across all 34 nodes.\nLight desktop, reference-size desktop, mobile, dark-theme, and pointer-hover states were inspected.\nComputed vertical mask is active in the fresh-origin browser check.\nHorizontal overflow: 0 px on desktop and mobile checks.\n\n\n\n\n\nP3: node density and the teal-to-amber ratio can be tuned after subjective review without changing layout or interaction logic.\n\nfinal result: passed"
+  },
+  {
+    "objectID": "design-qa.html#full-view-comparison",
+    "href": "design-qa.html#full-view-comparison",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "The approved Hero composition, typography, navbar, copy, calls to action, and trajectory illustration remain unchanged. The overlay now contains 34 small nodes distributed across several trajectory bands, with roughly two-thirds teal and one-third amber. The existing vertical feather still blends the illustration and canvas into the page background."
+  },
+  {
+    "objectID": "design-qa.html#focused-region-comparison",
+    "href": "design-qa.html#focused-region-comparison",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "The user-requested denser sparkle field is visible across the full longitudinal sequence rather than being concentrated in a few blue points. Amber nodes remain amber in both light and dark themes, while theme-specific luminance keeps them legible without dominating the headline. Pointer proximity increases local glow; without interaction, the same nodes retain their slow drift and pulse. Mobile and desktop captures preserve readable content and show no horizontal overflow."
+  },
+  {
+    "objectID": "design-qa.html#required-fidelity-surfaces",
+    "href": "design-qa.html#required-fidelity-surfaces",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "Fonts and typography: unchanged from the approved implementation.\nSpacing and layout rhythm: unchanged; the mask does not affect element geometry.\nColors and visual tokens: the illustration remains restrained; overlay nodes now use teal and gold-orange theme-aware palettes.\nImage quality and asset fidelity: the supplied trajectory PNG remains the sole illustration. Its existing radial mask is retained, with a separate vertical feather applied to the whole visual layer.\nCopy and content: unchanged."
+  },
+  {
+    "objectID": "design-qa.html#findings",
+    "href": "design-qa.html#findings",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "No actionable P0, P1, or P2 findings remain within the requested node-density and two-color scope."
+  },
+  {
+    "objectID": "design-qa.html#comparison-history",
+    "href": "design-qa.html#comparison-history",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "Pass 1: originally marked passed at a tall desktop viewport. This missed the upper PNG boundary exposed by a shorter Brave viewport.\nUser review: P2 image-quality issue identified at the upper trajectory edge; the lower edge had the same structural risk.\nPass 2: added a symmetric vertical alpha feather to the visual container. The matched short desktop comparison no longer shows a hard horizontal start; tall desktop, mobile, and dark-theme checks also pass.\nUser review: requested more sparkling points across the dense sequence and a gold-orange accent in both themes.\nPass 3: expanded the overlay from 16 to 34 distributed nodes, assigned a two-teal-to-one-amber palette, and verified light, dark, mobile, idle, and pointer-hover states."
+  },
+  {
+    "objectID": "design-qa.html#interaction-and-browser-checks",
+    "href": "design-qa.html#interaction-and-browser-checks",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "Ambient node animation and pointer-proximity behavior remain active across all 34 nodes.\nLight desktop, reference-size desktop, mobile, dark-theme, and pointer-hover states were inspected.\nComputed vertical mask is active in the fresh-origin browser check.\nHorizontal overflow: 0 px on desktop and mobile checks."
+  },
+  {
+    "objectID": "design-qa.html#follow-up-polish",
+    "href": "design-qa.html#follow-up-polish",
+    "title": "Homepage Hero Design QA",
+    "section": "",
+    "text": "P3: node density and the teal-to-amber ratio can be tuned after subjective review without changing layout or interaction logic.\n\nfinal result: passed"
   }
 ]
