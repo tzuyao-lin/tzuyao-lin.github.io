@@ -1,7 +1,3 @@
--- function ensureLatexDeps()
---   quarto.doc.useLatexPackage("academicons")
--- end
-
 local function ensureHtmlDeps()
   quarto.doc.addHtmlDependency({
     name = "academicons",
@@ -12,10 +8,6 @@ end
 
 local function isEmpty(s)
   return s == nil or s == ''
-end
-
-local function isEmpty(color)
-  return color == "black"
 end
 
 local function isValidSize(size)
@@ -58,21 +50,15 @@ return {
     -- detect html (excluding epub)
     if quarto.doc.isFormat("html:js") then
       ensureHtmlDeps()
-      if isEmpty(size) then
-        return pandoc.RawInline(
-          'html',
-          "<i class=\"ai " .. group .. " ai-" .. icon .. "\"" .. title .. color .. "></i>"
-        )
-      else
-        return pandoc.RawInline(
-          'html',
-          "<i class=\"ai " .. group .. " ai-" .. icon .. size .. "\"" .. title .. color .. "></i>"
-        )
+      local classes = "ai"
+      if not isEmpty(group) then
+        classes = classes .. " " .. group
       end
-    -- detect pdf / beamer / latex / etc
-    -- elseif quarto.doc.isFormat("pdf") then
-    --   ensureLatexDeps()
-    --   return pandoc.RawInline('tex', "\\aiIcon{" .. icon .. "}") 
+      classes = classes .. " ai-" .. icon .. size
+      return pandoc.RawInline(
+        'html',
+        "<i class=\"" .. classes .. "\"" .. title .. color .. "></i>"
+      )
     else
       return pandoc.Null()
     end

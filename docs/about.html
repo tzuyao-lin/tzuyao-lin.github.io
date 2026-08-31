@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Posts – Tzu-Yao Lin</title>
+<title>Tzu-Yao Lin</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,13 +36,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -52,6 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-9d96f532d65220ca877c0304385df42f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-df07115ad9f15e2ef3479c789e6873c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="site_libs/bootstrap/bootstrap-9d96f532d65220ca877c0304385df42f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,70 +78,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return;
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -322,11 +263,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link active" href="./about.html" aria-current="page">
 <span class="menu-text">About Me</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page">
+    <a class="nav-link" href="./blog.html">
 <span class="menu-text">Posts</span></a>
   </li>
   <li class="nav-item">
@@ -349,175 +290,66 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YWNhZGVtaWE=">academia <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uc3VsdGFudA==">consultant <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXVyb3Bl">europe <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGhk">phd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cg==">r <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RhdGlzdGljcw==">statistics <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-about-solana column-body">
+  <div class="about-entity">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Posts</h1>
+<h1 class="title">Tzu-Yao Lin</h1>
+<p class="subtitle lead">Quantitative psychologist studying reliability in multilevel and intensive longitudinal data</p>
 </div>
-
-
-
-<div class="quarto-title-meta column-page-left">
-
-
-
-
+<div class="quarto-title-meta">
   </div>
+</header> <div class="about-links">
+  <a href="https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf" class="about-link" rel="" target="">
+    <i class="bi bi-file-person-fill"></i>
+     <span class="about-link-text">CV</span>
+  </a>
+  <a href="https://orcid.org/0000-0002-2261-448X" class="about-link" rel="" target="">
+     <span class="about-link-text"><i class="ai ai-orcid"></i> ORCID</span>
+  </a>
+  <a href="https://www.linkedin.com/in/tzu-yao-nick-lin/" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text">LinkedIn</span>
+  </a>
+  <a href="mailto:tzu-yao.lin@maastrichtuniversity.nl" class="about-link" rel="" target="">
+    <i class="bi bi-envelope-at-fill"></i>
+     <span class="about-link-text">Email</span>
+  </a>
+</div>
+      <div class="about-contents"><main class="content" id="quarto-document-content">
+
+<section id="research-focus" class="level2">
+<h2 data-anchor-id="research-focus">Research focus</h2>
+<ul>
+<li><strong>Reliability and measurement.</strong> How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.</li>
+<li><strong>Longitudinal and multilevel modelling.</strong> Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.</li>
+<li><strong>Mathematical and computational modelling.</strong> Models of judgment and decision-making, including cultural consensus and threshold models.</li>
+</ul>
+</section>
+<section id="background" class="level2">
+<h2 data-anchor-id="background">Background</h2>
+<ul>
+<li><strong>Joint PhD researcher.</strong> KU Leuven, Research Group of Quantitative Psychology and Individual Differences, and Maastricht University, Department of Methodology and Statistics, 2022–present.</li>
+<li><strong>MS in Psychology.</strong> National Taiwan University, 2019–2022.</li>
+<li><strong>BS in Psychology, minor in Forestry.</strong> National Taiwan University, 2014–2019.</li>
+</ul>
+<p>Outside research, I am a fire dancer and Lindy hopper.</p>
 
 
-
-</header>
-
-
-<p>Articles and notes on research, statistics, R, psychology, and academic life.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
+</section>
+</main></div>
     </div>
+    <img src="profile-2024.jpg" class="about-image
+  rounded " style="width: 15em;">
+  </div>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1743116400000" data-listing-file-modified-sort="1788104757124" data-listing-date-modified-sort="1787954400000" data-listing-reading-time-sort="21" data-listing-word-count-sort="4037">
-<div class="thumbnail"><a href="./posts/20250328_VHS/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250328_VHS/brazil-vaccine.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250328_VHS/index.html" class="no-external">Brazilian Vaccine Attitude Analysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250328_VHS/index.html" class="no-external">
-<div class="listing-date">
-Mar 28, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ciUyQ3N0YXRpc3RpY3MlMkNjb25zdWx0YW50" data-listing-date-sort="1726610400000" data-listing-file-modified-sort="1788104757046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2141">
-<div class="thumbnail"><a href="./posts/20240918_CDP/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20240918_CDP/CDP.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20240918_CDP/index.html" class="no-external">Multinomial Logistic Regression Aanalysis</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cg=='); return false;">r</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29uc3VsdGFudA=='); return false;">consultant</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20240918_CDP/index.html" class="no-external">
-<div class="listing-date">
-Sep 18, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="YWNhZGVtaWElMkNwaGQlMkNldXJvcGU=" data-listing-date-sort="1690063200000" data-listing-file-modified-sort="1788116336112" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="2" data-listing-word-count-sort="230">
-<div class="thumbnail"><a href="./posts/20250330_PhD-position/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20250330_PhD-position/find-a-phd.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWNhZGVtaWE='); return false;">academia</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cGhk'); return false;">phd</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZXVyb3Bl'); return false;">europe</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20250330_PhD-position/index.html" class="no-external">
-<div class="listing-date">
-Jul 23, 2023
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1688335200000" data-listing-file-modified-sort="1788104756964" data-listing-date-modified-sort="1788040800000" data-listing-reading-time-sort="1" data-listing-word-count-sort="139">
-<div class="thumbnail"><a href="./posts/20230703_welcome/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/20230703_welcome/kinderdijk_and_sunrise.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/20230703_welcome/index.html" class="no-external">Welcome to My Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/20230703_welcome/index.html" class="no-external">
-<div class="listing-date">
-Jul 3, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -533,13 +365,6 @@ Jul 3, 2023
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {

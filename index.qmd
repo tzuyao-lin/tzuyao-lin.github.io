@@ -1,34 +1,40 @@
 ---
 title: "Tzu-Yao Lin"
-subtitle: "Quantitative psychologist studying reliability in multilevel and intensive longitudinal data"
-image: profile-2024.jpg
-about:
-  template: solana
-  links:
-    - icon: file-person-fill
-      text: CV
-      href: https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf
-    - text: '<img src="assets/orcid-id.svg" class="orcid-icon" alt="" aria-hidden="true"> ORCID'
-      href: https://orcid.org/0000-0002-2261-448X
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/tzu-yao-nick-lin/
-    - icon: envelope-at-fill
-      text: Email
-      href: mailto:tzu-yao.lin@maastrichtuniversity.nl
+pagetitle: "Tzu-Yao Lin"
+page-layout: full
+css: home.css
+title-block-style: none
 title-block-banner: false
+resources:
+  - home.js
+  - assets/home-trajectory.png
 ---
 
-## Research focus
+```{=html}
+<div class="home-shell">
+  <section class="home-hero" aria-labelledby="home-hero-title">
+    <div class="hero-copy">
+      <h1 id="home-hero-title">Hi, I'm Tzu-Yao.</h1>
+      <p class="hero-statement">I study <span class="gradient-text">reliability</span> in multilevel and <span class="gradient-text">intensive longitudinal data</span>.</p>
+      <p class="hero-affiliation">Joint PhD researcher <span aria-hidden="true">·</span> KU Leuven <span aria-hidden="true">×</span> Maastricht University</p>
+      <div class="hero-actions" aria-label="Primary links">
+        <a class="hero-button hero-button-primary" href="publication.qmd">
+          <span>View publications</span>
+          <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="hero-button hero-button-secondary" href="https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf">
+          <span>Download CV</span>
+          <i class="bi bi-download" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
 
-- **Reliability and measurement.** How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.
-- **Longitudinal and multilevel modelling.** Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
-- **Mathematical and computational modelling.** Models of judgment and decision-making, including cultural consensus and threshold models.
-
-## Background
-
-- **Joint PhD researcher.** KU Leuven, Research Group of Quantitative Psychology and Individual Differences, and Maastricht University, Department of Methodology and Statistics, 2022–present.
-- **MS in Psychology.** National Taiwan University, 2019–2022.
-- **BS in Psychology, minor in Forestry.** National Taiwan University, 2014–2019.
-
-Outside research, I am a fire dancer and Lindy hopper.
+    <div class="hero-visual" aria-hidden="true">
+      <img class="trajectory-layer trajectory-base" src="assets/home-trajectory.png" alt="">
+      <img class="trajectory-layer trajectory-highlight" src="assets/home-trajectory.png" alt="">
+      <div class="cursor-glow"></div>
+    </div>
+  </section>
+</div>
+<script src="home.js"></script>
+```

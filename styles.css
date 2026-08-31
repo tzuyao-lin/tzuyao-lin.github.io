@@ -237,25 +237,16 @@ body.quarto-light .navbar-toggler-icon {
   filter: invert(1);
 }
 
-body.quarto-light .about-link,
-body.quarto-dark .about-link {
+.about-link {
   color: var(--site-ink) !important;
   background-color: var(--site-surface) !important;
   border-color: var(--site-border) !important;
 }
 
-body.quarto-light .about-link:hover,
-body.quarto-light .about-link:focus,
-body.quarto-dark .about-link:hover,
-body.quarto-dark .about-link:focus {
+.about-link:hover,
+.about-link:focus {
   color: var(--site-accent-hover) !important;
   border-color: var(--site-accent) !important;
-}
-
-.orcid-icon {
-  width: 1rem;
-  height: 1rem;
-  vertical-align: -0.15em;
 }
 
 .quarto-listing .quarto-post {

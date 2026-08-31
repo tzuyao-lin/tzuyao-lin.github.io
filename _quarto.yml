@@ -12,6 +12,8 @@ website:
   #google-analytics: ""
   navbar:
     left:
+      - href: about.qmd
+        text: "About Me"
       - href: blog.qmd
         text: "Posts"
       - href: publication.qmd
