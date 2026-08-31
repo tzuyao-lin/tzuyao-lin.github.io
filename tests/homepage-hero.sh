@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+node --test tests/home-particles.test.mjs
+
 for source in index.qmd about.qmd blog.qmd publication.qmd; do
   quarto render "$source" >>/tmp/tzuyaolin-homepage-hero-render.log 2>&1
 done
