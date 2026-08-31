@@ -16,6 +16,7 @@ about:
     - icon: envelope-at-fill
       text: Email
       href: mailto:tzu-yao.lin@maastrichtuniversity.nl
+page-layout: full
 title-block-banner: false
 ---
 
