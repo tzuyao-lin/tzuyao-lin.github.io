@@ -23,13 +23,47 @@ title-block-banner: false
 ## Research focus
 
 - **Reliability and measurement.** How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.
-- **Longitudinal and multilevel modelling.** Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
-- **Mathematical and computational modelling.** Models of judgment and decision-making, including cultural consensus and threshold models.
+- **Longitudinal and multilevel modeling.** Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
+- **Mathematical and computational modeling.** Models of judgment and decision-making, including cultural consensus and threshold models.
 
 ## Background
 
-- **Joint PhD researcher.** KU Leuven, Research Group of Quantitative Psychology and Individual Differences, and Maastricht University, Department of Methodology and Statistics, 2022–present.
-- **MS in Psychology.** National Taiwan University, 2019–2022.
-- **BS in Psychology, minor in Forestry.** National Taiwan University, 2014–2019.
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-3}
+2022 — PRESENT
+:::
+
+::: {.g-col-12 .g-col-md-9}
+**Joint PhD candidate**
+
+KU Leuven · Research Group of Quantitative Psychology and Individual Differences
+
+Maastricht University · Department of Methodology and Statistics
+:::
+
+::: {.g-col-12 .g-col-md-3}
+2019 — 2022
+:::
+
+::: {.g-col-12 .g-col-md-9}
+**MS in Psychology**
+
+National Taiwan University · Department of Psychology
+:::
+
+::: {.g-col-12 .g-col-md-3}
+2014 — 2019
+:::
+
+::: {.g-col-12 .g-col-md-9}
+**BS in Psychology, minor in Forestry**
+
+National Taiwan University · Department of Psychology
+
+Minor: School of Forestry and Resource Conservation
+:::
+
+:::
 
 Outside research, I am a fire dancer and Lindy hopper.

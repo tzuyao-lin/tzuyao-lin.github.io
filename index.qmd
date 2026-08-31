@@ -16,7 +16,7 @@ resources:
     <div class="hero-copy">
       <h1 id="home-hero-title">Hi, I'm Tzu-Yao.</h1>
       <p class="hero-statement">I study <span class="gradient-text">reliability</span> in multilevel and <span class="gradient-text">intensive longitudinal data</span>.</p>
-      <p class="hero-affiliation">Joint PhD researcher <span aria-hidden="true">·</span> KU Leuven <span aria-hidden="true">×</span> Maastricht University</p>
+      <p class="hero-affiliation">Joint PhD candidate <span aria-hidden="true">·</span> KU Leuven <span aria-hidden="true">×</span> Maastricht University</p>
       <div class="hero-actions" aria-label="Primary links">
         <a class="hero-button hero-button-primary" href="publication.qmd">
           <span>View publications</span>
