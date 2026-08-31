@@ -1,12 +1,13 @@
 ---
-title: "Brazilian Vaccine Attitude Analysis"
+title: "Analysis Notes for a Study of Vaccine Sentiment among Brazilian Healthcare Workers"
 author: "Tzu-Yao Lin"
 date: 2025-03-28
-date-modified: 2026-08-29
+date-modified: 2026-08-31
+description: "A public record of exploratory analyses conducted during the preparation of a collaborative research article."
 categories: 
   - "r"
   - "statistics"
-  - "consultant"
+  - "research notes"
 image: brazil-vaccine.png
 execute:
   warning: false
@@ -19,17 +20,28 @@ format:
     toc-depth: 3
     number-sections: true
     self-contained: true
-    #code-fold: show
+    code-fold: true
     code-tools: true
 ---
 
-This article analyzes the attitudes of Brazilian healthcare professionals towards COVID-19 vaccination using restricted survey data. Participant-level data are not distributed with this website. The results from this analysis will contribute to Hugo’s research paper. This analysis has two main objectives:
+::: callout-note
+## About this analysis record
 
-1. Conduct an exploratory factor analysis (EFA) on vaccine hesitancy (VH) attitudes to determine if the identified factors align with the 5C model described in previous literature."
-2. Perform logistic regression analyses using the identified factors and other covariates to examine their association with different vaccine sentiments (VS)."
+This page documents exploratory analyses conducted during the preparation of a collaborative study of vaccine sentiment among Brazilian healthcare workers. It is retained as a public record of the analytical workflow and is not intended as a complete tutorial or as the definitive report of the study.
 
+The final methods, results, and interpretations are reported in [Lo et al. (2025), *The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study*](https://doi.org/10.7189/001c.144190).
+:::
 
-# Prepare data
+This page focuses on two parts of the analytical workflow:
+
+1. Exploring whether the factor structure of 17 vaccine-attitude items could be interpreted in relation to the 5C model of vaccine hesitancy.
+2. Fitting logistic regression models that used the resulting factor scores and other covariates to examine associations with five vaccine-sentiment outcomes.
+
+The page does not document every analysis reported in the published article. Some sections preserve intermediate model comparisons and working decisions made during manuscript development.
+
+The participant-level dataset is restricted and is not distributed with this website. The code and frozen aggregate outputs are retained to document the analytical workflow. Consequently, this page supports transparency about the analysis process but is not a fully executable public reproduction package.
+
+# Data preparation
 
 First, the necessary R packages are loaded.
 
@@ -41,7 +53,7 @@ library(ggplot2)
 library(haven) # for reading STATA dta files
 library(psych) # for factor analysis
 library(GPArotation)
-library(corrplot) # for correlaion plots
+library(corrplot) # for correlation plots
 library(gt)
 ```
 
@@ -86,7 +98,7 @@ Only variables required by the analyses below are retained in memory. Direct ide
 Key observations from the data preparation include:
 
 - Missing values are present, denoted by `NA` for numeric variables and empty strings ("") for character variables.
-- Many variables have the class `haven_labelled`. These labelled variables require careful handling and appropriate transformation before analysis."
+- Many variables have the class `haven_labelled`. These labelled variables require careful handling and appropriate transformation before analysis.
 
 Next, the variables relevant to this analysis are selected.
 
@@ -99,7 +111,7 @@ data <- rawdata |>
 
 ## Prepare variables
 
-Before conducting the factor analysis, 17~~15~~ variables related to general vaccine attitudes and specific COVID-19 attitudes were selected.
+Before conducting the factor analysis, 17 variables related to general vaccine attitudes and specific COVID-19 attitudes were selected.
 
 ```{r}
 #| label: 5C 
@@ -115,11 +127,13 @@ apply(fa_data, 2, table)
 Caution that the numeric labels for the Likert scale responses ('Strongly Disagree,' 'Disagree,' 'Agree,' 'Strongly Agree') are coded as 1, 2, 4, and 5, respectively, rather than the more common sequential coding (e.g., 1, 2, 3, 4)
 
 This non-sequential coding implies an assumption that the interval between 'Disagree' (2) and 'Agree' (4) is twice that of the other adjacent intervals. Treating these data as interval scale in the analysis relies on this assumption.
+
+The Pearson correlations and maximum-likelihood factor models below therefore treat the recoded four-point responses as approximately continuous.
 :::
 
-To according to the past literature, these variables were recoded from 1, 2, 4, and 5 to 1, 2, 3, and 4! 
+Following the coding used in the study, these responses were recoded from 1, 2, 4, and 5 to 1, 2, 3, and 4.
 
-In addition, observations with missing values in any of these 17 variables were removed. Consequently, `{r} nrow(fa_data)` complete observations remain for the factor analysis
+In addition, observations with missing values in any of these 17 variables were removed. Consequently, `{r} nrow(fa_data)` complete observations remain for the factor analysis.
 
 ```{r}
 #| label: 5C-relabel
@@ -134,7 +148,7 @@ Before performing the factor analysis, a correlation matrix is examined to visua
 
 ```{r}
 #| label: fig-cor-mat
-#| fig-cap: The correlation matrix of attitudes variables 
+#| fig-cap: Correlation matrix of vaccine-attitude variables
 
 cor_mat <- cor(fa_data)
 
@@ -169,11 +183,17 @@ corrplot(
 )
 ```
 
+::: callout-caution
+## Audit note: significance masking in the correlation plot
+
+In this recorded workflow, `cor.mtest()` was applied to `cor_mat` rather than to the original item-level data. The significance masking in the displayed correlation plot should therefore be treated as an exploratory display rather than as a valid set of tests for the original item correlations. The correlation matrix itself and the downstream factor analyses do not depend on `p.mat`.
+:::
+
 The correlation matrix suggests potential clustering into two or three groups:
 
-1. `vac_gen_4`, `covid_ad_1`, `covid_ad_2`, `covid_over_18` form a cluster.
+1. `vac_gen_4`, `covid_ag_1`, `covid_ag_2`, and `covid_over18` form a cluster.
 2. Other variables (except for `vac_gen_6`) form a cluster.
-3. `vac_gen_6` could might form its own cluster, but is closer to the second cluster.(However, subsequent analysis did not reveal distinct findings for this variable.)
+3. `vac_gen_6` might form its own cluster but appears closer to the second cluster. Subsequent analyses did not identify a distinct factor defined by this item.
 
 Note that this is a preliminary observation based on correlations. The underlying latent structure will be formally investigated using factor analysis.
 
@@ -183,72 +203,58 @@ Note that this is a preliminary observation based on correlations. The underlyin
 
 Kaiser-Meyer-Olkin (KMO) measure and Bartlett's test of sphericity are used to assess the suitability of the data for factor analysis.
 
-::: {.aside}
+::: {.callout-note collapse="true"}
+## Interpretation notes: factorability diagnostics
 
-- Kaiser-Meyer-Olkin (KMO) 測驗:
-  - 意義: 評估樣本相關矩陣是否適合進行因子分析。
-  - 評估: 值介於 0 到 1 之間，值越高表示適合度越高。通常認為大於 0.6 較佳。
-- Bartlett's 檢驗:
-  - 意義: 檢驗觀察變數之間的相關矩陣是否為一個單位矩陣 (即變數之間不相關)。
-  - 評估: 顯著性水平 (p-value) 越小，表示變數之間存在顯著相關，適合進行因子分析。
+- The Kaiser-Meyer-Olkin (KMO) statistic summarizes whether the pattern of correlations is sufficiently compact for common-factor analysis; larger values indicate greater factorability.
+- Bartlett's test evaluates whether the correlation matrix differs from an identity matrix. A small p-value indicates that the items are not mutually uncorrelated, but it does not determine the number of factors or establish that a particular factor solution is appropriate.
 
 :::
 
 ```{r}
 #| label: fa-pre-test
  
-# KMO值檢驗（建議 > 0.6）
+# Kaiser-Meyer-Olkin statistic
 KMO_result <- KMO(cor_mat)
 print(KMO_result)
 
-# Bartlett's 球形檢定 (需顯著p < 0.05)
+# Bartlett's test of sphericity
 bartlett_result <- cortest.bartlett(cor_mat, n = nrow(data))
 print(bartlett_result)
 ```
 
-Both tests indicate that the data are suitable for factor analysis (KMO > 0.6, Bartlett's test p < 0.05).
+The recorded KMO value and Bartlett test were used at the time as preliminary checks of factorability. These diagnostics do not, by themselves, establish an appropriate dimensional model.
+
+::: callout-caution
+## Audit note: sample size in Bartlett's test
+
+The recorded call supplied `nrow(data)` as the sample size, whereas `cor_mat` was calculated from the complete-case dataset `fa_data`. The frozen chi-square statistic is retained here as part of the original workflow, but a reanalysis should use the effective sample size corresponding to the correlation matrix. This issue does not alter the subsequent factor-model estimates, which were fitted directly to `fa_data`.
+:::
 
 A key challenge in EFA is determining the optimal number of factors to retain. Parallel analysis is employed to guide the decision on the number of factors. This procedure compares the eigenvalues from the actual data's correlation matrix with eigenvalues derived from random data matrices of the same size. The number of factors suggested is the count of actual eigenvalues that exceed the corresponding eigenvalues (or the 95th percentile thereof) from the random data.
 
 ```{r}
 #| label: fig-scree
-#| fig-cap: "Scree plot of eigen values" 
+#| fig-cap: "Scree plot of eigenvalues"
  
 fa.parallel(fa_data, fm = "ml", fa = "fa", nfactors = 1) 
 ```
 
-Based on the results (by the principal axis factor analysis), it suggests retaining 3 factors. However, this result is advisory, not definitive. On the one hand, if we use subjective method, e.g., the elbow method, might suggest that 2 factors are sufficient. On the other hand, if we use (not recommended) the rule of thumb (a.k.a. Kaiser criterion)–retaining component(s) with eigenvalues greater than 1.0–then, might suggest only one factor.
+With maximum-likelihood factor analysis specified (`fm = "ml"`), the displayed parallel analysis suggested retaining three factors. This result was treated as one input to the exploratory comparison rather than as a definitive decision. Visual inspection of the scree plot could support a smaller solution, while the Kaiser eigenvalue-greater-than-one rule suggested one factor; the latter was not used as the primary retention criterion.
 
 This analysis does not aim to develop a new measurement instrument or uncover 'true' latent constructs. Instead, the goal is to explore whether the factor structure in this data aligns with the established 5C model. To facilitate comparison with the 5C model, solutions with 3, 4, and 5 factors will be examined. Therefore, 3-, 4-, and 5-factor models are explored below. For each number of factors (3, 4, and 5), both orthogonal ("Varimax") and oblique ("Oblimin") rotations are applied. Factor scores are estimated using the regression method.
 
-::: {.aside}
+::: {.callout-note collapse="true"}
+## Interpretation notes: factor solutions
 
-**因子解釋性指標 (Factor Interpretability Indices)**
-
-這些指標評估因子是否具有清晰的解釋力，以及因子負載量是否合理。
-
-- 因子負載量 (Factor Loadings)：
-  - 意義：衡量每個觀察變數在特定因子上的相關程度。
-  - 評估：通常認為 0.3 或 0.4 以上的因子負載量具有實質意義。負載量越高，表示變數與因子之間的關係越強。
-- `h2`: 
-  - the amount of variance in the item/variable explained by the (retained) factors. It is the sum of the squared loadings, a.k.a. communality.
-- `u2`: 
-  - 1 - h2. residual variance, a.k.a. uniqueness
-- `com`: 
-  - Item complexity. Specifically it is “Hoffman’s index of complexity for each item. This is just (\sum \lambda_i^2)^2 / \sum \lambda_i^4, where $\lambda_i$ is the factor loading on the ith factor. From Hofmann (1978), MBR. See also Pettersson and Turkheimer (2010).” It equals one if an item loads only on one factor, 2 if evenly loads on two factors, etc. Basically it tells you how much an item reflects a single construct. It will be lower for relatively lower loadings.
-- 共同性 (Communality)：
-  - 意義：衡量每個觀察變數有多少變異量可以被因子解釋。
-  - 評估：值越高，表示變數被因子解釋的程度越高。通常認為 0.4 或 0.5 以上較佳。
-- 因子負載矩陣的簡單結構 (Simple Structure)：
-  - 意義：理想的因子矩陣應該具有簡單結構，即每個觀察變數在一個或少數幾個因子上有較高的負載量，而在其他因子上負載量接近於零。
-  - 評估：觀察因子負載矩陣，看是否符合簡單結構的原則。
-- 因子可解釋變異量 (Percentage of Variance Explained)：
-  - 意義：衡量因子解釋了觀察變數總變異量的百分比。
-  - 評估：通常希望因子能解釋至少 50% 或 60% 的總變異量。
+- Factor loadings describe the relation between each item and the factors.
+- `h2` is the communality, or the proportion of an item's variance represented by the retained factors; `u2` is its uniqueness (`1 - h2`).
+- `com` is Hofmann's item-complexity index. Values near one indicate that an item is primarily associated with one factor, whereas larger values indicate more complex loading patterns.
+- Model comparison also considered cross-loadings, factor correlations, simple structure, theoretical interpretability, and the proportion of variance represented. Conventional numerical cutoffs were treated as descriptive guides rather than universal decision rules.
 
 :::
 
-### Othogonal rotation
+### Orthogonal rotation
 
 ::: {.panel-tabset}
 
@@ -374,13 +380,13 @@ fa_load_comp
 
 ![FA structure comparison](fa_structure.png){#fig-fa-stru-comp}
 
-Comparing the factor structures visually (Figure @fig-fa-stru-comp), the 5-factor oblique solution (`fa5_ob`) seems most readily interpretable in the context of the 5C model.
+Comparing the factor structures visually (Figure @fig-fa-stru-comp), the five-factor oblique solution (`fa5_ob`) appeared most readily interpretable in relation to the 5C model at this stage of the analysis.
 
-However, model fit indices are needed to quantitatively evaluate the performance of each model. Commonly reported fit indices are presented below (Table @tbl-fit-indices), with explanations provided in the adjacent notes.
+Fit indices for the candidate solutions are recorded in Table @tbl-fit-indices. They were considered alongside the loading patterns and theoretical interpretation rather than as independent proof of a particular dimensional structure.
 
 ```{r}
 #| label: tbl-fit-indices
-#| tbl-cap: Fitting indices of the models
+#| tbl-cap: Fit indices for the candidate factor models
  
 fa_model_fit <- tibble(models = fa_models, 
                        names = c("fa3", "fa4", "fa5", "fa3_ob", "fa4_ob", "fa5_ob")) |> 
@@ -396,52 +402,23 @@ fa_model_fit <- tibble(models = fa_models,
          BIC = map_dbl(models, "BIC")) |>
   select(-models)
 
-#map_dbl(fa_models, `$`, chi) # emperical chi-square
-#map_dbl(fa_models, `$`, objective) # objectibe function used in ML
-#map_dbl(fa_models, `$`, eBIC) # emperical BIC
+# map_dbl(fa_models, `$`, chi)      # empirical chi-square
+# map_dbl(fa_models, `$`, objective) # objective function used in ML
+# map_dbl(fa_models, `$`, eBIC)     # empirical BIC
 
 fa_model_fit
 ```
 
-::: {.aside}
+::: {.callout-note collapse="true"}
+## Interpretation notes: model fit
 
-**模型擬合度指標 (Model Fit Indices)**
+- The likelihood-ratio chi-square evaluates exact fit and is sensitive to sample size.
+- RMS and cRMS summarize residual discrepancies between the observed and model-implied correlations.
+- RMSEA assesses approximate fit and should be interpreted with its uncertainty interval when available.
+- TLI compares the proposed model with a more restrictive baseline model while penalizing complexity.
+- BIC balances fit and complexity; lower values favor a model within the set being compared.
 
-這些指標評估模型是否能很好地再現觀察變數之間的相關性。通常，我們會同時考量多個指標，而非僅僅依賴單一指標。
-
-- 卡方統計量 (Chi-Square Statistic, χ²)：
-  - 意義：檢驗觀察相關矩陣與模型預測相關矩陣之間的差異。
-  - 評估：值越小，表示模型擬合越好。但卡方統計量對樣本大小非常敏感，樣本越大，越容易顯著。
-  - 限制：通常不單獨使用，需要結合其他指標。
-- 卡方自由度比 (Chi-Square/Degrees of Freedom, χ²/df)：
-  - 意義：將卡方統計量除以自由度，以校正樣本大小的影響。
-  - 評估：通常認為小於 3 較佳，小於 5 可以接受。
-- 比較適配指數 (Comparative Fit Index, CFI)：
-  - 意義：比較目標模型與零模型 (所有變數不相關) 的適配程度。
-  - 評估：值越接近 1，表示模型擬合越好。通常認為大於 0.90 或 0.95 較佳。
-- 標準化根均方誤差 (Root Mean Square Error of Approximation, RMSEA)：
-  - 意義：衡量模型與真實數據之間的平均誤差。
-  - 評估：值越小，表示模型擬合越好。通常認為小於 0.08 或 0.06 較佳。
-- Tucker-Lewis Index (TLI)：
-  - 意義：類似 CFI，比較目標模型與零模型，但對模型複雜度有懲罰。
-  - 評估：值越接近 1，表示模型擬合越好。通常認為大於 0.90 或 0.95 較佳。
-- Goodness-of-Fit Index (GFI) 和 Adjusted Goodness-of-Fit Index (AGFI)：
-  - 意義：衡量模型與觀察相關矩陣的整體適配程度。AGFI 會考慮模型複雜度。
-  - 評估：值越接近 1，表示模型擬合越好。通常認為大於 0.90 較佳。
-
-**實務意義指標 (Practical Significance)**
-
-除了統計指標外，還需要考量模型是否具有實務意義，以及因子是否能提供有用的洞見。
-
-- 因子命名 (Factor Naming)：
-  - 意義：根據因子負載量，為每個因子賦予一個有意義的名稱。
-  - 評估：因子名稱應該能反映因子所代表的潛在概念。
-- 理論支持 (Theoretical Support)：
-  - 意義：模型中的因子應該與現有的理論或研究結果相符。
-  - 評估：檢查因子是否與相關文獻中的概念一致。
-- 模型簡潔性 (Parsimony)：
-  - 意義：在解釋力相似的情況下，選擇較簡潔的模型。
-  - 評估：避免過度複雜的模型，因為它們可能難以解釋和應用。
+No single index determined the working solution. Model fit was considered together with parsimony, loading structure, factor correlations, and theoretical interpretability.
 
 :::
 
@@ -452,21 +429,27 @@ See also:
 - [Factor Analysis with the psych package: Making sense of the results](https://m-clark.github.io/posts/2020-04-10-psych-explained/)
 - [How To: Use the psych package for Factor Analysis and data reduction](https://personality-project.org/r/psych/HowTo/factor.pdf)
 
-### Final decision
+### Working decision at this stage
 
-Most model fit indices suggest that all explored models provide a reasonably adequate fit to the data (e.g., TLI > 0.90, RMSEA < 0.08). Althought parallel analysis suggested 3 factors. But based on the BIC, it would prefer `fa4` or `fa4_ob` models.
+The recorded fit indices did not point uniformly to a single solution. The displayed parallel analysis suggested three factors, whereas BIC was lower for the four-factor solutions. The five-factor solutions showed more favorable TLI and RMSEA values than the smaller solutions.
 
-However, considering the theoretical goal of relating the findings to the 5C model of vaccine hesitancy, the 5-factor oblique solution (i.e., `fa5_ob`) is selected as the final model. This choice is motivated by its clearer potential alignment with the theoretical framework and the fact that each factor in this solution has substantial loadings from multiple variables. Furthermore, while not having the absolute lowest BIC, it demonstrates strong performance across other fit indices (e.g., TLI, RMSEA).
+At this stage of manuscript development, the five-factor oblique solution (`fa5_ob`) was retained as the working model. The decision considered the study's connection to the 5C framework, the interpretability of the loading pattern, correlations among the factors, and the model-fit indices. It should not be read as evidence that the statistical criteria independently established a five-factor structure.
 
-It is recommended to report at least the factor loadings for the `fa5_ob` solution (Table @tbl-fa-loadings), potentially using a **cutoff (= 0.26)** for clarity ...
+::: callout-important
+## Relation to the published analysis
+
+This section records an intermediate stage of model exploration. The subsequently [published article](https://doi.org/10.7189/001c.144190) reported the five-factor oblique solution after considering statistical fit and theoretical interpretation, including a distinction between general collective responsibility and obligated collective responsibility. The article and its supplementary materials provide the definitive model description and substantive interpretation.
+:::
+
+For the working five-factor solution, Table @tbl-fa-loadings displays loadings with an absolute value greater than 0.26, matching the presentation threshold later used in the published article.
 
 ```{r}
 #| label: tbl-fa-loadings
-#| tbl-cap: The factor loadings 
+#| tbl-cap: Factor loadings for the working five-factor oblique solution
 
-#Should be report:  factor loadings
+# Factor loadings retained for the working analysis record
 fa_load <- fa5_ob$loadings[,] %>%
-  ifelse(abs(.) > 0.26, ., NA) |> # putting cutoff at 0.26
+  ifelse(abs(.) > 0.26, ., NA) |> # display threshold used in the article
   round(3) |> 
   as_tibble() |> 
   add_column(vars = names(fa_data), .before = 1)
@@ -475,11 +458,11 @@ gt(fa_load) |>
   sub_missing(missing_text = "-") 
 ```
 
-and the inter-factor correlation matrix (Phi matrix, Table @tbl-fa-Phi), as an oblique rotation was used, allowing factors to be correlated.
+Because an oblique rotation was used, Table @tbl-fa-Phi also records the inter-factor correlation matrix (Phi matrix).
 
 ```{r}
 #| label: tbl-fa-Phi
-#| tbl-cap: The correlation matrix of inter factors
+#| tbl-cap: Inter-factor correlation matrix
 
 fa_phi <- fa5_ob$Phi |> 
   round(3) |> 
@@ -492,28 +475,28 @@ gt(fa_phi)
 ```{r}
 #| label: fa-score
 
-# be used in latter analysis
+# Used in the subsequent analysis
 fa_scores <- fa5_ob$scores |> as_tibble() 
 ```
 
 ::: callout-note
 
-Standard reporting guidelines for factor analysis from relevant literature should be consulted to determine the full set of results to present.
+These loading and factor-correlation tables are retained as part of the working analysis record. The published article and supplementary materials contain the final reported results.
 
 :::
 
 ::: callout-note
 
-## Why use a EFA instead of a CFA?
+## Why use EFA rather than CFA?
 
-An EFA was chosen over a Confirmatory Factor Analysis (CFA) because the original questionnaire was not specifically designed a priori to measure the 5C constructs. EFA allows for exploration of the underlying factor structure without the strong theoretical constraints imposed by CFA.
+EFA was used because the original questionnaire was not designed a priori as a direct operationalization of the 5C constructs. The analysis therefore explored the underlying loading structure before interpreting its relation to the 5C framework.
 
 :::
 
 
-# Vaccine sentiment (VS) 
+# Vaccine sentiment (VS)
 
-The analysis focuses on the following 5 sentiment variables:
+The working analysis used the following five sentiment variables:
 
   1. `change_vac_1` (S1): My attitude towards vaccination (in general) has not been influenced by the COVID-19 pandemic.
   2. `change_vac_2` (S2): The COVID-19 pandemic has increased my confidence in the safety of vaccines.
@@ -521,17 +504,35 @@ The analysis focuses on the following 5 sentiment variables:
   4. `change_vac_3` (S4): From now on, I will pay more attention to updating my vaccination schedule in general.
   5. `cov_pro_3` (S5): I am keen to receive another COVID-19 vaccination if the health authority recommends it.
 
-For each sentiment variable (treated as a binary outcome: Agree/Strongly Agree vs. Disagree/Strongly Disagree), a series of hierarchical logistic regression models will be estimated, as outlined in Table @tbl-VS-hier-models.
+The S1-S5 labels preserve the ordering used in this working analysis record. They do not correspond numerically to the VS1-VS5 labels in the published article:
 
-| EV groups | Model 1 | Model 2 | Model 3 | Model 4 | Model 5 |
-|:----------|:-------:|:-------:|:-------:|:-------:|:-------:|
-|Soci. demo.|    +    |    +    |    +    |    +    |    +    |
-|Work. env. |         |    +    |    +    |    +    |    +    |
-|Fear       |         |         |    +    |    +    |    +    |
-|Knowledge  |         |         |         |    +    |    +    |
-|5Cs        |         |         |         |         |    +    |
+| Working label | Variable | Published label and construct |
+|:--------------|:---------|:------------------------------|
+| S1 | `change_vac_1` | VS4: general attitude |
+| S2 | `change_vac_2` | VS3: vaccine confidence |
+| S3 | `change_HealthSy_1` | VS5: health-system confidence |
+| S4 | `change_vac_3` | VS1: vaccine attention |
+| S5 | `cov_pro_3` | VS2: vaccine intention |
 
-: The hierarchical logistic regression models for each VS {#tbl-VS-hier-models}
+: Correspondence between the working outcome labels and the labels used in the published article
+
+Each item was treated as a binary outcome (agree/strongly agree versus disagree/strongly disagree). The staged logistic regression models recorded during manuscript development are summarized in Table @tbl-VS-hier-models.
+
+::: callout-note
+## Scope of this section
+
+The models below preserve the sequence in which demographic, occupational, fear, knowledge, and factor-score predictors were added during the working analysis. They do not document every model, diagnostic, or sensitivity analysis reported in the published article. The article and its supplementary materials remain the definitive source for the final estimates and interpretations.
+:::
+
+| Predictor block | Model 1 | Model 2 | Model 3 | Model 4 | Model 5 |
+|:----------------|:-------:|:-------:|:-------:|:-------:|:-------:|
+| Demographics    |    +    |    +    |    +    |    +    |    +    |
+| Work environment |         |    +    |    +    |    +    |    +    |
+| Fear            |         |         |    +    |    +    |    +    |
+| Knowledge       |         |         |         |    +    |    +    |
+| Factor scores   |         |         |         |         |    +    |
+
+: Staged logistic regression models for each vaccine-sentiment outcome {#tbl-VS-hier-models}
 
 ## Define variables
 
@@ -556,33 +557,20 @@ lr_rawdata <- rawdata |>
   add_column(fa_scores)
 ```
 
-The list of the variables:
+The variables were coded as follows:
 
-- **Outcome variables**:
-  - *Sentiment variables* (S1-S5): were recoded into binary factors (0 = Strongly Disagree/Disagree, 1 = Agree/Strongly Agree)."
-- **Predictor variables**:
-  - *Gender* (`gender`): Recoded into a binary factor 
-    - Female and Male
-    - (excluding 'I prefer not to answer' which seen as a missing value)
-  - *Age Class* (`age_class`): Treated as a categorical factor with 6 levels
-    - <35, 35-44, 45-54, 55-64, 65-74, and 75+
-  - *Education* (`edu`): Treated as a binary factor
-    - Medical Degree and Other (collapsing Other, High School, Technical, Bachelor, Master)
-  - *Chronic Diseace* (`chronic`): Recoded into a binary factor 
-    - Yes and No
-    - (excluding 'I prefer not to answer' which seen as a missing value)
-  - *Member* (`member`): Recoded into a binary factor 
-    - Yes and No
-    - (excluding 'I don't know' which seen as a missing value)
-  - *Profession* (`prof`): Treated as a categorical factor with 4 levels
-    - Nutr, Phar, Phys and Other (collapsing Othe, Nurs, Dent, Heal, Midf, Publ, Soci)
-  - *Work setting* (`w_setting`): Treated as a categorical factor with 5 levels
-    - Comm, Hosp, Priv (collapsing private company and private practice), Univ, and Other
-  - *Fear* (`fear`): Treated as continuous predictors.
-  - *Knowledge* (`knowledge`): Treated as continuous predictors."
-  - *5C Factors* (ML1-ML5): The factor scores derived from the `fa5_ob` model were used as continuous predictors."
+- **Outcomes:** S1-S5 were recoded as binary factors (0 = disagree/strongly disagree; 1 = agree/strongly agree).
+- **Gender (`gender`):** female or male; "I prefer not to answer" was treated as missing.
+- **Age group (`age_class`):** <35, 35-44, 45-54, 55-64, 65-74, or 75+.
+- **Education (`edu`):** medical degree or other; the latter combined the remaining education categories.
+- **Chronic disease (`chronic`):** yes or no; "I prefer not to answer" was treated as missing.
+- **Association membership (`member`):** yes or no; "I don't know" was treated as missing.
+- **Profession (`prof`):** nutrition, pharmacy, physician, or other.
+- **Work setting (`w_setting`):** community, hospital, private, university, or other.
+- **Fear (`fear`) and knowledge (`knowledge`):** continuous predictors.
+- **Factor scores (ML1-ML5):** regression-based scores from the working `fa5_ob` solution, used as continuous predictors.
 
-Similarly, observations with missing values in any of these 17 variables were removed. Total `{r} nrow(fa_data)` complete observations remain for the logistic regression.
+`lr_rawdata` retained respondents with complete responses on the attitude items used to calculate the factor scores. Each `glm()` call then used complete cases for the variables included in that model, so the effective sample size may differ across outcomes and model stages.
 
 
 ```{r}
@@ -590,27 +578,27 @@ Similarly, observations with missing values in any of these 17 variables were re
 
 lr_data <- lr_rawdata |> 
   mutate(
-    # for sentiment variables
+    # Sentiment variables
     across(all_of(sentiment_var), ~ factor(ifelse(. > 3, 1, 0))),
-    # for demography variables
+    # Demographic variables
     gender = as_factor(gender) |> droplevels(exclude = "I prefer not to answer"),
     age_class = as_factor(age_class),
     edu = as_factor(edu) |> fct_relabel(~ str_sub(.x, 1, 4)) |> fct_collapse(Othe = c("Othe", "High", "Tech", "Bach", "Mast")),
     chronic = as_factor(chronic) |> droplevels(exclude = "I prefer not to answer") |> fct_rev(),
-    # for working variables
+    # Work-related variables
     member = as_factor(member) |> droplevels(exclude = "I don't know") |> fct_rev(),
     prof = as_factor(prof) |> fct_relabel(~ str_sub(.x, 1, 4)) |> fct_collapse(Othe = c("Othe", "Nurs", "Dent", "Heal", "Midw", "Publ", "Soci")),
     w_setting = as_factor(w_setting) |> fct_relabel(~ str_sub(.x, 1, 4)),
-    # for attitude variables: change labeling from 1245 to 1234
+    # Attitude variables: recode 1, 2, 4, 5 as 1, 2, 3, 4
     across(all_of(attitude_var), ~ . - ifelse(. > 3, 1, 0))
   )
 ```
 
-## Logistic regression analysis
+## Logistic regression models
 
 ### Sentiment 1 (S1)
 
-The formulas for the five hierarchical models for Sentiment 1 (`change_vac_1`) are defined as follows:
+The formulas for the five staged models for Sentiment 1 (`change_vac_1`) are defined as follows:
 
 ```{r}
 #| label: models
@@ -622,7 +610,7 @@ m4_str <- str_c(m3_str, " + ", "knowledge")
 m5_str <- str_c(m4_str, " + ", str_flatten(fa_var, " + "))
 ```
 
-Each model is estimated using logistic regression (binomial family with logit link function).
+Each model was estimated using logistic regression with a binomial family and logit link.
 
 ```{r}
 #| label: S1-models
@@ -631,11 +619,11 @@ s1_models <- map(list(m1_str, m2_str, m3_str, m4_str, m5_str),
                  ~ glm(as.formula(.), family = binomial, lr_data)) 
 ```
 
-Logistic regression results (the odds ratio for each effect) for S1 are presented in Table @tbl-S1-result.
+The working odds-ratio estimates for S1 are recorded in Table @tbl-S1-result.
 
 ```{r}
 #| label: tbl-S1-result
-#| tbl-cap: "Sentiment 1 result" 
+#| tbl-cap: "Working odds-ratio estimates (95% Wald CIs) for Sentiment 1"
 
 extract_esti <- function(lr) {
   coef <- summary(lr)$coefficients
@@ -648,7 +636,8 @@ extract_esti <- function(lr) {
   conf_u <- exp(esti + qnorm(1-0.05/2) * se) |> round(2)
   p_sig <- cut(p_value, 
                breaks = c(0, 0.001, 0.01, 0.05, 0.1, 1),
-               labels = c("***&nbsp;", "**&nbsp;&nbsp;", "*&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;"))
+               labels = c("***&nbsp;", "**&nbsp;&nbsp;", "*&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;", "&nbsp;&nbsp;&nbsp;&nbsp;"),
+               include.lowest = TRUE)
   result <- str_glue("{format(OR)}{p_sig}<br>[{format(conf_l)}, {format(conf_u)}]")
   tibble(vars = var_name, esti = result)
 }
@@ -662,11 +651,13 @@ gt(s1_result_comp) |>
   fmt_markdown(columns = everything()) 
 ```
 
+Cells report odds ratios with 95% Wald confidence intervals in brackets. Stars denote unadjusted Wald p-values: `*` p <= .05, `**` p <= .01, and `***` p <= .001.
+
 ### Sentiment 2 (S2)
 
 ```{r}
 #| label: tbl-S2-result
-#| tbl-cap: "Sentiment 2 result" 
+#| tbl-cap: "Working odds-ratio estimates (95% Wald CIs) for Sentiment 2"
 
 s2_models <- map(s1_models, 
                  ~ update(.x, change_vac_2 ~ .))
@@ -684,7 +675,7 @@ gt(s2_result_comp) |>
 
 ```{r}
 #| label: tbl-S3-result
-#| tbl-cap: "Sentiment 3 result" 
+#| tbl-cap: "Working odds-ratio estimates (95% Wald CIs) for Sentiment 3"
 
 s3_models <- map(s1_models, 
                  ~ update(.x, change_HealthSy_1 ~ .))
@@ -704,7 +695,7 @@ gt(s3_result_comp) |>
 
 ```{r}
 #| label: tbl-S4-result
-#| tbl-cap: "Sentiment 4 result" 
+#| tbl-cap: "Working odds-ratio estimates (95% Wald CIs) for Sentiment 4"
 
 s4_models <- map(s1_models, 
                  ~ update(.x, change_vac_3 ~ .))
@@ -722,7 +713,7 @@ gt(s4_result_comp) |>
 
 ```{r}
 #| label: tbl-S5-result
-#| tbl-cap: "Sentiment 5 result" 
+#| tbl-cap: "Working odds-ratio estimates (95% Wald CIs) for Sentiment 5"
 
 s5_models <- map(s1_models, 
                  ~ update(.x, cov_pro_3 ~ .))
@@ -736,11 +727,11 @@ gt(s5_result_comp) |>
   fmt_markdown(columns = everything()) 
 ```
 
-### Summary: Model 5 in each sentiment
+### Summary of Model 5 across sentiment outcomes
 
 ```{r}
 #| label: tbl-model5
-#| tbl-cap: "Model 5 summary" 
+#| tbl-cap: "Model 5 odds-ratio summary (95% Wald CIs)"
 
 m5_comp <- map(list(s1_models[[5]], s2_models[[5]], s3_models[[5]], s4_models[[5]], s5_models[[5]]), 
                extract_esti) |> 
@@ -752,11 +743,11 @@ gt(m5_comp) |>
   fmt_markdown(columns = everything()) 
 ```
 
-### Appendix: Model 5 with using the attitude variabes instead of 5 factors
+### Appendix: Model 5 using attitude items instead of factor scores
 
 ```{r}
 #| label: tbl-model5-ori
-#| tbl-cap: "Model 5 with using the attitude variabes instead of 5 factors"
+#| tbl-cap: "Model 5 odds ratios (95% Wald CIs) using attitude items instead of factor scores"
  
 m5_ori_models <- map(list(s1_models[[5]], s2_models[[5]], s3_models[[5]], s4_models[[5]], s5_models[[5]]),
                       ~ update(.x, as.formula(str_c(". ~ .", 
@@ -771,5 +762,9 @@ gt(m5_ori_comp) |>
   sub_missing(missing_text = "-") |> 
   fmt_markdown(columns = everything())
 ```
+
+# Closing note
+
+This page preserves selected exploratory analyses and intermediate model-building decisions from the development of the collaborative manuscript. It should not be used as a substitute for the final methods, diagnostics, results, or interpretation reported in the [published article](https://doi.org/10.7189/001c.144190) and its supplementary materials.
 
 # References
