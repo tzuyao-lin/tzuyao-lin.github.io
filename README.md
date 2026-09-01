@@ -62,9 +62,3 @@ not committed.
 
 Posts should include enough information to identify their data source, licence or reuse conditions, and any steps taken to protect participant privacy. Public data files must be reviewed for direct identifiers, detailed timestamps, network identifiers, and free-text responses before they are committed.
 
-Participant-level datasets are deliberately excluded from this public
-repository. Data access and privacy requirements are documented with the
-analyses they govern: the
-[Brazilian vaccine-sentiment analysis](posts/20250328_VHS/index.qmd#data-availability-and-privacy)
-and the
-[diabetes and polygenic-risk analysis](posts/20240918_CDP/index.qmd#data-availability-and-privacy).
