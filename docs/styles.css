@@ -144,8 +144,9 @@ main.content p {
 }
 
 .quarto-title-block .subtitle,
-main.content > p:first-of-type {
+.page-intro > p {
   font-size: var(--site-text-lead);
+  font-weight: 400;
   line-height: 1.55;
 }
 
@@ -195,7 +196,7 @@ body.quarto-dark {
   color: var(--site-ink);
 }
 
-body.quarto-light .navbar {
+body .navbar {
   --bs-navbar-brand-color: var(--site-ink);
   --bs-navbar-brand-hover-color: var(--site-accent-hover);
   --bs-navbar-color: var(--site-muted);
@@ -204,46 +205,20 @@ body.quarto-light .navbar {
   border-bottom: 1px solid var(--site-border);
 }
 
-body.quarto-dark .navbar {
-  --bs-navbar-brand-color: var(--site-ink);
-  --bs-navbar-brand-hover-color: var(--site-accent-hover);
-  --bs-navbar-color: var(--site-muted);
-  --bs-navbar-hover-color: var(--site-accent);
-  background-color: var(--site-paper);
-  border-bottom: 1px solid var(--site-border);
-}
-
-body.quarto-light .navbar .navbar-brand,
-body.quarto-light .navbar .nav-link,
-body.quarto-light .navbar .quarto-navigation-tool {
+body .navbar .navbar-brand,
+body .navbar .nav-link,
+body .navbar .quarto-navigation-tool {
   color: var(--bs-navbar-color);
 }
 
-body.quarto-light .navbar .navbar-brand {
+body .navbar .navbar-brand {
   color: var(--bs-navbar-brand-color);
 }
 
-body.quarto-light .navbar .nav-link:hover,
-body.quarto-light .navbar .nav-link:focus,
-body.quarto-light .navbar .quarto-navigation-tool:hover,
-body.quarto-light .navbar .quarto-navigation-tool:focus {
-  color: var(--bs-navbar-hover-color);
-}
-
-body.quarto-dark .navbar .navbar-brand,
-body.quarto-dark .navbar .nav-link,
-body.quarto-dark .navbar .quarto-navigation-tool {
-  color: var(--bs-navbar-color);
-}
-
-body.quarto-dark .navbar .navbar-brand {
-  color: var(--bs-navbar-brand-color);
-}
-
-body.quarto-dark .navbar .nav-link:hover,
-body.quarto-dark .navbar .nav-link:focus,
-body.quarto-dark .navbar .quarto-navigation-tool:hover,
-body.quarto-dark .navbar .quarto-navigation-tool:focus {
+body .navbar .nav-link:hover,
+body .navbar .nav-link:focus,
+body .navbar .quarto-navigation-tool:hover,
+body .navbar .quarto-navigation-tool:focus {
   color: var(--bs-navbar-hover-color);
 }
 

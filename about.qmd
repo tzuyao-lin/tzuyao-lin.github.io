@@ -18,52 +18,51 @@ about:
       href: mailto:tzu-yao.lin@maastrichtuniversity.nl
 page-layout: full
 title-block-banner: false
+css: assets/css/about.css
 ---
+
+I am a quantitative psychologist and joint PhD candidate at KU Leuven and Maastricht University. My work starts from a deceptively simple question: when measurements are repeated across moments, days, and people, what should count as reliable? Many familiar indices depend on choices about the level, timescale, and comparison that define reliability, yet these choices are often left implicit. I work on making them explicit and developing more systematic procedures for constructing and evaluating measurement indices.
+
+My broader interests include longitudinal and multilevel modeling, as well as mathematical and computational models of judgment and decision-making. Outside research, I am a fire dancer and Lindy hopper.
 
 ## Research focus
 
-- **Reliability and measurement.** How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.
-- **Longitudinal and multilevel modeling.** Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
-- **Mathematical and computational modeling.** Models of judgment and decision-making, including cultural consensus and threshold models.
+::: {.about-list}
+### Reliability and measurement
+
+How the meaning and estimation of reliability change when data include multiple levels, repeated observations, or temporal dependence.
+
+### Longitudinal and multilevel modeling
+
+Statistical models for intensive longitudinal and hierarchical data, including mixed-effects and autoregressive structures.
+
+### Mathematical and computational modeling
+
+Models of judgment and decision-making, including cultural consensus and threshold models.
+:::
 
 ## Background
 
-::: {.grid}
+::: {.about-list .about-background-list}
+### Joint PhD candidate
 
-::: {.g-col-12 .g-col-md-3}
-2022 — PRESENT
-:::
-
-::: {.g-col-12 .g-col-md-9}
-**Joint PhD candidate**
+**2022 — Present**
 
 KU Leuven · Research Group of Quantitative Psychology and Individual Differences
 
 Maastricht University · Department of Methodology and Statistics
-:::
 
-::: {.g-col-12 .g-col-md-3}
-2019 — 2022
-:::
+### MS in Psychology
 
-::: {.g-col-12 .g-col-md-9}
-**MS in Psychology**
+**2019 — 2022**
 
 National Taiwan University · Department of Psychology
-:::
 
-::: {.g-col-12 .g-col-md-3}
-2014 — 2019
-:::
+### BS in Psychology, minor in Forestry
 
-::: {.g-col-12 .g-col-md-9}
-**BS in Psychology, minor in Forestry**
+**2014 — 2019**
 
 National Taiwan University · Department of Psychology
 
 Minor: School of Forestry and Resource Conservation
 :::
-
-:::
-
-Outside research, I am a fire dancer and Lindy hopper.

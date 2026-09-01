@@ -1,43 +1,40 @@
 ---
-title: "Publications"
-subtitle: "Peer-reviewed research and work under review"
+title: "Research"
 page-layout: full
 title-block-banner: false
 css: assets/css/publication.css
 resources:
   - assets/js/publication.js
 listing:
-  id: publication-list
-  contents: data/publications.yml
-  type: custom
-  template: includes/publications/listing.ejs
-  page-size: 100
-  sort-ui: false
-  filter-ui: false
+  - id: publication-list
+    contents: data/publications.yml
+    type: custom
+    template: includes/publications/listing.ejs
+    page-size: 100
+    sort-ui: false
+    filter-ui: false
+  - id: presentation-list
+    contents: data/presentations.yml
+    type: custom
+    template: includes/presentations/listing.ejs
+    page-size: 100
+    sort-ui: false
+    filter-ui: false
 ---
+
+::: {.page-intro}
+Peer-reviewed work, manuscripts under review, and conference presentations.
+:::
+
+## Publications
 
 ::: {#publication-list}
 :::
 
 ## Presentations
 
-**21 July 2026** — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.
-
-**5 December 2025** — IOPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.
-
-**30 September 2025** — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.
-
-**19 July 2024** — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach.” Oral presentation.
-
-**12 March 2024** — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.
-
-**23 November 2023** — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.
-
-**21 July 2023** — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.
-
-**13 July 2023** — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.
-
-**20 June 2023** — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation.
+::: {#presentation-list}
+:::
 
 ```{=html}
 <script src="assets/js/publication.js"></script>

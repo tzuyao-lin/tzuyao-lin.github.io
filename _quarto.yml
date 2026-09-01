@@ -17,7 +17,7 @@ website:
       - href: blog.qmd
         text: "Posts"
       - href: publication.qmd
-        text: "Publications"
+        text: "Research"
     right:
       - icon: github
         href: https://github.com/tzuyao-lin

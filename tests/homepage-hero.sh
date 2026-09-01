@@ -28,6 +28,7 @@ fi
 
 page="$test_root/docs/index.html"
 about_page="$test_root/docs/about.html"
+blog_page="$test_root/docs/blog.html"
 
 assert_contains() {
   local pattern="$1"
@@ -79,6 +80,19 @@ assert_about_absent() {
   fi
 }
 
+assert_about_count() {
+  local xpath="$1"
+  local expected="$2"
+  local message="$3"
+  local actual
+
+  actual="$(xmllint --html --xpath "count($xpath)" "$about_page" 2>/dev/null || true)"
+  if [[ "$actual" != "$expected" ]]; then
+    echo "FAIL: $message (expected $expected, got $actual)"
+    exit 1
+  fi
+}
+
 assert_contains 'class="home-hero"' "rendered homepage is missing the custom Hero"
 assert_contains "Hi, I'm Tzu-Yao." "Hero heading does not use the approved wording"
 assert_contains 'I study <span class="gradient-text">reliability</span>' "Hero research statement is missing"
@@ -106,8 +120,39 @@ assert_about_contains 'class="bi bi-envelope-at-fill"' "Email icon is missing"
 assert_about_contains 'class="bi bi-linkedin"' "LinkedIn icon is missing"
 assert_about_contains 'href="https://orcid.org/0000-0002-2261-448X"' "ORCID link is missing"
 assert_about_contains 'href="mailto:tzu-yao.lin@maastrichtuniversity.nl"' "Email link is missing"
+assert_about_contains 'href="assets/css/about.css"' "About Me is missing its structured-list stylesheet"
+assert_about_count \
+  '//section[@id="research-focus"]/div[contains(concat(" ", normalize-space(@class), " "), " about-list ")]/section[contains(concat(" ", normalize-space(@class), " "), " level3 ")]' \
+  '3' \
+  'Research focus should render as three plain Markdown subsections'
+assert_about_count \
+  '//section[@id="background"]/div[contains(concat(" ", normalize-space(@class), " "), " about-list ") and contains(concat(" ", normalize-space(@class), " "), " about-background-list ")]/section[contains(concat(" ", normalize-space(@class), " "), " level3 ")]' \
+  '3' \
+  'Background should render as three plain Markdown subsections'
+assert_about_count \
+  '//section[@id="background"]/div[contains(concat(" ", normalize-space(@class), " "), " about-background-list ")]/section[contains(concat(" ", normalize-space(@class), " "), " level3 ")]/p[1]/strong' \
+  '3' \
+  'Background should retain one Markdown date label per subsection'
+assert_about_count \
+  '//*[contains(concat(" ", normalize-space(@class), " "), " subtitle ")]' \
+  '1' \
+  'About should retain one shared subtitle hook'
 assert_about_absent 'title=""' "Academicons emitted an empty title attribute"
 assert_about_absent 'style="color:"' "Academicons emitted an empty color style"
+assert_about_absent 'about-focus-list' "About should use one shared list class instead of a focus-only variant"
+
+if rg -q 'body\.quarto-(light|dark) \.navbar[[:space:]]*\{' "$test_root/docs/styles.css"; then
+  echo "FAIL: navbar theme rules should share one variable-driven selector"
+  exit 1
+fi
+
+blog_intro_count="$(xmllint --html --xpath \
+  'count(//*[contains(concat(" ", normalize-space(@class), " "), " page-intro ")])' \
+  "$blog_page" 2>/dev/null || true)"
+if [[ "$blog_intro_count" != "1" ]]; then
+  echo "FAIL: Posts should expose one shared page-intro hook (expected 1, got $blog_intro_count)"
+  exit 1
+fi
 
 if [[ -e "$test_root/docs/assets/orcid-id.svg" ]]; then
   echo "FAIL: obsolete ORCID image is still included in rendered output"

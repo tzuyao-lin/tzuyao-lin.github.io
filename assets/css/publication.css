@@ -26,7 +26,8 @@ main.content {
   white-space: nowrap;
 }
 
-main.content .publication-title {
+main.content .publication-title,
+main.content .presentation-title {
   max-width: 60rem;
   margin: 0 0 0.42rem;
   font-family: var(--site-font-ui);
@@ -41,7 +42,8 @@ main.content .publication-entry p {
 }
 
 .publication-authors,
-.publication-venue {
+.publication-venue,
+.presentation-type {
   max-width: 62rem;
   color: var(--site-muted);
   font-family: var(--site-font-ui);
@@ -49,26 +51,38 @@ main.content .publication-entry p {
   line-height: 1.5;
 }
 
+.presentation-entry {
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+}
+
 .publication-authors strong {
   color: var(--site-accent);
   font-weight: 650;
 }
 
+.publication-meta-row,
 .publication-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.45rem 1rem;
-  margin-top: 0.78rem;
 }
 
-.publication-actions > p {
-  display: contents;
+main.content .publication-meta-row > .publication-venue {
   margin: 0;
 }
 
-.publication-link,
-.publication-citation-button {
+.presentation-actions {
+  margin-top: 0.78rem;
+}
+
+/* Pandoc wraps isolated links in paragraphs; keep every action as one flex item. */
+.publication-actions > p {
+  display: contents;
+}
+
+.publication-action,
+.presentation-slides-placeholder {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -81,21 +95,22 @@ main.content .publication-entry p {
   font-size: 0.95rem;
   line-height: 1.5;
   text-decoration: none;
-  transition: color 140ms ease;
 }
 
-.publication-citation-button {
+button.publication-action {
   cursor: pointer;
 }
 
-.publication-link:hover,
-.publication-citation-button:hover,
+.presentation-slides-placeholder {
+  opacity: 0.68;
+}
+
+.publication-action:hover,
 .publication-citation-button.is-copied {
   color: var(--site-accent);
 }
 
-.publication-link:focus-visible,
-.publication-citation-button:focus-visible {
+.publication-action:focus-visible {
   border-radius: 0.2rem;
   outline: 2px solid color-mix(in srgb, var(--site-accent) 55%, transparent);
   outline-offset: 0.2rem;
@@ -106,36 +121,32 @@ main.content .publication-entry p {
   line-height: 1;
 }
 
-.publication-abstract {
-  margin-top: 0.7rem;
+.publication-abstract-symbol {
+  display: inline-grid;
+  place-items: center;
+  width: 0.95rem;
+  height: 1em;
+  color: var(--site-accent);
+  line-height: 1;
+}
+
+.publication-abstract-symbol::before {
+  content: "+";
+}
+
+.publication-abstract-toggle[aria-expanded="true"] .publication-abstract-symbol::before {
+  content: "−";
+}
+
+.publication-abstract-panel {
+  margin-top: 0.6rem;
   color: var(--site-muted);
   font-family: var(--site-font-ui);
   font-size: 0.95rem;
 }
 
-.publication-abstract summary {
-  width: fit-content;
-  cursor: pointer;
-  list-style: none;
-}
-
-.publication-abstract summary::-webkit-details-marker {
-  display: none;
-}
-
-.publication-abstract summary::before {
-  content: "+";
-  display: inline-block;
-  width: 0.95rem;
-  color: var(--site-accent);
-}
-
-.publication-abstract[open] summary::before {
-  content: "−";
-}
-
-.publication-abstract p {
-  margin-top: 0.6rem;
+.publication-abstract-panel p {
+  margin: 0;
   padding-left: 0.95rem;
   border-left: 2px solid var(--site-border);
   line-height: 1.62;
@@ -159,12 +170,5 @@ main.content > h2 {
 
   .publication-entry-year {
     padding-top: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .publication-link,
-  .publication-citation-button {
-    transition: none;
   }
 }

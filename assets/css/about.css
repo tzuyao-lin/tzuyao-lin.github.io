@@ -1,0 +1,109 @@
+.quarto-about-solana .about-contents main.content {
+  width: min(100%, 68rem);
+  margin-inline: auto;
+  text-align: left;
+}
+
+main.content > section.level2 {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+}
+
+.about-list {
+  margin-top: var(--site-space-xl);
+  border-top: 1px solid var(--site-border);
+  border-bottom: 1px solid var(--site-border);
+}
+
+.about-list > section.level3 {
+  padding: clamp(1.35rem, 2.8vw, 1.9rem) 0;
+}
+
+.about-list > section.level3:not(:last-child) {
+  border-bottom: 1px solid var(--site-border);
+}
+
+.about-background-list > section.level3 {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  column-gap: clamp(1.1rem, 3vw, 2rem);
+  row-gap: 0;
+}
+
+.about-background-list > section.level3 > h3 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.about-background-list > section.level3 > p:first-of-type {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 0.16rem;
+  color: var(--site-accent);
+}
+
+.about-background-list > section.level3 > p:not(:first-of-type) {
+  grid-column: 2;
+}
+
+main.content .about-list h3 {
+  margin: 0 0 0.42rem;
+  font-family: var(--site-font-ui);
+  font-size: 1.1rem;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+  line-height: 1.38;
+}
+
+main.content .about-list p {
+  margin-bottom: 0.36rem;
+  color: var(--site-muted);
+  font-family: var(--site-font-ui);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+main.content .about-list p:last-child {
+  margin-bottom: 0;
+}
+
+.about-background-list > section.level3 > p:first-of-type strong {
+  color: inherit;
+  font-weight: 650;
+}
+
+.about-personal-note {
+  margin-top: var(--site-space-xl);
+  color: var(--site-muted);
+}
+
+@media (max-width: 640px) {
+  main.content > section.level2 {
+    margin-top: var(--site-space-xl);
+    padding-top: var(--site-space-xl);
+  }
+
+  .about-list {
+    margin-top: var(--site-space-lg);
+  }
+
+  .about-background-list > section.level3 {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .about-background-list > section.level3 > p:first-of-type {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 0;
+  }
+
+  .about-background-list > section.level3 > h3 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .about-background-list > section.level3 > p:not(:first-of-type) {
+    grid-column: 1;
+  }
+}

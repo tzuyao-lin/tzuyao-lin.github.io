@@ -18,14 +18,25 @@ function createPage() {
   const clipboardWrites = [];
   const timeouts = [];
 
-  const abstractLabel = { textContent: "" };
-  const details = {
-    open: false,
+  const abstractLabel = { textContent: "Show abstract" };
+  const abstractPanel = { hidden: true };
+  const abstractAttributes = new Map([
+    ["aria-controls", "publication-abstract-example"],
+    ["aria-expanded", "false"],
+  ]);
+  const abstractToggle = {
     addEventListener(type, listener) {
-      listeners.set(`details:${type}`, listener);
+      listeners.set(`abstract:${type}`, listener);
     },
     querySelector(selector) {
-      return selector === ".publication-abstract-label" ? abstractLabel : null;
+      if (selector === ".publication-abstract-label") return abstractLabel;
+      return null;
+    },
+    getAttribute(name) {
+      return abstractAttributes.get(name) ?? null;
+    },
+    setAttribute(name, value) {
+      abstractAttributes.set(name, String(value));
     },
   };
 
@@ -33,7 +44,6 @@ function createPage() {
   const buttonClasses = new Set();
   const button = {
     dataset: {
-      citationFormat: "bibtex",
       citation: "%20%20%40article%7Bexample%7D%20%20",
     },
     addEventListener(type, listener) {
@@ -57,9 +67,12 @@ function createPage() {
       listeners.set(`document:${type}`, listener);
     },
     querySelectorAll(selector) {
-      if (selector === ".publication-abstract") return [details];
+      if (selector === ".publication-abstract-toggle") return [abstractToggle];
       if (selector === ".publication-citation-button") return [button];
       return [];
+    },
+    getElementById(id) {
+      return id === "publication-abstract-example" ? abstractPanel : null;
     },
   };
 
@@ -85,11 +98,13 @@ function createPage() {
   ready();
 
   return {
+    abstractAttributes,
     abstractLabel,
+    abstractPanel,
+    abstractToggle,
     buttonClasses,
     buttonLabel,
     clipboardWrites,
-    details,
     listeners,
     timeouts,
   };
@@ -98,10 +113,18 @@ function createPage() {
 test("abstract controls describe their open and closed state", () => {
   const page = createPage();
   assert.equal(page.abstractLabel.textContent, "Show abstract");
+  assert.equal(page.abstractAttributes.get("aria-expanded"), "false");
+  assert.equal(page.abstractPanel.hidden, true);
 
-  page.details.open = true;
-  page.listeners.get("details:toggle")();
+  page.listeners.get("abstract:click")();
   assert.equal(page.abstractLabel.textContent, "Hide abstract");
+  assert.equal(page.abstractAttributes.get("aria-expanded"), "true");
+  assert.equal(page.abstractPanel.hidden, false);
+
+  page.listeners.get("abstract:click")();
+  assert.equal(page.abstractLabel.textContent, "Show abstract");
+  assert.equal(page.abstractAttributes.get("aria-expanded"), "false");
+  assert.equal(page.abstractPanel.hidden, true);
 });
 
 test("citation controls copy trimmed text and show temporary success feedback", async () => {

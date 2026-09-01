@@ -1,14 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".publication-abstract").forEach((details) => {
-    const label = details.querySelector(".publication-abstract-label");
-    if (!label) return;
+  document.querySelectorAll(".publication-abstract-toggle").forEach((button) => {
+    const label = button.querySelector(".publication-abstract-label");
+    const panelId = button.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!label || !panel) return;
 
-    const updateLabel = () => {
-      label.textContent = details.open ? "Hide abstract" : "Show abstract";
+    const setExpanded = (expanded) => {
+      button.setAttribute("aria-expanded", String(expanded));
+      panel.hidden = !expanded;
+      label.textContent = expanded ? "Hide abstract" : "Show abstract";
     };
 
-    details.addEventListener("toggle", updateLabel);
-    updateLabel();
+    button.addEventListener("click", () => {
+      setExpanded(button.getAttribute("aria-expanded") !== "true");
+    });
   });
 
   document.querySelectorAll(".publication-citation-button").forEach((button) => {
@@ -17,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const label = button.querySelector("span");
       if (!encodedCitation || !label) return;
 
-      const originalLabel = button.dataset.citationFormat === "bibtex" ? "BibTeX" : "APA";
+      const originalLabel = label.textContent;
 
       try {
         await navigator.clipboard.writeText(decodeURIComponent(encodedCitation).trim());

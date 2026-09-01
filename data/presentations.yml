@@ -1,0 +1,62 @@
+- id: imps-2026
+  date: 2026-07-21
+  title: "Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach"
+  venue: "IMPS 2026 Annual Meeting"
+  location: "Yonsei University, Seoul, South Korea"
+  type: "Oral presentation"
+
+- id: iops-winter-2025
+  date: 2025-12-05
+  title: "Reliability for intensive longitudinal data"
+  venue: "IOPS Winter Conference 2025"
+  location: "Utrecht University"
+  type: "Oral presentation"
+
+- id: okp-seminar-2025
+  date: 2025-09-30
+  title: "Reliability for intensive longitudinal data"
+  venue: "OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences"
+  location: "KU Leuven"
+  type: "Oral presentation"
+
+- id: imps-2024
+  date: 2024-07-19
+  title: "Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach"
+  venue: "IMPS 2024 Annual Meeting"
+  location: "Prague University of Economics and Business, Prague, Czech Republic"
+  type: "Oral presentation"
+
+- id: okp-seminar-2024
+  date: 2024-03-12
+  title: "Reliability for multilevel data: A correlation approach"
+  venue: "OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences"
+  location: "KU Leuven"
+  type: "Oral presentation"
+
+- id: leuven-statistics-day-2023
+  date: 2023-11-23
+  title: "Reliability for multilevel data: A correlation approach"
+  venue: "Leuven Statistics Day: Collaboration"
+  location: "Leuven, Belgium"
+  type: "Oral presentation"
+
+- id: mathpsych-2023
+  date: 2023-07-21
+  title: "Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study"
+  venue: "MathPsych/ICCM/EMPG 2023"
+  location: "University of Amsterdam, Roeterseiland campus, Amsterdam, the Netherlands"
+  type: "Oral presentation"
+
+- id: eam-2023
+  date: 2023-07-13
+  title: "Reliability for multilevel data: A correlation approach"
+  venue: "EAM 2023 Congress of Methodology"
+  location: "Ghent University, Campus Dunant, Ghent, Belgium"
+  type: "Oral presentation"
+
+- id: maastricht-colloquia-2023
+  date: 2023-06-20
+  title: "Reliability for multilevel data: A correlation approach"
+  venue: "Colloquia Methodology and Statistics, Department of Methodology and Statistics"
+  location: "Maastricht University"
+  type: "Oral presentation"

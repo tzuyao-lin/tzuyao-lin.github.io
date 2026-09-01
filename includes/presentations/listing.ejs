@@ -1,0 +1,35 @@
+<%
+const dateValue = function(value) {
+  const parsed = value instanceof Date ? value : new Date(value || "");
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+};
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric"
+});
+const orderedItems = items.slice().sort(function(a, b) {
+  return (dateValue(b.date)?.getTime() || 0) - (dateValue(a.date)?.getTime() || 0);
+});
+%>
+
+<div class="publication-listing presentation-listing list">
+
+<% /* Keep rendered HTML left-aligned so Pandoc does not treat it as a code block. */ %>
+<% orderedItems.forEach(function(item) { %>
+<div class="publication-entry presentation-entry" <%= metadataAttrs(item) %>>
+<div class="publication-entry-year presentation-entry-date"><%- dateFormatter.format(dateValue(item.date)) %></div>
+
+<div class="publication-entry-body">
+<h3 class="presentation-title"><%- item.title %></h3>
+<p class="publication-venue"><em><%- item.venue %> · <%- item.location %></em></p>
+
+<div class="publication-actions presentation-actions" aria-label="Presentation details for <%- item.title %>">
+<span class="presentation-type"><%- item.type %></span>
+<% if (item.slides) { %><a class="publication-action presentation-link-slides" href="<%= item.slides %>" target="_blank" rel="noopener"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides</span></a><% } else { %><span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span><% } %>
+</div>
+</div>
+</div>
+<% }); %>
+
+</div>

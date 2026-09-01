@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Publications – Tzu-Yao Lin</title>
+<title>Research – Tzu-Yao Lin</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,7 +23,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
   vertical-align: middle;
 }
 </style>
@@ -85,17 +85,45 @@ ul.task-list li input[type="checkbox"] {
     const listingTargetEl = window.document.querySelector('#listing-publication-list .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
-      return; 
+      return;
     }
 
     const options = {
       valueNames: ['listing-id','listing-status','listing-authors','listing-title','listing-venue','listing-preprint','listing-apa','listing-bibtex','listing-year','listing-date','listing-doi','listing-abstract','listing-post',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
-      
+
       searchColumns: ["listing-id","listing-status","listing-authors","listing-title","listing-venue","listing-preprint","listing-apa","listing-bibtex","listing-year","listing-date","listing-doi","listing-abstract","listing-post"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-publication-list'] = new List('listing-publication-list', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-presentation-list .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return;
+    }
+
+    const options = {
+      valueNames: ['listing-id','listing-date','listing-title','listing-venue','listing-location','listing-type',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+
+      searchColumns: ["listing-id","listing-date","listing-title","listing-venue","listing-location","listing-type"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-presentation-list'] = new List('listing-presentation-list', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -323,24 +351,24 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="./about.html">
 <span class="menu-text">About Me</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="./blog.html">
 <span class="menu-text">Posts</span></a>
-  </li>  
+  </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./publication.html" aria-current="page"> 
-<span class="menu-text">Publications</span></a>
-  </li>  
+    <a class="nav-link active" href="./publication.html" aria-current="page">
+<span class="menu-text">Research</span></a>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/tzuyao-lin"> <i class="bi bi-github" role="img">
-</i> 
+</i>
 <span class="menu-text"></span></a>
-  </li>  
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -353,31 +381,35 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+
 <!-- main -->
 <main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Publications</h1>
-<p class="subtitle lead">Peer-reviewed research and work under review</p>
+<h1 class="title">Research</h1>
 </div>
 
 
 
 <div class="quarto-title-meta column-page">
 
-    
-  
-    
+
+
+
   </div>
-  
+
 
 
 </header>
 
 
+<div class="page-intro">
+<p>Peer-reviewed work, manuscripts under review, and conference presentations.</p>
+</div>
+<section id="publications" class="level2">
+<h2 class="anchored" data-anchor-id="publications">Publications</h2>
 <div id="listing-publication-list" class="quarto-listing quarto-listing-container-custom">
 <div class="publication-listing list">
 <div class="publication-entry" data-index="0">
@@ -391,11 +423,13 @@ An intraclass correlation coefficient is a correlation: A tutorial
 <p class="publication-authors">
 <strong class="publication-self">Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Manuscript under review</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for An intraclass correlation coefficient is a correlation: A tutorial">
-<p><a class="publication-link publication-link-preprint" href="https://doi.org/10.31234/osf.io/2xs9k_v1" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Preprint</span></a> <button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40unpublished%7Blin_aicc_tutorial%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BAn%20intraclass%20correlation%20coefficient%20is%20a%20correlation%3A%20A%20tutorial%7D%2C%0A%20%20note%20%3D%20%7BManuscript%20under%20review%7D%0A%7D%0A"><i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span></button> <button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(under%20review).%20An%20intraclass%20correlation%20coefficient%20is%20a%20correlation%3A%20A%20tutorial."><i class="bi bi-copy" aria-hidden="true"></i><span>APA</span></button></p>
+<p><a class="publication-action publication-link-preprint" href="https://doi.org/10.31234/osf.io/2xs9k_v1" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Preprint</span></a> <button class="publication-action publication-citation-button" type="button" data-citation="%40unpublished%7Blin_aicc_tutorial%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BAn%20intraclass%20correlation%20coefficient%20is%20a%20correlation%3A%20A%20tutorial%7D%2C%0A%20%20note%20%3D%20%7BManuscript%20under%20review%7D%0A%7D%0A"><i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span></button> <button class="publication-action publication-citation-button" type="button" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(under%20review).%20An%20intraclass%20correlation%20coefficient%20is%20a%20correlation%3A%20A%20tutorial."><i class="bi bi-copy" aria-hidden="true"></i><span>APA</span></button></p>
+</div>
 </div>
 </div>
 </div>
@@ -410,26 +444,28 @@ Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mi
 <p class="publication-authors">
 <strong class="publication-self">Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Psychometrika</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.1017/psy.2026.10133" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Blin2026singleitem%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BSingle-Item%20Reliability%20for%20Intensive%20Longitudinal%20Data%3A%20A%20Three-Level%20Linear%20Mixed-Effect%20Autoregressive%20Modeling%20Approach%7D%2C%0A%20%20journal%20%3D%20%7BPsychometrika%7D%2C%0A%20%20year%20%3D%20%7B2026%7D%2C%0A%20%20doi%20%3D%20%7B10.1017%2Fpsy.2026.10133%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.1017/psy.2026.10133" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Blin2026singleitem%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BSingle-Item%20Reliability%20for%20Intensive%20Longitudinal%20Data%3A%20A%20Three-Level%20Linear%20Mixed-Effect%20Autoregressive%20Modeling%20Approach%7D%2C%0A%20%20journal%20%3D%20%7BPsychometrika%7D%2C%0A%20%20year%20%3D%20%7B2026%7D%2C%0A%20%20doi%20%3D%20%7B10.1017%2Fpsy.2026.10133%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(2026).%20Single-item%20reliability%20for%20intensive%20longitudinal%20data%3A%20A%20three-level%20linear%20mixed-effect%20autoregressive%20modeling%20approach.%20Psychometrika.%20https%3A%2F%2Fdoi.org%2F10.1017%2Fpsy.2026.10133">
+<button class="publication-action publication-citation-button" type="button" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(2026).%20Single-item%20reliability%20for%20intensive%20longitudinal%20data%3A%20A%20three-level%20linear%20mixed-effect%20autoregressive%20modeling%20approach.%20Psychometrika.%20https%3A%2F%2Fdoi.org%2F10.1017%2Fpsy.2026.10133">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-lin-2026-single-item">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-lin-2026-single-item" class="publication-abstract-panel" hidden="">
 <p>
 With the advancement of technology, intensive longitudinal data are increasingly collected to study dynamic psychological and physiological processes. This article introduces a three-level linear mixed-effects model that accounts for moments nested within days within persons and incorporates moment- and day-level autoregressive processes. The framework distinguishes between-person and within-person reliability and assesses measurement agreement across different time scales.
 </p>
-</details>
+</div>
 </div>
 </div>
 <div class="publication-entry" data-index="2">
@@ -443,26 +479,28 @@ Incorporating the Luce–Krantz threshold model into cultural consensus theory f
 <p class="publication-authors">
 <strong class="publication-self">Lin, T.-Y.</strong>, &amp; Hsu, Y.-F.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Journal of Mathematical Psychology</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.1016/j.jmp.2026.102990" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Blin2026gclk%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Hsu%2C%20Yung-Fong%7D%2C%0A%20%20title%20%3D%20%7BIncorporating%20the%20Luce--Krantz%20Threshold%20Model%20into%20Cultural%20Consensus%20Theory%20for%20Ordinal%20Categorical%20Data%7D%2C%0A%20%20journal%20%3D%20%7BJournal%20of%20Mathematical%20Psychology%7D%2C%0A%20%20year%20%3D%20%7B2026%7D%2C%0A%20%20doi%20%3D%20%7B10.1016%2Fj.jmp.2026.102990%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.1016/j.jmp.2026.102990" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Blin2026gclk%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Hsu%2C%20Yung-Fong%7D%2C%0A%20%20title%20%3D%20%7BIncorporating%20the%20Luce--Krantz%20Threshold%20Model%20into%20Cultural%20Consensus%20Theory%20for%20Ordinal%20Categorical%20Data%7D%2C%0A%20%20journal%20%3D%20%7BJournal%20of%20Mathematical%20Psychology%7D%2C%0A%20%20year%20%3D%20%7B2026%7D%2C%0A%20%20doi%20%3D%20%7B10.1016%2Fj.jmp.2026.102990%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Lin%2C%20T.-Y.%2C%20%26%20Hsu%2C%20Y.-F.%20(2026).%20Incorporating%20the%20Luce%E2%80%93Krantz%20threshold%20model%20into%20cultural%20consensus%20theory%20for%20ordinal%20categorical%20data.%20Journal%20of%20Mathematical%20Psychology.%20https%3A%2F%2Fdoi.org%2F10.1016%2Fj.jmp.2026.102990">
+<button class="publication-action publication-citation-button" type="button" data-citation="Lin%2C%20T.-Y.%2C%20%26%20Hsu%2C%20Y.-F.%20(2026).%20Incorporating%20the%20Luce%E2%80%93Krantz%20threshold%20model%20into%20cultural%20consensus%20theory%20for%20ordinal%20categorical%20data.%20Journal%20of%20Mathematical%20Psychology.%20https%3A%2F%2Fdoi.org%2F10.1016%2Fj.jmp.2026.102990">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-lin-hsu-2026-gclk">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-lin-hsu-2026-gclk" class="publication-abstract-panel" hidden="">
 <p>
 Cultural consensus theory traditionally models dichotomous responses when the culturally correct answers are unknown. This study extends the general Condorcet model with Luce–Krantz threshold theory so that respondents can express varying confidence through ordinal categories. The resulting hierarchical Bayesian model estimates consensus truths, item difficulty, informant competence, guessing bias, and the number of latent cultures.
 </p>
-</details>
+</div>
 </div>
 </div>
 <div class="publication-entry" data-index="3">
@@ -476,27 +514,29 @@ The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthc
 <p class="publication-authors">
 Lo, C., <strong class="publication-self">Lin, T.-Y.</strong>, Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., &amp; Lomazzi, M.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Journal of Global Health Economics and Policy, 5, e2025034</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.7189/001c.144190" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Blo2025vaccine%2C%0A%20%20author%20%3D%20%7BLo%2C%20Chungwan%20and%20Lin%2C%20Tzu-Yao%20and%20Werneck%2C%20Guilherme%20L.%20and%20Domingues%2C%20Carla%20and%20Saavedra%2C%20Ramon%20da%20Costa%20and%20Moore%2C%20Michael%20and%20Souza%2C%20Luis%20E.%20P.%20F.%20and%20Regazzi%2C%20Luca%20and%20Lomazzi%2C%20Marta%7D%2C%0A%20%20title%20%3D%20%7BThe%20Impact%20of%20the%20COVID-19%20Pandemic%20on%20Vaccine%20Sentiment%20among%20Brazilian%20Healthcare%20Workers%3A%20A%20Cross-Sectional%20Online%20Survey%20Study%7D%2C%0A%20%20journal%20%3D%20%7BJournal%20of%20Global%20Health%20Economics%20and%20Policy%7D%2C%0A%20%20volume%20%3D%20%7B5%7D%2C%0A%20%20pages%20%3D%20%7Be2025034%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.7189%2F001c.144190%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.7189/001c.144190" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Blo2025vaccine%2C%0A%20%20author%20%3D%20%7BLo%2C%20Chungwan%20and%20Lin%2C%20Tzu-Yao%20and%20Werneck%2C%20Guilherme%20L.%20and%20Domingues%2C%20Carla%20and%20Saavedra%2C%20Ramon%20da%20Costa%20and%20Moore%2C%20Michael%20and%20Souza%2C%20Luis%20E.%20P.%20F.%20and%20Regazzi%2C%20Luca%20and%20Lomazzi%2C%20Marta%7D%2C%0A%20%20title%20%3D%20%7BThe%20Impact%20of%20the%20COVID-19%20Pandemic%20on%20Vaccine%20Sentiment%20among%20Brazilian%20Healthcare%20Workers%3A%20A%20Cross-Sectional%20Online%20Survey%20Study%7D%2C%0A%20%20journal%20%3D%20%7BJournal%20of%20Global%20Health%20Economics%20and%20Policy%7D%2C%0A%20%20volume%20%3D%20%7B5%7D%2C%0A%20%20pages%20%3D%20%7Be2025034%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.7189%2F001c.144190%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Lo%2C%20C.%2C%20Lin%2C%20T.-Y.%2C%20Werneck%2C%20G.%20L.%2C%20Domingues%2C%20C.%2C%20Saavedra%2C%20R.%20da%20C.%2C%20Moore%2C%20M.%2C%20Souza%2C%20L.%20E.%20P.%20F.%2C%20Regazzi%2C%20L.%2C%20%26%20Lomazzi%2C%20M.%20(2025).%20The%20impact%20of%20the%20COVID-19%20pandemic%20on%20vaccine%20sentiment%20among%20Brazilian%20healthcare%20workers%3A%20A%20cross-sectional%20online%20survey%20study.%20Journal%20of%20Global%20Health%20Economics%20and%20Policy%2C%205%2C%20e2025034.%20https%3A%2F%2Fdoi.org%2F10.7189%2F001c.144190">
+<button class="publication-action publication-citation-button" type="button" data-citation="Lo%2C%20C.%2C%20Lin%2C%20T.-Y.%2C%20Werneck%2C%20G.%20L.%2C%20Domingues%2C%20C.%2C%20Saavedra%2C%20R.%20da%20C.%2C%20Moore%2C%20M.%2C%20Souza%2C%20L.%20E.%20P.%20F.%2C%20Regazzi%2C%20L.%2C%20%26%20Lomazzi%2C%20M.%20(2025).%20The%20impact%20of%20the%20COVID-19%20pandemic%20on%20vaccine%20sentiment%20among%20Brazilian%20healthcare%20workers%3A%20A%20cross-sectional%20online%20survey%20study.%20Journal%20of%20Global%20Health%20Economics%20and%20Policy%2C%205%2C%20e2025034.%20https%3A%2F%2Fdoi.org%2F10.7189%2F001c.144190">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
-<p><a class="publication-link publication-link-post" href="posts/20250328_VHS/"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a></p>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-lo-etal-2025-vaccine">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
+<p><a class="publication-action publication-link-post" href="posts/20250328_VHS/"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a></p>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-lo-etal-2025-vaccine" class="publication-abstract-panel" hidden="">
 <p>
 This cross-sectional online survey examined vaccine sentiment among 634 Brazilian healthcare workers. Vaccine hesitancy was uncommon and overall sentiment was positive. Trust in institutional websites was associated with more positive vaccine sentiment, while obligated collective responsibility emerged as a useful extension of the 5C model.
 </p>
-</details>
+</div>
 </div>
 </div>
 <div class="publication-entry" data-index="4">
@@ -510,27 +550,29 @@ Interaction between coffee consumption and polygenic risk score in relation to d
 <p class="publication-authors">
 Rao, Y., Yu, E. Y.-W., <strong class="publication-self">Lin, T.-Y.</strong>, Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., &amp; Wesselius, A.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>European Journal of Nutrition, 64, 263</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.1007/s00394-025-03782-y" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Brao2025coffee%2C%0A%20%20author%20%3D%20%7BRao%2C%20Yufeng%20and%20Yu%2C%20Evan%20Yi-Wen%20and%20Lin%2C%20Tzu-Yao%20and%20Chen%2C%20Yiming%20and%20Qin%2C%20Yingfen%20and%20Koster%2C%20Annemarie%20and%20Eussen%2C%20Simone%20J.%20P.%20M.%20and%20Bosma%2C%20Hans%20and%20Berendschot%2C%20Tos%20T.%20J.%20M.%20and%20van%20der%20Kallen%2C%20Carla%20and%20van%20Greevenbroek%2C%20Marleen%20and%20de%20Galan%2C%20Bastiaan%20and%20Zeegers%2C%20Maurice%20and%20Wesselius%2C%20Anke%7D%2C%0A%20%20title%20%3D%20%7BInteraction%20between%20Coffee%20Consumption%20and%20Polygenic%20Risk%20Score%20in%20Relation%20to%20Diabetes%3A%20Insights%20from%20The%20Maastricht%20Study%7D%2C%0A%20%20journal%20%3D%20%7BEuropean%20Journal%20of%20Nutrition%7D%2C%0A%20%20volume%20%3D%20%7B64%7D%2C%0A%20%20pages%20%3D%20%7B263%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.1007%2Fs00394-025-03782-y%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.1007/s00394-025-03782-y" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Brao2025coffee%2C%0A%20%20author%20%3D%20%7BRao%2C%20Yufeng%20and%20Yu%2C%20Evan%20Yi-Wen%20and%20Lin%2C%20Tzu-Yao%20and%20Chen%2C%20Yiming%20and%20Qin%2C%20Yingfen%20and%20Koster%2C%20Annemarie%20and%20Eussen%2C%20Simone%20J.%20P.%20M.%20and%20Bosma%2C%20Hans%20and%20Berendschot%2C%20Tos%20T.%20J.%20M.%20and%20van%20der%20Kallen%2C%20Carla%20and%20van%20Greevenbroek%2C%20Marleen%20and%20de%20Galan%2C%20Bastiaan%20and%20Zeegers%2C%20Maurice%20and%20Wesselius%2C%20Anke%7D%2C%0A%20%20title%20%3D%20%7BInteraction%20between%20Coffee%20Consumption%20and%20Polygenic%20Risk%20Score%20in%20Relation%20to%20Diabetes%3A%20Insights%20from%20The%20Maastricht%20Study%7D%2C%0A%20%20journal%20%3D%20%7BEuropean%20Journal%20of%20Nutrition%7D%2C%0A%20%20volume%20%3D%20%7B64%7D%2C%0A%20%20pages%20%3D%20%7B263%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.1007%2Fs00394-025-03782-y%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Rao%2C%20Y.%2C%20Yu%2C%20E.%20Y.-W.%2C%20Lin%2C%20T.-Y.%2C%20Chen%2C%20Y.%2C%20Qin%2C%20Y.%2C%20Koster%2C%20A.%2C%20Eussen%2C%20S.%20J.%20P.%20M.%2C%20Bosma%2C%20H.%2C%20Berendschot%2C%20T.%20J.%20M.%2C%20van%20der%20Kallen%2C%20C.%2C%20van%20Greevenbroek%2C%20M.%2C%20de%20Galan%2C%20B.%2C%20Zeegers%2C%20M.%2C%20%26%20Wesselius%2C%20A.%20(2025).%20Interaction%20between%20coffee%20consumption%20and%20polygenic%20risk%20score%20in%20relation%20to%20diabetes%3A%20Insights%20from%20The%20Maastricht%20Study.%20European%20Journal%20of%20Nutrition%2C%2064%2C%20263.%20https%3A%2F%2Fdoi.org%2F10.1007%2Fs00394-025-03782-y">
+<button class="publication-action publication-citation-button" type="button" data-citation="Rao%2C%20Y.%2C%20Yu%2C%20E.%20Y.-W.%2C%20Lin%2C%20T.-Y.%2C%20Chen%2C%20Y.%2C%20Qin%2C%20Y.%2C%20Koster%2C%20A.%2C%20Eussen%2C%20S.%20J.%20P.%20M.%2C%20Bosma%2C%20H.%2C%20Berendschot%2C%20T.%20J.%20M.%2C%20van%20der%20Kallen%2C%20C.%2C%20van%20Greevenbroek%2C%20M.%2C%20de%20Galan%2C%20B.%2C%20Zeegers%2C%20M.%2C%20%26%20Wesselius%2C%20A.%20(2025).%20Interaction%20between%20coffee%20consumption%20and%20polygenic%20risk%20score%20in%20relation%20to%20diabetes%3A%20Insights%20from%20The%20Maastricht%20Study.%20European%20Journal%20of%20Nutrition%2C%2064%2C%20263.%20https%3A%2F%2Fdoi.org%2F10.1007%2Fs00394-025-03782-y">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
-<p><a class="publication-link publication-link-post" href="posts/20240918_CDP/"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a></p>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-rao-etal-2025-coffee">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
+<p><a class="publication-action publication-link-post" href="posts/20240918_CDP/"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a></p>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-rao-etal-2025-coffee" class="publication-abstract-panel" hidden="">
 <p>
 This study investigated the associations of polygenic risk score and habitual coffee consumption with prediabetes and type 2 diabetes among 7,668 participants in the southern Netherlands. No significant interaction between genetic risk and coffee consumption was observed. Coffee consumption showed a potentially U-shaped association with the prevalence of both conditions.
 </p>
-</details>
+</div>
 </div>
 </div>
 <div class="publication-entry" data-index="5">
@@ -544,26 +586,28 @@ Reliability for multilevel data: A correlation approach
 <p class="publication-authors">
 <strong class="publication-self">Lin, T.-Y.</strong>, Tuerlinckx, F., &amp; Vanbelle, S.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Psychological Methods</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for Reliability for multilevel data: A correlation approach">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.1037/met0000738" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Blin2025multilevel%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BReliability%20for%20Multilevel%20Data%3A%20A%20Correlation%20Approach%7D%2C%0A%20%20journal%20%3D%20%7BPsychological%20Methods%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.1037%2Fmet0000738%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.1037/met0000738" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Blin2025multilevel%2C%0A%20%20author%20%3D%20%7BLin%2C%20Tzu-Yao%20and%20Tuerlinckx%2C%20Francis%20and%20Vanbelle%2C%20Sophie%7D%2C%0A%20%20title%20%3D%20%7BReliability%20for%20Multilevel%20Data%3A%20A%20Correlation%20Approach%7D%2C%0A%20%20journal%20%3D%20%7BPsychological%20Methods%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.1037%2Fmet0000738%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(2025).%20Reliability%20for%20multilevel%20data%3A%20A%20correlation%20approach.%20Psychological%20Methods.%20https%3A%2F%2Fdoi.org%2F10.1037%2Fmet0000738">
+<button class="publication-action publication-citation-button" type="button" data-citation="Lin%2C%20T.-Y.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanbelle%2C%20S.%20(2025).%20Reliability%20for%20multilevel%20data%3A%20A%20correlation%20approach.%20Psychological%20Methods.%20https%3A%2F%2Fdoi.org%2F10.1037%2Fmet0000738">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-lin-tuerlinckx-vanbelle-2025-multilevel">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-lin-tuerlinckx-vanbelle-2025-multilevel" class="publication-abstract-panel" hidden="">
 <p>
 This article proposes reliability coefficients for multilevel data based on the expected correlation between repeated measurements. The approach is compared with existing generalizability-theory definitions across common nested designs, clarifying why competing definitions can produce inconsistent cluster-level reliability estimates.
 </p>
-</details>
+</div>
 </div>
 </div>
 <div class="publication-entry" data-index="6">
@@ -577,42 +621,185 @@ Consistency of perceptual response variability in size estimation and reproducti
 <p class="publication-authors">
 Yu, K., <strong class="publication-self">Lin, T.-Y.</strong>, Zaman, J., Tuerlinckx, F., &amp; Vanhasbroeck, N.
 </p>
+<div class="publication-meta-row">
 <p class="publication-venue">
 <em>Behavior Research Methods, 57(5), 127</em>
 </p>
 <div class="publication-actions" aria-label="Links and citation tools for Consistency of perceptual response variability in size estimation and reproduction tasks">
-<p><a class="publication-link publication-link-doi" href="https://doi.org/10.3758/s13428-025-02650-1" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="%40article%7Byu2025perceptual%2C%0A%20%20author%20%3D%20%7BYu%2C%20Kenny%20and%20Lin%2C%20Tzu-Yao%20and%20Zaman%2C%20Jonas%20and%20Tuerlinckx%2C%20Francis%20and%20Vanhasbroeck%2C%20Niels%7D%2C%0A%20%20title%20%3D%20%7BConsistency%20of%20Perceptual%20Response%20Variability%20in%20Size%20Estimation%20and%20Reproduction%20Tasks%7D%2C%0A%20%20journal%20%3D%20%7BBehavior%20Research%20Methods%7D%2C%0A%20%20volume%20%3D%20%7B57%7D%2C%0A%20%20number%20%3D%20%7B5%7D%2C%0A%20%20pages%20%3D%20%7B127%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.3758%2Fs13428-025-02650-1%7D%0A%7D%0A">
+<p><a class="publication-action publication-link-doi" href="https://doi.org/10.3758/s13428-025-02650-1" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a></p>
+<button class="publication-action publication-citation-button" type="button" data-citation="%40article%7Byu2025perceptual%2C%0A%20%20author%20%3D%20%7BYu%2C%20Kenny%20and%20Lin%2C%20Tzu-Yao%20and%20Zaman%2C%20Jonas%20and%20Tuerlinckx%2C%20Francis%20and%20Vanhasbroeck%2C%20Niels%7D%2C%0A%20%20title%20%3D%20%7BConsistency%20of%20Perceptual%20Response%20Variability%20in%20Size%20Estimation%20and%20Reproduction%20Tasks%7D%2C%0A%20%20journal%20%3D%20%7BBehavior%20Research%20Methods%7D%2C%0A%20%20volume%20%3D%20%7B57%7D%2C%0A%20%20number%20%3D%20%7B5%7D%2C%0A%20%20pages%20%3D%20%7B127%7D%2C%0A%20%20year%20%3D%20%7B2025%7D%2C%0A%20%20doi%20%3D%20%7B10.3758%2Fs13428-025-02650-1%7D%0A%7D%0A">
 <i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span>
 </button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="Yu%2C%20K.%2C%20Lin%2C%20T.-Y.%2C%20Zaman%2C%20J.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanhasbroeck%2C%20N.%20(2025).%20Consistency%20of%20perceptual%20response%20variability%20in%20size%20estimation%20and%20reproduction%20tasks.%20Behavior%20Research%20Methods%2C%2057(5)%2C%20127.%20https%3A%2F%2Fdoi.org%2F10.3758%2Fs13428-025-02650-1">
+<button class="publication-action publication-citation-button" type="button" data-citation="Yu%2C%20K.%2C%20Lin%2C%20T.-Y.%2C%20Zaman%2C%20J.%2C%20Tuerlinckx%2C%20F.%2C%20%26%20Vanhasbroeck%2C%20N.%20(2025).%20Consistency%20of%20perceptual%20response%20variability%20in%20size%20estimation%20and%20reproduction%20tasks.%20Behavior%20Research%20Methods%2C%2057(5)%2C%20127.%20https%3A%2F%2Fdoi.org%2F10.3758%2Fs13428-025-02650-1">
 <i class="bi bi-copy" aria-hidden="true"></i><span>APA</span>
 </button>
+<button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="publication-abstract-yu-etal-2025-perceptual">
+<span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span>
+</button>
 </div>
-<details class="publication-abstract">
-<summary>
-<span class="publication-abstract-label">Show abstract</span>
-</summary>
+</div>
+<div id="publication-abstract-yu-etal-2025-perceptual" class="publication-abstract-panel" hidden="">
 <p>
 This study compared visual analog scale estimation and reproduction tasks as measures of perceptual uncertainty. Across 180 participants, both tasks produced consistent overall measures, while multilevel variance decomposition and psychophysical modeling revealed systematic task-specific differences in how perceptual variability was expressed.
 </p>
-</details>
+</div>
 </div>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+</section>
 <section id="presentations" class="level2">
 <h2 class="anchored" data-anchor-id="presentations">Presentations</h2>
-<p><strong>21 July 2026</strong> — IMPS 2026 Annual Meeting, Seoul, Korea. “Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach.” Oral presentation.</p>
-<p><strong>5 December 2025</strong> — IOPS Winter Conference 2025, Utrecht University. “Reliability for intensive longitudinal data.” Oral presentation.</p>
-<p><strong>30 September 2025</strong> — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for intensive longitudinal data.” Oral presentation.</p>
-<p><strong>19 July 2024</strong> — IMPS 2024 Annual Meeting, Prague, Czech Republic. “Reliability in intensive longitudinal studies: A state-space vs.&nbsp;linear mixed model approach.” Oral presentation.</p>
-<p><strong>12 March 2024</strong> — OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences, KU Leuven. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
-<p><strong>23 November 2023</strong> — Leuven Statistics Day: Collaboration, Leuven, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
-<p><strong>21 July 2023</strong> — MathPsych/ICCM/EMPG 2023, Amsterdam, the Netherlands. “Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study.” Oral presentation.</p>
-<p><strong>13 July 2023</strong> — EAM 2023 Congress of Methodology, Ghent, Belgium. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
-<p><strong>20 June 2023</strong> — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation.</p>
+<div id="listing-presentation-list" class="quarto-listing quarto-listing-container-custom">
+<div class="publication-listing presentation-listing list">
+<div class="publication-entry presentation-entry" data-index="0" data-listing-date-sort="1784584800000">
+<div class="publication-entry-year presentation-entry-date">
+Jul 21, 2026
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach
+</h3>
+<p class="publication-venue">
+<em>IMPS 2026 Annual Meeting · Yonsei University, Seoul, South Korea</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="1" data-listing-date-sort="1764889200000">
+<div class="publication-entry-year presentation-entry-date">
+Dec 5, 2025
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for intensive longitudinal data
+</h3>
+<p class="publication-venue">
+<em>IOPS Winter Conference 2025 · Utrecht University</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for intensive longitudinal data">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="2" data-listing-date-sort="1759183200000">
+<div class="publication-entry-year presentation-entry-date">
+Sep 30, 2025
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for intensive longitudinal data
+</h3>
+<p class="publication-venue">
+<em>OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences · KU Leuven</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for intensive longitudinal data">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="3" data-listing-date-sort="1721340000000">
+<div class="publication-entry-year presentation-entry-date">
+Jul 19, 2024
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability in intensive longitudinal studies: A state-space vs.&nbsp;linear mixed model approach
+</h3>
+<p class="publication-venue">
+<em>IMPS 2024 Annual Meeting · Prague University of Economics and Business, Prague, Czech Republic</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability in intensive longitudinal studies: A state-space vs. linear mixed model approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="4" data-listing-date-sort="1710198000000">
+<div class="publication-entry-year presentation-entry-date">
+Mar 12, 2024
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for multilevel data: A correlation approach
+</h3>
+<p class="publication-venue">
+<em>OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences · KU Leuven</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for multilevel data: A correlation approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="5" data-listing-date-sort="1700694000000">
+<div class="publication-entry-year presentation-entry-date">
+Nov 23, 2023
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for multilevel data: A correlation approach
+</h3>
+<p class="publication-venue">
+<em>Leuven Statistics Day: Collaboration · Leuven, Belgium</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for multilevel data: A correlation approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="6" data-listing-date-sort="1689890400000">
+<div class="publication-entry-year presentation-entry-date">
+Jul 21, 2023
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study
+</h3>
+<p class="publication-venue">
+<em>MathPsych/ICCM/EMPG 2023 · University of Amsterdam, Roeterseiland campus, Amsterdam, the Netherlands</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Incorporating the Luce–Krantz threshold model into the cultural consensus theory for ordinal categorical data: A simulation study">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="7" data-listing-date-sort="1689199200000">
+<div class="publication-entry-year presentation-entry-date">
+Jul 13, 2023
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for multilevel data: A correlation approach
+</h3>
+<p class="publication-venue">
+<em>EAM 2023 Congress of Methodology · Ghent University, Campus Dunant, Ghent, Belgium</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for multilevel data: A correlation approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+<div class="publication-entry presentation-entry" data-index="8" data-listing-date-sort="1687212000000">
+<div class="publication-entry-year presentation-entry-date">
+Jun 20, 2023
+</div>
+<div class="publication-entry-body">
+<h3 class="presentation-title anchored">
+Reliability for multilevel data: A correlation approach
+</h3>
+<p class="publication-venue">
+<em>Colloquia Methodology and Statistics, Department of Methodology and Statistics · Maastricht University</em>
+</p>
+<div class="publication-actions presentation-actions" aria-label="Presentation details for Reliability for multilevel data: A correlation approach">
+<p><span class="presentation-type">Oral presentation</span> <span class="presentation-slides-placeholder" aria-disabled="true"><i class="bi bi-file-earmark-slides" aria-hidden="true"></i><span>Slides forthcoming</span></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
 <script src="assets/js/publication.js"></script>
 
 
@@ -644,7 +831,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -664,11 +851,11 @@ This study compared visual analog scale estimation and reproduction tasks as mea
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -745,7 +932,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -820,7 +1007,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -848,7 +1035,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -872,7 +1059,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -912,7 +1099,7 @@ This study compared visual analog scale estimation and reproduction tasks as mea
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");

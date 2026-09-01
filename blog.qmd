@@ -17,4 +17,6 @@ page-layout: full
 title-block-banner: false
 ---
 
+::: {.page-intro}
 Articles and notes on research, statistics, R, psychology, and academic life.
+:::

@@ -11,10 +11,12 @@ const orderedItems = items.slice().sort(function(a, b) {
 
 <div class="publication-listing list">
 
+<% /* Keep rendered HTML left-aligned so Pandoc does not treat it as a code block. */ %>
 <% orderedItems.forEach(function(item) {
   const yearLabel = item.status === "under-review" ? "Under review" : String(item.year || "");
   const encodedBibtex = encodeURIComponent(item.bibtex || "");
   const encodedApa = encodeURIComponent(item.apa || "");
+  const abstractId = "publication-abstract-" + item.id;
   const authors = String(item.authors || "");
   const selfAuthor = "Lin, T.-Y.";
   const selfIndex = authors.indexOf(selfAuthor);
@@ -22,30 +24,30 @@ const orderedItems = items.slice().sort(function(a, b) {
   const authorsAfterSelf = selfIndex >= 0 ? authors.slice(selfIndex + selfAuthor.length) : "";
 %>
 <div class="publication-entry" <%= metadataAttrs(item) %>>
-
-  <div class="publication-entry-year"><%- yearLabel %></div>
+<div class="publication-entry-year"><%- yearLabel %></div>
 
 <div class="publication-entry-body">
 <h3 class="publication-title"><%- item.title %></h3>
 <p class="publication-authors"><%- authorsBeforeSelf %><% if (selfIndex >= 0) { %><strong class="publication-self"><%- selfAuthor %></strong><%- authorsAfterSelf %><% } %></p>
-<p class="publication-venue"><em><%- item.venue %></em></p>
 
+<div class="publication-meta-row">
+<p class="publication-venue"><em><%- item.venue %></em></p>
 <div class="publication-actions" aria-label="Links and citation tools for <%- item.title %>">
-<% if (item.doi) { %><a class="publication-link publication-link-doi" href="https://doi.org/<%= item.doi %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a><% } %>
-<% if (item.preprint) { %><a class="publication-link publication-link-preprint" href="<%= item.preprint %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Preprint</span></a><% } %>
-<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="<%= encodedBibtex %>"><i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span></button>
-<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="<%= encodedApa %>"><i class="bi bi-copy" aria-hidden="true"></i><span>APA</span></button>
-<% if (item.post) { %><a class="publication-link publication-link-post" href="<%= item.post %>"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a><% } %>
+<% if (item.doi) { %><a class="publication-action publication-link-doi" href="https://doi.org/<%= item.doi %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a><% } %>
+<% if (item.preprint) { %><a class="publication-action publication-link-preprint" href="<%= item.preprint %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Preprint</span></a><% } %>
+<button class="publication-action publication-citation-button" type="button" data-citation="<%= encodedBibtex %>"><i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span></button>
+<button class="publication-action publication-citation-button" type="button" data-citation="<%= encodedApa %>"><i class="bi bi-copy" aria-hidden="true"></i><span>APA</span></button>
+<% if (item.abstract) { %><button class="publication-action publication-abstract-toggle" type="button" aria-expanded="false" aria-controls="<%- abstractId %>"><span class="publication-abstract-symbol" aria-hidden="true"></span><span class="publication-abstract-label">Show abstract</span></button><% } %>
+<% if (item.post) { %><a class="publication-action publication-link-post" href="<%= item.post %>"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a><% } %>
+</div>
 </div>
 
 <% if (item.abstract) { %>
-<details class="publication-abstract">
-<summary><span class="publication-abstract-label">Show abstract</span></summary>
+<div class="publication-abstract-panel" id="<%- abstractId %>" hidden>
 <p><%- item.abstract %></p>
-</details>
+</div>
 <% } %>
-  </div>
-
+</div>
 </div>
 <% }); %>
 
