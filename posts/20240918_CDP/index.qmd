@@ -1,11 +1,13 @@
 ---
-title: "Multinomial Logistic Regression Aanalysis"
+title: "Analysis Notes on Coffee Consumption, Polygenic Risk Score, and Diabetes"
 author: "Tzu-Yao Lin"
 date: 2024-09-18
+date-modified: 2026-09-01
+description: "A public record of analyses conducted during the preparation of a collaborative study using data from The Maastricht Study."
 categories:
  - "r"
  - "statistics"
- - "consultant"
+ - "research notes"
 image: CDP.png
 execute:
   warning: false
@@ -16,19 +18,45 @@ format:
     toc-depth: 3
     number-sections: true
     self-contained: true
-    code-fold: show
+    code-fold: true
     code-tools: true
 ---
 
+::: callout-note
+## About this analysis record
+
+This page documents analyses conducted during the preparation of a collaborative study of coffee consumption, polygenic risk score, and diabetes using data from The Maastricht Study. It is retained as a public record of the analytical workflow and is not intended as a complete tutorial or as the definitive report of the study.
+
+The final methods, results, and interpretations are reported in [Rao et al. (2025), *Interaction between coffee consumption and polygenic risk score in relation to diabetes: insights from the Maastricht study*](https://doi.org/10.1007/s00394-025-03782-y).
+:::
+
+# Purpose and analytical scope
+
+This record arose while checking and developing the statistical analyses for a collaborative cross-sectional study using data from The Maastricht Study. The outcome distinguished participants with normal glucose metabolism (NGM), prediabetes, and type 2 diabetes mellitus (T2DM). The main exposures were habitual coffee consumption and a polygenic risk score (PRS) for T2DM.
+
+The scientific questions were whether coffee consumption and PRS were separately associated with the prevalence of prediabetes and T2DM, and whether the association between PRS and glucose-metabolism status differed across levels of coffee consumption. Because these analyses use cross-sectional observational data, the estimates describe associations with prevalent glucose-metabolism categories; they do not by themselves establish causal or preventive effects.
+
+## Questions documented in this record
+
+The working analysis focused on five practical questions that arose during manuscript preparation:
+
+1. How should missing observations be handled so that candidate models are fitted to comparable data?
+2. Is an ordinal logistic model appropriate for the three glucose-metabolism categories?
+3. If the proportional-odds assumption is not tenable, should the outcome be analyzed using two binary logistic regressions or one multinomial logistic regression?
+4. How do estimates for coffee consumption and PRS change across the proposed covariate sets?
+5. How should the coffee-by-PRS interaction and odds ratios for joint exposure categories be evaluated and presented?
+
+This page concentrates on these model-development questions and the construction of working result tables. It does not document every analysis reported in the published article. In particular, the published study also reports dose-response and sensitivity analyses that are outside the scope of this record. Some sections below preserve working questions, intermediate comparisons, and decisions that differ from the final publication.
+
 # Data availability and privacy
 
-The participant-level dataset used for this analysis is restricted and is not distributed with this public website repository. The file contains individual-level health, demographic, behavioural, medication, socioeconomic, and polygenic-risk variables. Whether any subset may be shared depends on the original consent, data-use agreement, ethics approval, and applicable institutional requirements; repository publication should not be assumed to be permitted.
+The participant-level dataset used for this analysis is restricted and is not distributed with this public website repository. The file contains individual-level health, demographic, behavioral, medication, socioeconomic, and polygenic-risk variables. Whether any subset may be shared depends on the original consent, data-use agreement, ethics approval, and applicable institutional requirements; repository publication should not be assumed to be permitted.
 
-For local reproduction by an authorised researcher, the dataset must be stored outside the repository and supplied through the `CDP_DATA_PATH` environment variable. The analysis rejects paths inside the website project. Public outputs should contain aggregate summaries and model results rather than participant-level records.
+For local reproduction by an authorized researcher, the dataset must be stored outside the repository and supplied through the `CDP_DATA_PATH` environment variable. The analysis rejects paths inside the website project. Public outputs should contain aggregate summaries and model results rather than participant-level records.
 
 # Data preprocessing
 
-The restricted dataset used below was preprocessed by YuFong and is supplied through `CDP_DATA_PATH`.
+The restricted dataset used below was supplied as a preprocessed analysis file through `CDP_DATA_PATH`.
 
 ```{r}
 #| label: load-packages-and-settings
@@ -80,9 +108,9 @@ data <- read_csv(
 )
 ```
 
-Only variables required by the published analysis are loaded. Public outputs should contain aggregate summaries and model results rather than participant-level records.
+Only variables needed for the working analyses below are loaded. Public outputs should contain aggregate summaries and model results rather than participant-level records.
 
-Here, I retain the variables that will be analyzed in following.
+The variables required for the candidate outcome, exposure, and covariate specifications are then recoded for analysis.
 
 ```{r}
 #| label: transform-variables
@@ -114,7 +142,7 @@ diabetes_with_na <- data |>
 skimr::skim(diabetes_with_na)
 ```
 
-You may notice that there are some misssing. However, the `Step_wake` has more than a thousand of missing. It will be influenced if I remove all of these missing data.
+Missingness was not evenly distributed across the selected variables. In particular, `Step_wake` had more than 1,000 missing observations, so requiring complete data on all 20 variables substantially reduced the analysis sample.
 
 ```{r}
 #| label: remove-na-data
@@ -128,72 +156,85 @@ tibble(
 ```
 
 ::: callout-warning
-## Missing data
+## Working decision: complete-case dataset
 
-I'm not sure how Yufong dealt with the missing data. Here, I remove the subject's data if he/she has at least one missing value (denoted by `NA`, `-999`, or `-888`) in the selected 20 variables.
+At this stage of the analysis, the treatment of missing observations in the source preprocessing was not fully documented. For the model comparisons below, I constructed one complete-case dataset by excluding any participant with `NA`, `-999`, or `-888` on at least one of the 20 selected variables.
 
-There is another issue if we want to make model selection or comparison by AICs or likelihood ratio tests, we need to have the same data (after removing the missing) when fitting to each model.
+Using a common analysis sample ensured that differences in AIC or likelihood-ratio tests across the candidate models were not caused by fitting the models to different sets of participants. This produced a working sample of 6,224 complete cases after excluding 1,444 rows. By comparison, the published article reports an included study sample of 7,668 and labels its main association table as $n = 7{,}668$. This record does not establish how the difference between that reporting and the complete-case workflow shown here was resolved.
+
+Complete-case analysis was a working decision for comparability, not a general recommendation that it is optimal. The substantial missingness in `Step_wake` may affect precision and the population represented by the fitted models, and this page does not include a missing-data sensitivity analysis.
 :::
 
 ::: callout-important
-## Questions
+## Open questions recorded during analysis
 
-1.  What is the reason that we make PRS and Coffee variable from a continuous scale to three ordinal categories (low, medium, and high) for each? Why not four or more, or just keep it continuous? I think it needs more explanation (Testing for trend).
+The following questions were recorded before the manuscript decisions were finalized:
 
-2.  Does it have any advantage of using *tertiles* to separate three categories?
+1. What was the substantive reason for categorizing PRS and coffee consumption into low, medium, and high groups rather than retaining continuous measures? If tertiles were retained, should an additional trend or dose-response analysis be reported?
+
+2. What interpretive advantage did tertiles provide, and how should their simpler presentation be weighed against the loss of information caused by categorization?
+
+The published study subsequently described both variables as study-population tertiles and additionally examined coffee consumption using a continuous dose-response analysis. The final article should therefore be used for the definitive rationale and specification.
 :::
 
-# Data analysis
+# Model development record
 
-## Models
+## Outcome-model choice
 
-The dependent variable has three (ordinal?) categories. It is usually to use oridinal logistic regression to fit the data. One of the assumptions underlying ordinal logistic (and ordinal probit) regression is that the relationship between each pair of outcome groups is the same. In other words, ordinal logistic regression assumes that the coefficients that describe the relationship between, say, the lowest versus all higher categories of the response variable are the same as those that describe the relationship between the next lowest category and all higher categories, etc.
+The outcome categories---NGM, prediabetes, and T2DM---have a clinical ordering, so an ordinal logistic model was considered first. A proportional-odds model assumes that each predictor has the same coefficient across the cumulative comparisons induced by the ordered outcome. This restriction was checked using the Brant test.
 
 ```{r}
-#| label: check-poprtional-assump
+#| label: check-proportional-assumption
 
 olm <- MASS::polr(Diabetes ~ PRS + Coffee + Age + Sex + BMI + Alcohol + Smoking + Step_wake + DHD + KCal + CVD + Chol + OMAP + Med_HT + Med_LP + Sugar + B1_VD1 + Education, data = diabetes, Hess = TRUE)
 brant::brant(olm)
 ```
 
-However, we found the assumption does not hold in our data. because it did not pass the parallel ratio check (link)?
+The omnibus Brant test rejected the proportional-odds assumption for this model ($\chi^2 = 208.92$, $df = 23$, $p < .001$). Several predictor-specific tests also indicated nonproportionality. The proportional-odds specification was therefore not retained for the working analyses below.
 
-Therefore, we tried to use
+::: callout-note
+## Working decision: baseline-category multinomial model
+
+At this stage, a baseline-category multinomial logistic model was adopted with NGM as the reference outcome. This allowed the association of each predictor with prediabetes versus NGM to differ from its association with T2DM versus NGM.
+:::
+
+For outcome category $j \in \{\text{Pre}, \text{T2DM}\}$, the baseline-category logit can be written as
 
 $$
-\begin{align}
-\log\left(\frac{p_{\text{Pre}}}{p_{\text{NGM}}}\right) = \alpha_{1} + \beta_{11} E_1 + \gamma_{11} C \\
-\log\left(\frac{p_{\text{T2DM}}}{p_{\text{NGM}}}\right) = \alpha_{2} + \beta_{21} E_1 + \gamma_{21} C
-\end{align}
+\eta_j(\mathbf{x})
+= \log\left(\frac{p_j}{p_{\text{NGM}}}\right)
+= \alpha_j + \mathbf{x}^{\mathsf T}\boldsymbol{\beta}_j,
 $$
 
-Two binary vs. One multinomial
+where $\mathbf{x}$ contains the exposure indicators and covariates included in a given candidate model. Each outcome contrast therefore has its own coefficient vector.
 
-There are many potential models that are discussed in the manuscript. I list them in Table below.
+### Analysis question: two binary models or one multinomial model?
+
+Separate binary models and one multinomial model were compared as an implementation check. The candidate exposure and covariate specifications discussed during manuscript preparation are summarized below.
 
 |     Exposure     | Covariate set 1 | Covariate set 2 | Covariate set 3 |
 |:----------------:|:---------------:|:---------------:|:---------------:|
 |       PRS        |      prs1       |      prs2       |      prs3       |
-|       Cof        |      cof1       |      cof2       |      cof3       |
-|     PRS+Cof      |    prs_cof1     |    prs_cof2     |    prs_cof3     |
-| PRS+Cof+PRS\*Cof |   prs_cof_i1    |   prs_cof_i2    |   prs_cof_i3    |
+|      Coffee      |      cof1       |      cof2       |      cof3       |
+|   PRS + Coffee   |    prs_cof1     |    prs_cof2     |    prs_cof3     |
+| PRS + Coffee + PRS $\times$ Coffee | prs_cof_i1 | prs_cof_i2 | prs_cof_i3 |
 
 : Candidate models {#tbl-models}
 
 ```{r}
 #| label: formula 
 
-## Check the PRS effect (Table 3)
+## PRS-only candidate models
 prs1 <- formula(Diabetes ~ PRS + Age + Sex)
 prs2 <- update(prs1, . ~ . + BMI + Alcohol + Smoking + Step_wake + DHD + KCal)
 prs3 <- update(prs2, . ~ . + CVD + Chol + OMAP + Med_HT + Med_LP + Sugar + B1_VD1 + Education)
 
-## Check the Coffee effect (Table 4)
+## Coffee-only candidate models
 cof1 <- update(prs1, . ~ Coffee - PRS + .)
 cof2 <- update(prs2, . ~ Coffee - PRS + .) 
 cof3 <- update(prs3, . ~ Coffee - PRS + .)
 
-## Check the PRS and Coffe effect (Table 5)
+## Joint main-effects and interaction candidate models
 prs_cof1 <- update(prs1, . ~ Coffee + .)
 prs_cof2 <- update(prs2, . ~ Coffee + .)    
 prs_cof3 <- update(prs3, . ~ Coffee + .)
@@ -203,14 +244,14 @@ prs_cof_i2 <- update(prs_cof2, . ~ PRS:Coffee + .)
 prs_cof_i3 <- update(prs_cof3, . ~ PRS:Coffee + .)
 ```
 
-## Check the PRS effect (reproduce Table 2)
+## PRS association: comparison of implementations
 
-### Implement in two binary logistic regression
+### Two binary logistic regressions
 
 #### NGM vs. Prediabetes
 
 ```{r}
-#| label: Prediabetes-dataset
+#| label: prediabetes-dataset
 
 prediabetes <- diabetes |> filter(Diabetes %in% c("NGM", "Pre"))
 dim(prediabetes)
@@ -218,24 +259,24 @@ table(prediabetes$Diabetes)
 ```
 
 ```{r}
-#| label: prs-bl-Pre
+#| label: prs-bl-pre
 prs3_bl_pre <- glm(prs3, family = binomial(link = "logit"), data = prediabetes)
 summary(prs3_bl_pre)
 
 logistic.display(prs3_bl_pre)
 ```
 
-#### NGM vs. T2DS
+#### NGM vs. T2DM
 
 ```{r}
-#| label: T2DS-dataset
+#| label: t2dm-dataset
 t2dm <- diabetes |> filter(Diabetes %in% c("NGM", "T2DM"))
 dim(t2dm)
 table(t2dm$Diabetes)
 ```
 
 ```{r}
-#| label: prs-bl-T2DM
+#| label: prs-bl-t2dm
 
 prs3_bl_t2dm <- glm(prs3, family = binomial(link = "logit"), data = t2dm)
 summary(prs3_bl_t2dm)
@@ -243,7 +284,7 @@ summary(prs3_bl_t2dm)
 logistic.display(prs3_bl_t2dm)
 ```
 
-### Implement in a multinomial logistic regression
+### Multinomial logistic regression
 
 ```{r}
 #| label: prs-ml
@@ -254,14 +295,10 @@ summary(prs3_ml)
 mlogit.display(prs3_ml)
 ```
 
-The results from a multinomial logistic model is almost the same as the results getting from two binary logistic models.
+::: callout-note
+## Intermediate comparison
 
-::: {callout-warning}
-Issue of selecting one multinomial logistic or two binary logistic
-
-1.  Data use
-
-2.  Variable exclusive -\> predicition\
+In this dataset, the estimated PRS associations from the multinomial model were similar to those obtained from the two separate binary models. This was a descriptive implementation check and does not establish that the approaches are generally equivalent. The binary models use different outcome-specific subsets, whereas the multinomial model represents all three outcome categories within one model. The subsequent working tables therefore use the multinomial implementation.
 :::
 
 ```{r}
@@ -295,7 +332,7 @@ get_OR_CI <- function(multi_model, DV_level, EV_level, alpha = 0.05) {
 
 ```{r}
 #| label: tbl-prs-effect
-#| tbl-cap: "Association between PRS and Prediabetes/T2DM"
+#| tbl-cap: "Association between PRS and prediabetes/T2DM"
 levels <- c("Low", "Medium", "High") 
 PRSlevels <- str_glue("PRS{levels}")
 
@@ -318,7 +355,7 @@ gt(prs_OR_table, rowname_col = "level") |>
   fmt_markdown()
 ```
 
-## Check the PRS effect (reproduce Table 3)
+## Coffee association: working table reproduction
 
 ```{r}
 #| label: cof-ml
@@ -331,7 +368,7 @@ cof3_ml <- multinom(cof3, data = diabetes)
 
 ```{r}
 #| label: tbl-cof-effect
-#| tbl-cap: "Association between Coffee and Prediabetes/T2DM"
+#| tbl-cap: "Association between coffee consumption and prediabetes/T2DM"
 
 Coflevels <- str_glue("Coffee{levels}")
 
@@ -356,7 +393,7 @@ gt(cof_OR_table, rowname_col = "level") |>
 
 ```
 
-## Check the PRS and coffee interaction (reproduce Table 4)
+## Coffee-by-PRS interaction: working table reproduction
 
 ```{r}
 #| label: prs-cof-inter
@@ -377,37 +414,73 @@ prs_cof_i3_ml <- multinom(prs_cof_i3, data = diabetes)
 lrtest(prs_cof3_ml, prs_cof_i3_ml)
 ```
 
-In each case, the model with and without interaction terms (between Coffee and PRS) are **not** statistical significant. Thus, we would choose the model without interaction terms (i.e., `prs_cof1`, `prs_cof2`, and `prs_cof3`) as the final results.
+::: callout-note
+## Working decision on interaction terms
 
-Now, I reproduce Table 4 in the paper
+For the candidate models shown above, the likelihood-ratio tests did not provide evidence that adding the categorical coffee-by-PRS interaction terms improved model fit. The corresponding main-effects models (`prs_cof1`, `prs_cof2`, and `prs_cof3`) were therefore retained for the working association tables. This decision should not be interpreted as proof that interaction is absent; the published article reports the final interaction analysis and its interpretation.
+:::
 
-To illustrate how to calculate the odds(-like) ratios in two **categorical** exposure variabes, I take Model `prs_cof1` for example. The model for Pre vs. NGM is
+The next section reconstructs a working joint-category table considered during manuscript preparation. Model `prs_cof1` includes categorical indicators for coffee consumption and PRS, with low coffee consumption and low PRS as the reference combination. For prediabetes versus NGM, its linear predictor is
 
 $$
 \ln\left(\frac{p_{\text{Pre}}}{p_{\text{NGM}}} \right) = \alpha_{11} + \beta_{11} \text{CoffeeMedium} + \beta_{12} \text{CoffeeHigh} + \beta_{13} \text{PRSMedium} + \beta_{14} \text{PRSHigh} + \gamma_{11} \text{Age} + \gamma_{12} \text{SexFemale}
 $$
 
-Let \$l\_{\text{CoffeeLevel, PRSLevel}} = \$ , where $C \in \{\}$ for Coffee and $Y = Y The general odds ratio formula is:$\$ OR = e\^l. $$ 
-and the 95% CI of OR is:
-$$ (1-\alpha)%\~CI = e\^{l \pm Z\_{1-\alpha/2}\sqrt{Var(l)}} $$
-where the variance of $l$ is
-$$ Var(l) = \sqrt{\sum_{i = 1}^4 + ....} \$\$
-
-If I want to know the OR when Coffe level is medium and PRS level is high, it means
+For either outcome contrast $j$, let $\mathbf{c}_{c,p}$ select the coefficients needed to compare coffee category $c$ and PRS category $p$ with the low-coffee, low-PRS reference combination while holding covariates fixed. The estimated log odds ratio is
 
 $$
-\text{CoffeeMedium} = \text{PRSHigh} = 1 \quad \& \quad \text{CoffeeHight} = \text{PRSMedium} = 0 
+\widehat{\ell}_{j,c,p}
+= \mathbf{c}_{c,p}^{\mathsf T}\widehat{\boldsymbol{\beta}}_j,
+$$
+
+and the corresponding odds ratio is
+
+$$
+\widehat{\operatorname{OR}}_{j,c,p}
+= \exp\left(\widehat{\ell}_{j,c,p}\right).
+$$
+
+Its estimated variance and 95% Wald confidence interval are
+
+$$
+\widehat{\operatorname{Var}}\left(\widehat{\ell}_{j,c,p}\right)
+= \mathbf{c}_{c,p}^{\mathsf T}
+  \widehat{\operatorname{Var}}\left(\widehat{\boldsymbol{\beta}}_j\right)
+  \mathbf{c}_{c,p},
 $$
 
 $$
-OR_{MH} = e^{\beta{11} + \beta{14}}
+95\%\ \operatorname{CI}
+= \exp\left[
+  \widehat{\ell}_{j,c,p}
+  \mathbin{\pm} z_{.975}
+  \sqrt{\widehat{\operatorname{Var}}\left(\widehat{\ell}_{j,c,p}\right)}
+\right].
 $$
 
-we let .....
+For example, the medium-coffee, high-PRS contrast under this main-effects model is
+
+$$
+\widehat{\ell}_{j,M,H}
+= \widehat{\beta}_{j,\text{CoffeeMedium}}
++ \widehat{\beta}_{j,\text{PRSHigh}},
+$$
+
+so that
+
+$$
+\widehat{\operatorname{OR}}_{j,M,H}
+= \exp\left(
+  \widehat{\beta}_{j,\text{CoffeeMedium}}
+  + \widehat{\beta}_{j,\text{PRSHigh}}
+\right).
+$$
+
+The variance of this sum includes both coefficient variances and twice their covariance. Because this working model contains no coffee-by-PRS interaction, effects combine additively on the log-odds scale and multiplicatively on the odds scale for each outcome contrast. This is a model-based association, not a causal effect.
 
 ```{r}
 #| label: tbl-pre-cof-effect
-#| tbl-cap: "Association between PRES, Coffee and Prediabetes/T2DM"
+#| tbl-cap: "Joint associations of PRS and coffee consumption with prediabetes/T2DM"
 
 PRSlevels = paste0("PRS", rep(levels, times = 3))
 Coflevels = paste0("Coffee", rep(levels, each = 3))
@@ -435,4 +508,20 @@ gt(prs_cof_OR_table,
   fmt_markdown()
 ```
 
-It is not necessary to strtify the data into differnt data sets and then do logistic analysis for each.
+These joint-category contrasts can be calculated from a single multinomial model; separate stratification of the dataset is not required for this table.
+
+# Relation to the published article
+
+This page preserves a subset of the analyses and decisions considered during manuscript preparation. It is an analytical record rather than a reconstruction of every final analysis, and the published article is the definitive source for the study methods, results, and interpretation.
+
+Several features of the final analysis are important when reading this record:
+
+1. The published article reports an included sample of 7,668 and labels its main association table as $n = 7{,}668$, whereas the complete-case working models on this page use 6,224 participants. The available record does not reconcile this difference.
+2. The final article used multinomial logistic regression with NGM as the reference outcome and reported three sequential covariate-adjustment sets.
+3. Education was included in Model 1 of the published analysis. By contrast, the working candidate formulas preserved above add `Education` in the third covariate set.
+4. The final categorical coffee-by-PRS interaction was evaluated in the fully adjusted model using a likelihood-ratio test. The reported $p$ value was .21, providing no evidence of multiplicative interaction in that analysis.
+5. The published work additionally examined coffee consumption using restricted cubic splines and conducted sensitivity analyses focused on newly diagnosed diabetes and recruitment period. Those analyses are not reproduced on this page.
+
+In the final results, medium and high coffee-consumption categories were associated with lower odds of prevalent prediabetes and T2DM, whereas higher PRS categories were associated with higher odds. The dose-response analysis suggested a potentially U-shaped association between coffee consumption and both outcomes. These cross-sectional associations should not be interpreted as evidence that coffee consumption causes a reduction in diabetes risk.
+
+For the complete methods, results, sensitivity analyses, and interpretation, see [Rao et al. (2025), *Interaction between coffee consumption and polygenic risk score in relation to diabetes: insights from the Maastricht study*](https://doi.org/10.1007/s00394-025-03782-y).
