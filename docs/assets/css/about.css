@@ -9,6 +9,9 @@ main.content {
 }
 
 main.content > section.level2 {
+  grid-column: page-start / page-end;
+  width: min(100%, 47rem);
+  justify-self: start;
   margin-top: 4rem;
   padding-top: 2.5rem;
 }
