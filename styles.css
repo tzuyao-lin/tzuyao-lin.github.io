@@ -59,10 +59,14 @@
   --site-space-md: 1.15rem;
   --site-space-lg: 1.75rem;
   --site-space-xl: 2.75rem;
+  --site-text-sm: 0.95rem;
+  --site-text-base: 1rem;
+  --site-text-lead: 1.15rem;
 }
 
 body {
   font-family: var(--site-font-ui);
+  font-size: var(--site-text-base);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
@@ -118,7 +122,7 @@ samp,
 }
 
 main.content h1 {
-  margin-bottom: var(--site-space-lg);
+  margin-bottom: var(--site-space-md);
 }
 
 main.content h2 {
@@ -133,6 +137,16 @@ main.content h3 {
 
 main.content p {
   margin-bottom: var(--site-space-md);
+}
+
+.quarto-title-block .title {
+  font-size: clamp(2rem, 4vw, 2.65rem);
+}
+
+.quarto-title-block .subtitle,
+main.content > p:first-of-type {
+  font-size: var(--site-text-lead);
+  line-height: 1.55;
 }
 
 main.content ul,
@@ -253,6 +267,18 @@ body.quarto-light .navbar-toggler-icon {
   margin-bottom: 0;
   padding-top: var(--site-space-lg);
   padding-bottom: var(--site-space-lg);
+}
+
+.quarto-listing .listing-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.quarto-listing .listing-date,
+.quarto-listing .listing-categories,
+.quarto-listing .listing-description {
+  font-size: var(--site-text-sm);
+  line-height: 1.5;
 }
 
 .quarto-listing .quarto-post .thumbnail-image {

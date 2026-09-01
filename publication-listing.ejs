@@ -1,0 +1,52 @@
+<%
+/* Minimal renderer for publications.yml. */
+
+const orderedItems = items.slice().sort(function(a, b) {
+  const aReview = a.status === "under-review" ? 1 : 0;
+  const bReview = b.status === "under-review" ? 1 : 0;
+  if (aReview !== bReview) return bReview - aReview;
+  return Number(b.year || 0) - Number(a.year || 0);
+});
+%>
+
+<div class="publication-listing list">
+
+<% orderedItems.forEach(function(item) {
+  const yearLabel = item.status === "under-review" ? "Under review" : String(item.year || "");
+  const encodedBibtex = encodeURIComponent(item.bibtex || "");
+  const encodedApa = encodeURIComponent(item.apa || "");
+  const authors = String(item.authors || "");
+  const selfAuthor = "Lin, T.-Y.";
+  const selfIndex = authors.indexOf(selfAuthor);
+  const authorsBeforeSelf = selfIndex >= 0 ? authors.slice(0, selfIndex) : authors;
+  const authorsAfterSelf = selfIndex >= 0 ? authors.slice(selfIndex + selfAuthor.length) : "";
+%>
+<div class="publication-entry" <%= metadataAttrs(item) %>>
+
+  <div class="publication-entry-year"><%- yearLabel %></div>
+
+<div class="publication-entry-body">
+<h3 class="publication-title"><%- item.title %></h3>
+<p class="publication-authors"><%- authorsBeforeSelf %><% if (selfIndex >= 0) { %><strong class="publication-self"><%- selfAuthor %></strong><%- authorsAfterSelf %><% } %></p>
+<p class="publication-venue"><em><%- item.venue %></em></p>
+
+<div class="publication-actions" aria-label="Links and citation tools for <%- item.title %>">
+<% if (item.doi) { %><a class="publication-link publication-link-doi" href="https://doi.org/<%= item.doi %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>DOI</span></a><% } %>
+<% if (item.preprint) { %><a class="publication-link publication-link-preprint" href="<%= item.preprint %>" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Preprint</span></a><% } %>
+<button class="publication-citation-button" type="button" data-citation-format="bibtex" data-citation="<%= encodedBibtex %>"><i class="bi bi-copy" aria-hidden="true"></i><span>BibTeX</span></button>
+<button class="publication-citation-button" type="button" data-citation-format="apa" data-citation="<%= encodedApa %>"><i class="bi bi-copy" aria-hidden="true"></i><span>APA</span></button>
+<% if (item.post) { %><a class="publication-link publication-link-post" href="<%= item.post %>"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Related post</span></a><% } %>
+</div>
+
+<% if (item.abstract) { %>
+<details class="publication-abstract">
+<summary><span class="publication-abstract-label">Show abstract</span></summary>
+<p><%- item.abstract %></p>
+</details>
+<% } %>
+  </div>
+
+</div>
+<% }); %>
+
+</div>

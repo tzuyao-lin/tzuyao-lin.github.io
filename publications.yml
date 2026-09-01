@@ -1,0 +1,137 @@
+- id: lin-tuerlinckx-vanbelle-aicc
+  status: under-review
+  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
+  title: "An intraclass correlation coefficient is a correlation: A tutorial"
+  venue: "Manuscript under review"
+  preprint: "https://doi.org/10.31234/osf.io/2xs9k_v1"
+  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (under review). An intraclass correlation coefficient is a correlation: A tutorial."
+  bibtex: |
+    @unpublished{lin_aicc_tutorial,
+      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
+      title = {An intraclass correlation coefficient is a correlation: A tutorial},
+      note = {Manuscript under review}
+    }
+
+- id: lin-2026-single-item
+  status: published
+  year: 2026
+  date: 2026-07-09
+  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
+  title: "Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach"
+  venue: "Psychometrika"
+  doi: "10.1017/psy.2026.10133"
+  abstract: |
+    With the advancement of technology, intensive longitudinal data are increasingly collected to study dynamic psychological and physiological processes. This article introduces a three-level linear mixed-effects model that accounts for moments nested within days within persons and incorporates moment- and day-level autoregressive processes. The framework distinguishes between-person and within-person reliability and assesses measurement agreement across different time scales.
+  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2026). Single-item reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach. Psychometrika. https://doi.org/10.1017/psy.2026.10133"
+  bibtex: |
+    @article{lin2026singleitem,
+      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
+      title = {Single-Item Reliability for Intensive Longitudinal Data: A Three-Level Linear Mixed-Effect Autoregressive Modeling Approach},
+      journal = {Psychometrika},
+      year = {2026},
+      doi = {10.1017/psy.2026.10133}
+    }
+
+- id: lin-hsu-2026-gclk
+  status: published
+  year: 2026
+  authors: "Lin, T.-Y., & Hsu, Y.-F."
+  title: "Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data"
+  venue: "Journal of Mathematical Psychology"
+  doi: "10.1016/j.jmp.2026.102990"
+  abstract: |
+    Cultural consensus theory traditionally models dichotomous responses when the culturally correct answers are unknown. This study extends the general Condorcet model with Luce–Krantz threshold theory so that respondents can express varying confidence through ordinal categories. The resulting hierarchical Bayesian model estimates consensus truths, item difficulty, informant competence, guessing bias, and the number of latent cultures.
+  apa: "Lin, T.-Y., & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. Journal of Mathematical Psychology. https://doi.org/10.1016/j.jmp.2026.102990"
+  bibtex: |
+    @article{lin2026gclk,
+      author = {Lin, Tzu-Yao and Hsu, Yung-Fong},
+      title = {Incorporating the Luce--Krantz Threshold Model into Cultural Consensus Theory for Ordinal Categorical Data},
+      journal = {Journal of Mathematical Psychology},
+      year = {2026},
+      doi = {10.1016/j.jmp.2026.102990}
+    }
+
+- id: lo-etal-2025-vaccine
+  status: published
+  year: 2025
+  authors: "Lo, C., Lin, T.-Y., Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., & Lomazzi, M."
+  title: "The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study"
+  venue: "Journal of Global Health Economics and Policy, 5, e2025034"
+  doi: "10.7189/001c.144190"
+  post: "posts/20250328_VHS/"
+  abstract: |
+    This cross-sectional online survey examined vaccine sentiment among 634 Brazilian healthcare workers. Vaccine hesitancy was uncommon and overall sentiment was positive. Trust in institutional websites was associated with more positive vaccine sentiment, while obligated collective responsibility emerged as a useful extension of the 5C model.
+  apa: "Lo, C., Lin, T.-Y., Werneck, G. L., Domingues, C., Saavedra, R. da C., Moore, M., Souza, L. E. P. F., Regazzi, L., & Lomazzi, M. (2025). The impact of the COVID-19 pandemic on vaccine sentiment among Brazilian healthcare workers: A cross-sectional online survey study. Journal of Global Health Economics and Policy, 5, e2025034. https://doi.org/10.7189/001c.144190"
+  bibtex: |
+    @article{lo2025vaccine,
+      author = {Lo, Chungwan and Lin, Tzu-Yao and Werneck, Guilherme L. and Domingues, Carla and Saavedra, Ramon da Costa and Moore, Michael and Souza, Luis E. P. F. and Regazzi, Luca and Lomazzi, Marta},
+      title = {The Impact of the COVID-19 Pandemic on Vaccine Sentiment among Brazilian Healthcare Workers: A Cross-Sectional Online Survey Study},
+      journal = {Journal of Global Health Economics and Policy},
+      volume = {5},
+      pages = {e2025034},
+      year = {2025},
+      doi = {10.7189/001c.144190}
+    }
+
+- id: rao-etal-2025-coffee
+  status: published
+  year: 2025
+  authors: "Rao, Y., Yu, E. Y.-W., Lin, T.-Y., Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., & Wesselius, A."
+  title: "Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study"
+  venue: "European Journal of Nutrition, 64, 263"
+  doi: "10.1007/s00394-025-03782-y"
+  post: "posts/20240918_CDP/"
+  abstract: |
+    This study investigated the associations of polygenic risk score and habitual coffee consumption with prediabetes and type 2 diabetes among 7,668 participants in the southern Netherlands. No significant interaction between genetic risk and coffee consumption was observed. Coffee consumption showed a potentially U-shaped association with the prevalence of both conditions.
+  apa: "Rao, Y., Yu, E. Y.-W., Lin, T.-Y., Chen, Y., Qin, Y., Koster, A., Eussen, S. J. P. M., Bosma, H., Berendschot, T. J. M., van der Kallen, C., van Greevenbroek, M., de Galan, B., Zeegers, M., & Wesselius, A. (2025). Interaction between coffee consumption and polygenic risk score in relation to diabetes: Insights from The Maastricht Study. European Journal of Nutrition, 64, 263. https://doi.org/10.1007/s00394-025-03782-y"
+  bibtex: |
+    @article{rao2025coffee,
+      author = {Rao, Yufeng and Yu, Evan Yi-Wen and Lin, Tzu-Yao and Chen, Yiming and Qin, Yingfen and Koster, Annemarie and Eussen, Simone J. P. M. and Bosma, Hans and Berendschot, Tos T. J. M. and van der Kallen, Carla and van Greevenbroek, Marleen and de Galan, Bastiaan and Zeegers, Maurice and Wesselius, Anke},
+      title = {Interaction between Coffee Consumption and Polygenic Risk Score in Relation to Diabetes: Insights from The Maastricht Study},
+      journal = {European Journal of Nutrition},
+      volume = {64},
+      pages = {263},
+      year = {2025},
+      doi = {10.1007/s00394-025-03782-y}
+    }
+
+- id: lin-tuerlinckx-vanbelle-2025-multilevel
+  status: published
+  year: 2025
+  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
+  title: "Reliability for multilevel data: A correlation approach"
+  venue: "Psychological Methods"
+  doi: "10.1037/met0000738"
+  abstract: |
+    This article proposes reliability coefficients for multilevel data based on the expected correlation between repeated measurements. The approach is compared with existing generalizability-theory definitions across common nested designs, clarifying why competing definitions can produce inconsistent cluster-level reliability estimates.
+  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. Psychological Methods. https://doi.org/10.1037/met0000738"
+  bibtex: |
+    @article{lin2025multilevel,
+      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
+      title = {Reliability for Multilevel Data: A Correlation Approach},
+      journal = {Psychological Methods},
+      year = {2025},
+      doi = {10.1037/met0000738}
+    }
+
+- id: yu-etal-2025-perceptual
+  status: published
+  year: 2025
+  authors: "Yu, K., Lin, T.-Y., Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N."
+  title: "Consistency of perceptual response variability in size estimation and reproduction tasks"
+  venue: "Behavior Research Methods, 57(5), 127"
+  doi: "10.3758/s13428-025-02650-1"
+  abstract: |
+    This study compared visual analog scale estimation and reproduction tasks as measures of perceptual uncertainty. Across 180 participants, both tasks produced consistent overall measures, while multilevel variance decomposition and psychophysical modeling revealed systematic task-specific differences in how perceptual variability was expressed.
+  apa: "Yu, K., Lin, T.-Y., Zaman, J., Tuerlinckx, F., & Vanhasbroeck, N. (2025). Consistency of perceptual response variability in size estimation and reproduction tasks. Behavior Research Methods, 57(5), 127. https://doi.org/10.3758/s13428-025-02650-1"
+  bibtex: |
+    @article{yu2025perceptual,
+      author = {Yu, Kenny and Lin, Tzu-Yao and Zaman, Jonas and Tuerlinckx, Francis and Vanhasbroeck, Niels},
+      title = {Consistency of Perceptual Response Variability in Size Estimation and Reproduction Tasks},
+      journal = {Behavior Research Methods},
+      volume = {57},
+      number = {5},
+      pages = {127},
+      year = {2025},
+      doi = {10.3758/s13428-025-02650-1}
+    }
