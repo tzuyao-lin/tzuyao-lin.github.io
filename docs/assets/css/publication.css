@@ -154,8 +154,6 @@ button.publication-action {
 
 main.content > h2 {
   margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--site-border);
 }
 
 @media (max-width: 640px) {

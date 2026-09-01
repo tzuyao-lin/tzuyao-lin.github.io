@@ -1,29 +1,32 @@
 ---
 title: "Tzu-Yao Lin"
-subtitle: "Quantitative psychologist studying reliability in multilevel and intensive longitudinal data"
-image: assets/images/profile-2024.jpg
-about:
-  template: solana
-  links:
-    - icon: file-person-fill
-      text: CV
-      href: https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf
-    - text: "{{< ai orcid >}} ORCID"
-      href: https://orcid.org/0000-0002-2261-448X
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/tzu-yao-nick-lin/
-    - icon: envelope-at-fill
-      text: Email
-      href: mailto:tzu-yao.lin@maastrichtuniversity.nl
+pagetitle: "Tzu-Yao Lin"
 page-layout: full
+title-block-style: none
 title-block-banner: false
 css: assets/css/about.css
 ---
 
+::: {.grid .about-hero}
+::: {.g-col-12 .g-col-lg-8 .about-hero-copy}
+# Tzu-Yao Lin
+
 I am a quantitative psychologist and joint PhD candidate at KU Leuven and Maastricht University. My work starts from a deceptively simple question: when measurements are repeated across moments, days, and people, what should count as reliable? Many familiar indices depend on choices about the level, timescale, and comparison that define reliability, yet these choices are often left implicit. I work on making them explicit and developing more systematic procedures for constructing and evaluating measurement indices.
 
 My broader interests include longitudinal and multilevel modeling, as well as mathematical and computational models of judgment and decision-making. Outside research, I am a fire dancer and Lindy hopper.
+
+::: {.about-links}
+[<i class="bi bi-file-person-fill"></i> CV](https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf){.about-link}
+[{{< ai orcid >}} ORCID](https://orcid.org/0000-0002-2261-448X){.about-link}
+[<i class="bi bi-linkedin"></i> LinkedIn](https://www.linkedin.com/in/tzu-yao-nick-lin/){.about-link}
+[<i class="bi bi-envelope-at-fill"></i> Email](mailto:tzu-yao.lin@maastrichtuniversity.nl){.about-link}
+:::
+:::
+
+::: {.g-col-12 .g-col-lg-4 .about-hero-media}
+<img class="about-image" src="assets/images/profile-2024.jpg" alt="Portrait of Tzu-Yao Lin">
+:::
+:::
 
 ## Research focus
 

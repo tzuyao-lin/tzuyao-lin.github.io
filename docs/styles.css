@@ -128,6 +128,8 @@ main.content h1 {
 main.content h2 {
   margin-top: var(--site-space-xl);
   margin-bottom: var(--site-space-md);
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 main.content h3 {
@@ -196,11 +198,12 @@ body.quarto-dark {
   color: var(--site-ink);
 }
 
-body .navbar {
+body .navbar[data-bs-theme] {
   --bs-navbar-brand-color: var(--site-ink);
   --bs-navbar-brand-hover-color: var(--site-accent-hover);
   --bs-navbar-color: var(--site-muted);
   --bs-navbar-hover-color: var(--site-accent);
+  --bs-navbar-active-color: var(--site-accent);
   background-color: var(--site-paper);
   border-bottom: 1px solid var(--site-border);
 }

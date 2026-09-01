@@ -1,7 +1,53 @@
-.quarto-about-solana .about-contents main.content {
-  width: min(100%, 68rem);
+main.content {
+  width: min(100%, 72rem);
   margin-inline: auto;
   text-align: left;
+}
+
+.quarto-title-block {
+  display: none;
+}
+
+.about-hero {
+  align-items: start;
+  margin-top: clamp(2.5rem, 7vw, 5rem);
+}
+
+.about-hero-copy {
+  padding-right: clamp(1rem, 5vw, 4rem);
+}
+
+.about-hero-copy h1 {
+  margin: 0 0 var(--site-space-lg);
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+}
+
+.about-hero .about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--site-space-sm);
+  margin-top: var(--site-space-lg);
+}
+
+.about-hero .about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--site-border);
+  border-radius: 4px;
+  font-family: var(--site-font-ui);
+  font-size: var(--site-text-sm);
+  text-decoration: none;
+}
+
+.about-hero .about-image {
+  display: block;
+  width: min(100%, 22rem);
+  margin-inline: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 main.content > section.level2 {
@@ -72,11 +118,6 @@ main.content .about-list p:last-child {
   font-weight: 650;
 }
 
-.about-personal-note {
-  margin-top: var(--site-space-xl);
-  color: var(--site-muted);
-}
-
 @media (max-width: 640px) {
   main.content > section.level2 {
     margin-top: var(--site-space-xl);
@@ -105,5 +146,16 @@ main.content .about-list p:last-child {
 
   .about-background-list > section.level3 > p:not(:first-of-type) {
     grid-column: 1;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-hero-copy {
+    padding-right: 0;
+  }
+
+  .about-hero-media {
+    order: -1;
+    margin-bottom: var(--site-space-xl);
   }
 }

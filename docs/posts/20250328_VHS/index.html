@@ -4178,6 +4178,8 @@ margin-bottom: var(--site-space-md);
 main.content h2 {
 margin-top: var(--site-space-xl);
 margin-bottom: var(--site-space-md);
+padding-bottom: 0;
+border-bottom: 0;
 }
 main.content h3 {
 margin-top: var(--site-space-lg);
@@ -4237,48 +4239,27 @@ body.quarto-dark {
 background-color: var(--site-paper);
 color: var(--site-ink);
 }
-body.quarto-light .navbar {
+body .navbar[data-bs-theme] {
 --bs-navbar-brand-color: var(--site-ink);
 --bs-navbar-brand-hover-color: var(--site-accent-hover);
 --bs-navbar-color: var(--site-muted);
 --bs-navbar-hover-color: var(--site-accent);
+--bs-navbar-active-color: var(--site-accent);
 background-color: var(--site-paper);
 border-bottom: 1px solid var(--site-border);
 }
-body.quarto-dark .navbar {
---bs-navbar-brand-color: var(--site-ink);
---bs-navbar-brand-hover-color: var(--site-accent-hover);
---bs-navbar-color: var(--site-muted);
---bs-navbar-hover-color: var(--site-accent);
-background-color: var(--site-paper);
-border-bottom: 1px solid var(--site-border);
-}
-body.quarto-light .navbar .navbar-brand,
-body.quarto-light .navbar .nav-link,
-body.quarto-light .navbar .quarto-navigation-tool {
+body .navbar .navbar-brand,
+body .navbar .nav-link,
+body .navbar .quarto-navigation-tool {
 color: var(--bs-navbar-color);
 }
-body.quarto-light .navbar .navbar-brand {
+body .navbar .navbar-brand {
 color: var(--bs-navbar-brand-color);
 }
-body.quarto-light .navbar .nav-link:hover,
-body.quarto-light .navbar .nav-link:focus,
-body.quarto-light .navbar .quarto-navigation-tool:hover,
-body.quarto-light .navbar .quarto-navigation-tool:focus {
-color: var(--bs-navbar-hover-color);
-}
-body.quarto-dark .navbar .navbar-brand,
-body.quarto-dark .navbar .nav-link,
-body.quarto-dark .navbar .quarto-navigation-tool {
-color: var(--bs-navbar-color);
-}
-body.quarto-dark .navbar .navbar-brand {
-color: var(--bs-navbar-brand-color);
-}
-body.quarto-dark .navbar .nav-link:hover,
-body.quarto-dark .navbar .nav-link:focus,
-body.quarto-dark .navbar .quarto-navigation-tool:hover,
-body.quarto-dark .navbar .quarto-navigation-tool:focus {
+body .navbar .nav-link:hover,
+body .navbar .nav-link:focus,
+body .navbar .quarto-navigation-tool:hover,
+body .navbar .quarto-navigation-tool:focus {
 color: var(--bs-navbar-hover-color);
 }
 body.quarto-light .navbar-toggler-icon {
@@ -4522,7 +4503,7 @@ text-transform: uppercase;
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../publication.html"> 
-<span class="menu-text">Publications</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">

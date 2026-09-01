@@ -185,6 +185,16 @@ details_abstract_count="$(xmllint --html --xpath \
 rg -q 'href="assets/css/publication.css"' "$page" || \
   fail "publication stylesheet is not loaded"
 
+if ! rg -U -q 'main\.content h2[[:space:]]*\{[^}]*border-bottom:[[:space:]]*(0|none)' \
+  "$test_root/docs/styles.css"; then
+  fail "second-level headings should remove the theme border consistently"
+fi
+
+if rg -U -q 'main\.content > h2[[:space:]]*\{[^}]*border-(top|bottom):' \
+  "$test_root/docs/assets/css/publication.css"; then
+  fail "section headings should not use decorative border lines"
+fi
+
 if ! rg -U -q '\.publication-actions > p[[:space:]]*\{[^}]*display:[[:space:]]*contents' \
   "$test_root/docs/assets/css/publication.css"; then
   fail "Pandoc-generated paragraphs inside action rows must be flattened for vertical alignment"
