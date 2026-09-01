@@ -1,3 +1,13 @@
+:root {
+  --home-text-gradient: linear-gradient(105deg, #357b77 0%, #2797a5 52%, #61abb4 100%);
+  --home-primary-gradient: linear-gradient(120deg, #316f70, #188b98);
+  --home-primary-gradient-hover: linear-gradient(120deg, #285f60, #147985);
+  --home-primary-border: #276f70;
+  --home-on-primary: #fff;
+  --home-button-shadow: 0 0.85rem 2rem rgba(31, 83, 83, 0.14);
+  --home-secondary-bg: color-mix(in srgb, var(--site-paper) 82%, transparent);
+}
+
 body {
   overflow-x: hidden;
 }
@@ -61,7 +71,7 @@ main.content {
 
 .gradient-text {
   color: var(--site-accent);
-  background: linear-gradient(105deg, #357b77 0%, #2797a5 52%, #61abb4 100%);
+  background: var(--home-text-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -108,24 +118,24 @@ main.content {
 .hero-button:hover,
 .hero-button:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 0.85rem 2rem rgba(31, 83, 83, 0.14);
+  box-shadow: var(--home-button-shadow);
 }
 
 .hero-button-primary {
-  border-color: #276f70;
-  color: #fff;
-  background: linear-gradient(120deg, #316f70, #188b98);
+  border-color: var(--home-primary-border);
+  color: var(--home-on-primary);
+  background: var(--home-primary-gradient);
 }
 
 .hero-button-primary:hover,
 .hero-button-primary:focus-visible {
-  color: #fff;
-  background: linear-gradient(120deg, #285f60, #147985);
+  color: var(--home-on-primary);
+  background: var(--home-primary-gradient-hover);
 }
 
 .hero-button-secondary {
   color: var(--site-ink);
-  background: color-mix(in srgb, var(--site-paper) 82%, transparent);
+  background: var(--home-secondary-bg);
   backdrop-filter: blur(0.4rem);
 }
 
@@ -168,8 +178,9 @@ main.content {
   mix-blend-mode: multiply;
 }
 
-body.quarto-dark .gradient-text {
-  background-image: linear-gradient(105deg, #79c2b9 0%, #62c3cd 55%, #9ad5d8 100%);
+body.quarto-dark {
+  --home-text-gradient: linear-gradient(105deg, #79c2b9 0%, #62c3cd 55%, #9ad5d8 100%);
+  --home-secondary-bg: rgba(23, 28, 31, 0.74);
 }
 
 body.quarto-dark .trajectory-layer {
@@ -185,7 +196,6 @@ body.quarto-dark .trajectory-particles {
 
 body.quarto-dark .hero-button-secondary {
   border-color: var(--site-border);
-  background: rgba(23, 28, 31, 0.74);
 }
 
 @media (max-width: 900px) {

@@ -109,15 +109,14 @@ assert_absent 'class="home-section research-section' "Research section must not 
 assert_absent 'class="home-section background-section' "Background section must not remain on the cover-only homepage"
 assert_absent 'profile-2024.jpg' "portrait belongs on About Me, not the homepage Hero"
 
-assert_about_absent 'quarto-about-solana' "About Me should use a maintainable Quarto grid instead of a template-specific layout"
-assert_about_contains 'class="grid about-hero"' "About Me is missing its Quarto-native Hero grid"
-assert_about_contains 'g-col-12 g-col-lg-8 about-hero-copy' "About Me Hero is missing its text column"
-assert_about_contains 'g-col-12 g-col-lg-4 about-hero-media' "About Me Hero is missing its portrait column"
+assert_about_contains 'quarto-about-solana' "About Me should use Quarto's built-in Solana template"
+assert_about_contains 'page-layout-full' "About Me should retain the wide page layout"
+assert_about_absent 'class="grid about-hero"' "About Me should not maintain a custom Hero grid"
 assert_about_absent '<figcaption' "About Me portrait should use accessible alt text without a visible caption"
 assert_about_count \
-  '//div[contains(concat(" ", normalize-space(@class), " "), " about-hero ")]//h1[normalize-space()="Tzu-Yao Lin"]' \
+  '//h1[normalize-space()="Tzu-Yao Lin"]' \
   '1' \
-  'About Me Hero should contain one visible name heading'
+  'About Me should contain one visible name heading'
 assert_about_contains 'src="assets/images/profile-2024.jpg"' "About Me is missing the original portrait"
 assert_about_contains 'Research focus' "About Me is missing the original research section"
 assert_about_contains 'Background' "About Me is missing the original background section"
@@ -162,9 +161,8 @@ if ! rg -U -q 'body \.navbar\[data-bs-theme\][[:space:]]*\{[^}]*--bs-navbar-colo
   exit 1
 fi
 
-if ! rg -U -q '\.quarto-title-block[[:space:]]*\{[^}]*display:[[:space:]]*none;' \
-  "$test_root/docs/assets/css/about.css"; then
-  echo "FAIL: About Me should hide Quarto's duplicate generated title block"
+if rg -q '\.about-hero' "$test_root/docs/assets/css/about.css"; then
+  echo "FAIL: About Me stylesheet should not recreate Quarto's Hero layout"
   exit 1
 fi
 
@@ -193,4 +191,4 @@ if rg -q --fixed-strings 'tmp-academicon-inline-test.html' \
   exit 1
 fi
 
-echo "PASS: homepage, Quarto-grid About Me, and profile icons render as designed"
+echo "PASS: homepage, Quarto-native About Me, and profile icons render as designed"

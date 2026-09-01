@@ -169,4 +169,8 @@ main.content > h2 {
   .publication-entry-year {
     padding-top: 0;
   }
+
+  .publication-action {
+    min-height: 2.75rem;
+  }
 }

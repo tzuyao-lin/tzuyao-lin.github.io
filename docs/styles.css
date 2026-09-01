@@ -141,6 +141,10 @@ main.content p {
   margin-bottom: var(--site-space-md);
 }
 
+main.content .callout.callout-style-default .callout-body {
+  font-size: var(--site-text-base);
+}
+
 .quarto-title-block .title {
   font-size: clamp(2rem, 4vw, 2.65rem);
 }
@@ -255,6 +259,7 @@ body.quarto-light .navbar-toggler-icon {
 .quarto-listing .listing-date,
 .quarto-listing .listing-categories,
 .quarto-listing .listing-description {
+  font-family: var(--site-font-ui);
   font-size: var(--site-text-sm);
   line-height: 1.5;
 }
