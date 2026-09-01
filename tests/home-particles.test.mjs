@@ -3,7 +3,10 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import vm from "node:vm";
 
-const script = await readFile(new URL("../home.js", import.meta.url), "utf8");
+const script = await readFile(
+  new URL("../assets/js/home.js", import.meta.url),
+  "utf8",
+);
 
 function createPage({ darkMode = false, reducedMotion = false } = {}) {
   const frames = [];

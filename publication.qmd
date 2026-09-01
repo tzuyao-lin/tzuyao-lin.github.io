@@ -3,14 +3,14 @@ title: "Publications"
 subtitle: "Peer-reviewed research and work under review"
 page-layout: full
 title-block-banner: false
-css: publication.css
+css: assets/css/publication.css
 resources:
-  - publication.js
+  - assets/js/publication.js
 listing:
   id: publication-list
-  contents: publications.yml
+  contents: data/publications.yml
   type: custom
-  template: publication-listing.ejs
+  template: includes/publications/listing.ejs
   page-size: 100
   sort-ui: false
   filter-ui: false
@@ -40,5 +40,5 @@ listing:
 **20 June 2023** — Colloquia Methodology and Statistics, Department of Methodology and Statistics, Maastricht University. “Reliability for multilevel data: A correlation approach.” Oral presentation.
 
 ```{=html}
-<script src="publication.js"></script>
+<script src="assets/js/publication.js"></script>
 ```

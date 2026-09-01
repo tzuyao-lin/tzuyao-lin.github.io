@@ -6,11 +6,19 @@ The primary language is English, while individual posts may also be published in
 
 ## Website structure
 
-- `index.qmd`: homepage, biography, research profile, and contact links
-- `blog.qmd`: research, statistics, and R posts
-- `research/`: publications and presentations
-- `posts/`: source files and supporting materials for posts
-- `docs/`: rendered website published through GitHub Pages
+- `index.qmd`, `about.qmd`, `blog.qmd`, and `publication.qmd`: source files for
+  the four main website routes
+- `assets/`: shared CSS, JavaScript, images, and self-hosted fonts
+- `data/`: structured data used to build site pages
+- `includes/`: custom Quarto listing templates
+- `posts/`: self-contained post bundles and their shared metadata
+- `tests/`: JavaScript and isolated-render regression tests
+- `_project/`: internal specifications and implementation plans that Quarto
+  excludes from the website
+- `_freeze/`: tracked Quarto computation results used to render analytical
+  posts without re-running restricted-data analyses
+- `renv/` and `renv.lock`: reproducible R environment metadata
+- `docs/`: generated website published through GitHub Pages
 
 ## Build locally
 
@@ -54,4 +62,9 @@ not committed.
 
 Posts should include enough information to identify their data source, licence or reuse conditions, and any steps taken to protect participant privacy. Public data files must be reviewed for direct identifiers, detailed timestamps, network identifiers, and free-text responses before they are committed.
 
-Participant-level datasets are deliberately excluded from this public repository. See [`data/Brazil-vaccine-survey.md`](data/Brazil-vaccine-survey.md) and [`data/CDP-data.md`](data/CDP-data.md) for the access and privacy policies used by those posts.
+Participant-level datasets are deliberately excluded from this public
+repository. Data access and privacy requirements are documented with the
+analyses they govern: the
+[Brazilian vaccine-sentiment analysis](posts/20250328_VHS/index.qmd#data-availability-and-privacy)
+and the
+[diabetes and polygenic-risk analysis](posts/20240918_CDP/index.qmd#data-availability-and-privacy).

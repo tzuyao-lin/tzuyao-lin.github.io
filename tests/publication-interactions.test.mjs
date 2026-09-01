@@ -5,7 +5,10 @@ import vm from "node:vm";
 
 let script = "";
 try {
-  script = await readFile(new URL("../publication.js", import.meta.url), "utf8");
+  script = await readFile(
+    new URL("../assets/js/publication.js", import.meta.url),
+    "utf8",
+  );
 } catch {
   // The first TDD run intentionally exercises the page before the interaction script exists.
 }

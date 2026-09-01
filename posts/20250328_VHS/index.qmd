@@ -39,7 +39,11 @@ This page focuses on two parts of the analytical workflow:
 
 The page does not document every analysis reported in the published article. Some sections preserve intermediate model comparisons and working decisions made during manuscript development.
 
-The participant-level dataset is restricted and is not distributed with this website. The code and frozen aggregate outputs are retained to document the analytical workflow. Consequently, this page supports transparency about the analysis process but is not a fully executable public reproduction package.
+# Data availability and privacy
+
+The participant-level dataset is restricted and is not distributed with this website. The original working file contained direct or highly identifying fields, including network identifiers, precise timestamps, unique response identifiers, and free-text responses. Even after excluding those fields, combinations of demographic, professional, health, and attitude variables may still allow individuals to be singled out or linked to other information.
+
+The code and frozen aggregate outputs are retained to document the analytical workflow. Authorised researchers must store the dataset outside the repository and supply its path through `BRAZIL_DATA_PATH`; the analysis rejects paths inside the website project. Public outputs should contain aggregate statistics and model results rather than participant-level records. Consequently, this page supports transparency about the analysis process but is not a fully executable public reproduction package.
 
 # Data preparation
 
@@ -55,6 +59,9 @@ library(psych) # for factor analysis
 library(GPArotation)
 library(corrplot) # for correlation plots
 library(gt)
+
+# Make randomized factor-rotation starts reproducible across renders.
+set.seed(20250328)
 ```
 
 The analysis uses a restricted participant-level dataset that is stored separately from this public repository. Authorised researchers can supply its external file path through the `BRAZIL_DATA_PATH` environment variable.

@@ -2,12 +2,12 @@
 title: "Tzu-Yao Lin"
 pagetitle: "Tzu-Yao Lin"
 page-layout: full
-css: home.css
+css: assets/css/home.css
 title-block-style: none
 title-block-banner: false
 resources:
-  - home.js
-  - assets/home-trajectory.png
+  - assets/js/home.js
+  - assets/images/home-trajectory.png
 ---
 
 ```{=html}
@@ -30,10 +30,10 @@ resources:
     </div>
 
     <div class="hero-visual" aria-hidden="true">
-      <img class="trajectory-layer" src="assets/home-trajectory.png" alt="">
+      <img class="trajectory-layer" src="assets/images/home-trajectory.png" alt="">
       <canvas class="trajectory-particles"></canvas>
     </div>
   </section>
 </div>
-<script src="home.js"></script>
+<script src="assets/js/home.js"></script>
 ```
