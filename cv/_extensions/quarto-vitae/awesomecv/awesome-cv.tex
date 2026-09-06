@@ -1,0 +1,36 @@
+$awesome-cv-preamble.tex()$
+
+\begin{document}
+
+$awesome-cv-titling.tex()$
+
+%-------------------------------------------------------------------------------
+%	CV/RESUME CONTENT
+%	Each section is imported separately, open each file in turn to modify content
+%------------------------------------------------------------------------------
+
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$body$
+
+$before-bib.tex()$
+
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+$biblio.tex()$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+$after-body.tex()$
+
+$if(page_total)$\label{LastPage}~$endif$
+\end{document}

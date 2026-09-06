@@ -1,0 +1,15 @@
+\begin{cventries}
+$for(entries)$
+  \cventry
+    {$entries.what$} % what
+    {$entries.with$} % with
+    {$entries.where$} % where
+    {$entries.when$} % when
+    $if(entries.why)${
+      \begin{cvitems} % why
+$for(entries.why)$        \item {$entries.why$}
+$endfor$      \end{cvitems}
+    }$else${}$endif$
+
+$endfor$
+\end{cventries}

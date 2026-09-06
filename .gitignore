@@ -14,3 +14,7 @@
 /posts/20240918_CDP/[Ff]inal_data.[Cc][Ss][Vv]
 
 **/*.quarto_ipynb
+
+# Local Quarto Vitae build artifacts
+/cv/.quarto/
+/cv/_output/
