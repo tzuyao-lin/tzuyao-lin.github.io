@@ -1,17 +1,18 @@
 # Academic CV
 
-This subproject renders the full academic CV with Quarto Vitae and its
-project-local AwesomeCV extension.
+The website's Quarto project renders the full academic CV with Quarto Vitae
+and the AwesomeCV extension in this directory.
 
-From this directory, run:
+From the repository root, run:
 
 ```sh
 quarto render
 ```
 
-The draft PDF is written to `_output/TzuYaoLin_CV.pdf`. Run Quarto from this
-directory, rather than from the website repository root, so the CV build stays
-independent from the website project and its `renv` startup.
+This builds the site and writes the CV directly to `docs/cv/TzuYaoLin_CV.pdf`
+for GitHub Pages. To render only the CV, run
+`quarto render cv/academic-cv.qmd` from the repository root. The same project
+`renv` library is used for the site and CV.
 
 Publication and presentation records come from `../data/publications.yml` and
 `../data/presentations.yml`. Other CV records come from `../data/cv/`. Keep

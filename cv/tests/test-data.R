@@ -59,7 +59,7 @@ stopifnot(!anyDuplicated(cv$presentations$id))
 
 cat("CV loader and entry mappings passed\n")
 
-cv_config <- read_yaml_file(file.path(repo_root, "cv", "_quarto.yml"))
-stopifnot(identical(unlist(cv_config$project$render), "academic-cv.qmd"))
+site_config <- read_yaml_file(file.path(repo_root, "_quarto.yml"))
+stopifnot("cv/academic-cv.qmd" %in% unlist(site_config$project$render))
 
-cat("CV render target isolation passed\n")
+cat("CV website render target passed\n")

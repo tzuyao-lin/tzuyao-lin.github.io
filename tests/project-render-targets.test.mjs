@@ -13,19 +13,12 @@ function renderTargets(projectDir) {
   return project.files.input.map((file) => path.relative(projectDir, file));
 }
 
-test("website render excludes the CV subproject and keeps site pages", () => {
+test("website render includes the CV and site pages", () => {
   const targets = renderTargets(repoRoot);
 
   for (const page of ["index.qmd", "about.qmd", "blog.qmd", "publication.qmd"]) {
     assert.ok(targets.includes(page), `missing website page: ${page}`);
   }
   assert.ok(targets.some((target) => target.startsWith(`posts${path.sep}`)));
-  assert.ok(
-    targets.every((target) => !target.startsWith(`cv${path.sep}`)),
-    `website render includes CV files: ${targets.filter((target) => target.startsWith(`cv${path.sep}`)).join(", ")}`,
-  );
-});
-
-test("CV subproject still renders its academic CV", () => {
-  assert.deepEqual(renderTargets(path.join(repoRoot, "cv")), ["academic-cv.qmd"]);
+  assert.ok(targets.includes(path.join("cv", "academic-cv.qmd")));
 });

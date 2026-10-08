@@ -4,7 +4,7 @@ project:
   render:
     - "*.qmd"
     - "posts/"
-    - "!cv/"
+    - cv/academic-cv.qmd
 
 execute:
   freeze: true

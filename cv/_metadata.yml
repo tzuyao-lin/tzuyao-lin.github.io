@@ -1,10 +1,3 @@
-project:
-  type: default
-  output-dir: _output
-  execute-dir: project
-  render:
-    - academic-cv.qmd
-
 metadata-files:
   - ../data/cv/profile.yml
 
@@ -17,6 +10,7 @@ format:
     page_total: true
 
 execute:
+  freeze: false
   echo: false
   warning: false
   message: false
