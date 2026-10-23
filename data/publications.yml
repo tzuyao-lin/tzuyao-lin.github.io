@@ -12,6 +12,32 @@
       note = {Manuscript under review}
     }
 
+- id: lin-tuerlinckx-vanbelle-fixed-raters
+  status: in-preparation
+  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
+  title: "Fixed raters, random selection: A correlation-based framework for agreement ICCs in two-way mixed-effects designs"
+  venue: "Manuscript in preparation"
+  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (in preparation). Fixed raters, random selection: A correlation-based framework for agreement ICCs in two-way mixed-effects designs."
+  bibtex: |
+    @unpublished{lin_fixed_raters,
+      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
+      title = {Fixed Raters, Random Selection: A Correlation-Based Framework for Agreement {ICCs} in Two-Way Mixed-Effects Designs},
+      note = {Manuscript in preparation}
+    }
+
+- id: nieh-lo-lin-screen-sleep-sweets
+  status: in-preparation
+  authors: "Nieh, H.-P., Lo, C., & Lin, T.-Y."
+  title: "Joint trajectories of screen time, sleep duration, and sweets consumption in early childhood and developmental outcomes at age 7: A population-based prospective longitudinal study"
+  venue: "Manuscript in preparation"
+  apa: "Nieh, H.-P., Lo, C., & Lin, T.-Y. (in preparation). Joint trajectories of screen time, sleep duration, and sweets consumption in early childhood and developmental outcomes at age 7: A population-based prospective longitudinal study."
+  bibtex: |
+    @unpublished{nieh_screen_sleep_sweets,
+      author = {Nieh, Hsi-Ping and Lo, Chungwan and Lin, Tzu-Yao},
+      title = {Joint Trajectories of Screen Time, Sleep Duration, and Sweets Consumption in Early Childhood and Developmental Outcomes at Age 7: A Population-Based Prospective Longitudinal Study},
+      note = {Manuscript in preparation}
+    }
+
 - id: lin-2026-single-item
   status: published
   year: 2026

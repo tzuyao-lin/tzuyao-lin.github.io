@@ -2,9 +2,10 @@
 /* Minimal renderer for publications.yml. */
 
 const orderedItems = items.slice().sort(function(a, b) {
-  const aReview = a.status === "under-review" ? 1 : 0;
-  const bReview = b.status === "under-review" ? 1 : 0;
-  if (aReview !== bReview) return bReview - aReview;
+  const rank = { "under-review": 2, "in-preparation": 1 };
+  const aRank = rank[a.status] || 0;
+  const bRank = rank[b.status] || 0;
+  if (aRank !== bRank) return bRank - aRank;
   return Number(b.year || 0) - Number(a.year || 0);
 });
 %>
@@ -13,7 +14,8 @@ const orderedItems = items.slice().sort(function(a, b) {
 
 <% /* Keep rendered HTML left-aligned so Pandoc does not treat it as a code block. */ %>
 <% orderedItems.forEach(function(item) {
-  const yearLabel = item.status === "under-review" ? "Under review" : String(item.year || "");
+  const statusLabels = { "under-review": "Under review", "in-preparation": "In preparation" };
+  const yearLabel = statusLabels[item.status] || String(item.year || "");
   const encodedBibtex = encodeURIComponent(item.bibtex || "");
   const encodedApa = encodeURIComponent(item.apa || "");
   const abstractId = "publication-abstract-" + item.id;
