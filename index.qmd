@@ -7,7 +7,6 @@ title-block-style: none
 title-block-banner: false
 resources:
   - assets/js/home.js
-  - assets/images/home-trajectory.png
 ---
 
 ```{=html}
@@ -30,7 +29,6 @@ resources:
     </div>
 
     <div class="hero-visual" aria-hidden="true">
-      <img class="trajectory-layer" src="assets/images/home-trajectory.png" alt="">
       <canvas class="trajectory-particles"></canvas>
     </div>
   </section>
