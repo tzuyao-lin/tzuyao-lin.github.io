@@ -1,5 +1,6 @@
 ---
 title: "Posts"
+description-meta: "Research notes on statistics and R by Tzu-Yao Lin."
 listing:
   contents: posts
   sort: "date desc"

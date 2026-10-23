@@ -1,6 +1,7 @@
 ---
 title: "Tzu-Yao Lin"
 pagetitle: "Tzu-Yao Lin"
+description-meta: "Joint PhD candidate at KU Leuven and Maastricht University studying reliability in multilevel and intensive longitudinal data."
 page-layout: full
 css: assets/css/home.css
 title-block-style: none

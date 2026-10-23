@@ -11,6 +11,7 @@ categories:
   - "phd"
   - "europe"
 image: find-a-phd.jpg
+image-alt: "Illustration of a graduate in a cap and gown at a laptop, surrounded by PhD search sources: mailing lists, databases, university websites, European job portals and social media."
 ---
 
 歐洲沒有統一的 PhD 招生方式。有些博士生職位會像一般工作一樣公開招聘，附有研究主題、聘僱期間與薪資；有些則要先找到指導教授，再申請博士班或研究經費。因此，只依賴一個網站通常不夠。

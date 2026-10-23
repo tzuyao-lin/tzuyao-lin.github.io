@@ -1,6 +1,7 @@
 ---
 title: "Tzu-Yao Lin"
 page-layout: full
+description-meta: "About Tzu-Yao Lin, a joint PhD candidate at KU Leuven and Maastricht University working on reliability in multilevel and intensive longitudinal data."
 image: assets/images/profile-2024.jpg
 about:
   id: profile

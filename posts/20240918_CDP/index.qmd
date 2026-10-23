@@ -9,6 +9,7 @@ categories:
  - "statistics"
  - "research notes"
 image: CDP.jpg
+image-alt: "Illustration linking a polygenic risk score (DNA helix) and coffee consumption to diabetes risk, with covariates shown below."
 execute:
   warning: false
   freeze: true

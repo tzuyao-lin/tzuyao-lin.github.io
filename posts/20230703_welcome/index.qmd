@@ -4,6 +4,7 @@ author: "Tzu-Yao Lin"
 date: 2023-07-03
 date-modified: 2026-08-30
 image: kinderdijk_and_sunrise.jpg
+image-alt: "Sunrise at Kinderdijk, the Netherlands"
 categories: 
   - "news"
 ---

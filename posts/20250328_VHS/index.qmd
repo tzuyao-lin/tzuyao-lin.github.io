@@ -9,6 +9,7 @@ categories:
   - "statistics"
   - "research notes"
 image: brazil-vaccine.jpg
+image-alt: "Illustration of two Brazilian healthcare workers and a nurse vaccinating a patient, with a map of Brazil, a COVID-19 vaccine vial and syringe, and statistical charts."
 execute:
   warning: false
   freeze: true

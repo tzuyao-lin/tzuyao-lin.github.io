@@ -1,5 +1,6 @@
 ---
 title: "Research"
+description-meta: "Peer-reviewed work, manuscripts under review or in preparation, and conference presentations by Tzu-Yao Lin."
 page-layout: full
 title-block-banner: false
 css: assets/css/publication.css

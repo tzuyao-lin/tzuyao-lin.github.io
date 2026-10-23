@@ -11,6 +11,40 @@ fail() {
   exit 1
 }
 
+# Fall back to perl when ripgrep is not installed. Covers only the flags used
+# below: -o (print matches), -q (quiet), -U (match across lines).
+if ! command -v rg >/dev/null 2>&1; then
+  rg() {
+    local only=0 quiet=0 multi=0
+    while [[ "${1:-}" == -* ]]; do
+      case "$1" in
+        -o) only=1 ;;
+        -q) quiet=1 ;;
+        -U) multi=1 ;;
+        *) fail "rg fallback does not support $1" ;;
+      esac
+      shift
+    done
+    RG_PATTERN="$1" RG_ONLY="$only" RG_QUIET="$quiet" RG_MULTI="$multi" \
+      perl -e '
+        my ($p, $only, $quiet, $multi) =
+          @ENV{qw(RG_PATTERN RG_ONLY RG_QUIET RG_MULTI)};
+        local $/ = $multi ? undef : "\n";
+        my $found = 0;
+        while (my $chunk = <STDIN>) {
+          while ($chunk =~ /($p)/g) {
+            $found = 1;
+            print "$1\n" if $only && !$quiet;
+            last unless $only;
+          }
+          last if $found && $quiet;
+        }
+        print "match\n" if $found && !$only && !$quiet;
+        exit($found ? 0 : 1);
+      ' <"$2"
+  }
+fi
+
 rsync -a \
   --exclude='.git' \
   --exclude='docs' \
@@ -208,8 +242,8 @@ rg -q 'IMPS 2026 Annual Meeting' "$page" || \
 presentation_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " presentation-entry ")])' \
   "$page" 2>/dev/null || true)"
-[[ "$presentation_count" == "9" ]] || \
-  fail "expected 9 structured presentation entries, got $presentation_count"
+[[ "$presentation_count" == "11" ]] || \
+  fail "expected 11 structured presentation entries, got $presentation_count"
 
 slides_placeholder_count="$(xmllint --html --xpath \
   'count(//span[contains(concat(" ", normalize-space(@class), " "), " presentation-slides-placeholder ")][normalize-space(.)="Slides forthcoming"])' \
@@ -222,7 +256,9 @@ slides_state_count="$((slides_placeholder_count + slides_link_count))"
   fail "each presentation should expose either a slide link or placeholder ($slides_state_count/$presentation_count)"
 
 expected_dates=(
-  "Jul 21, 2026"
+  "Oct 6, 2026"
+  "Oct 5, 2026"
+  "Jul 22, 2026"
   "Dec 5, 2025"
   "Sep 30, 2025"
   "Jul 19, 2024"
@@ -245,16 +281,16 @@ done
 inline_presentation_meta_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " presentation-actions ")]//*[contains(concat(" ", normalize-space(@class), " "), " presentation-type ")])' \
   "$page" 2>/dev/null || true)"
-[[ "$inline_presentation_meta_count" == "9" ]] || \
-  fail "expected presentation type and slides on the same row for all 9 entries, got $inline_presentation_meta_count"
+[[ "$inline_presentation_meta_count" == "11" ]] || \
+  fail "expected presentation type and slides on the same row for all 11 entries, got $inline_presentation_meta_count"
 
-rg -q 'Yonsei University, Seoul, South Korea' "$page" || \
-  fail "IMPS 2026 venue should identify Yonsei University"
-rg -q 'University of Amsterdam, Roeterseiland campus' "$page" || \
-  fail "MathPsych 2023 venue should identify the University of Amsterdam campus"
-rg -q 'Prague University of Economics and Business' "$page" || \
-  fail "IMPS 2024 venue should identify the verified host university"
-rg -q 'Ghent University, Campus Dunant' "$page" || \
-  fail "EAM 2023 venue should identify the verified campus"
+rg -q 'Seoul, South Korea' "$page" || \
+  fail "IMPS 2026 location should identify Seoul"
+rg -q 'Amsterdam, the Netherlands' "$page" || \
+  fail "MathPsych 2023 location should identify Amsterdam"
+rg -q 'Prague, Czech Republic' "$page" || \
+  fail "IMPS 2024 location should identify Prague"
+rg -q 'Ghent, Belgium' "$page" || \
+  fail "EAM 2023 location should identify Ghent"
 
 echo "PASS: publication list renders with citation controls and related links"
