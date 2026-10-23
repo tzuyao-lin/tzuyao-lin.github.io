@@ -11,13 +11,15 @@ execute:
 
 website:
   title: "Tzu-Yao Lin"
-  site-url: https://tzuyao-lin.github.io/
+  site-url: https://tzuyao-lin.github.io
   description: "Research, statistics, and R by Tzu-Yao Lin"
   favicon: assets/images/favicon.svg
   open-graph: true
   twitter-card:
     card-style: summary
-  #google-analytics: ""
+  google-analytics:
+    tracking-id: "G-NGTVH7KM7S"
+    anonymize-ip: true
   navbar:
     left:
       - href: about.qmd
@@ -32,6 +34,7 @@ website:
 format:
   html:
     lang: en
+    canonical-url: true
     theme: 
       light: flatly
       dark: darkly
