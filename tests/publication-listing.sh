@@ -48,7 +48,7 @@ presentation_heading_count="$(xmllint --html --xpath \
 research_intro="$(xmllint --html --xpath \
   'normalize-space(string((//*[contains(concat(" ", normalize-space(@class), " "), " page-intro ")])[1]))' \
   "$page" 2>/dev/null || true)"
-[[ "$research_intro" == "Peer-reviewed work, manuscripts under review, and conference presentations." ]] || \
+[[ "$research_intro" == "Peer-reviewed work, manuscripts under review or in preparation, and conference presentations." ]] || \
   fail "research intro is missing or incorrect: $research_intro"
 
 research_nav_count="$(xmllint --html --xpath \
@@ -58,12 +58,12 @@ research_nav_count="$(xmllint --html --xpath \
   fail "expected Research in the site navigation, got $research_nav_count"
 
 entry_count="$(rg -o 'class="publication-entry"' "$page" 2>/dev/null | wc -l | tr -d ' ' || true)"
-[[ "$entry_count" == "7" ]] || fail "expected 7 publication entries, got $entry_count"
+[[ "$entry_count" == "9" ]] || fail "expected 9 publication entries, got $entry_count"
 
 title_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry ")]//h3[contains(concat(" ", normalize-space(@class), " "), " publication-title ")])' \
   "$page" 2>/dev/null || true)"
-[[ "$title_count" == "7" ]] || \
+[[ "$title_count" == "9" ]] || \
   fail "expected each entry to contain a visible title, got $title_count"
 
 rg -q 'class="publication-entry-year"' "$page" || \
@@ -96,8 +96,8 @@ apa_count="$(xmllint --html --xpath \
 self_highlight_count="$(xmllint --html --xpath \
   'count(//p[contains(concat(" ", normalize-space(@class), " "), " publication-authors ")]//strong[contains(concat(" ", normalize-space(@class), " "), " publication-self ")][normalize-space(.)="Lin, T.-Y."])' \
   "$page" 2>/dev/null || true)"
-[[ "$self_highlight_count" == "7" ]] || \
-  fail "expected Lin, T.-Y. to be highlighted in all 7 author lists, got $self_highlight_count"
+[[ "$self_highlight_count" == "9" ]] || \
+  fail "expected Lin, T.-Y. to be highlighted in all 9 author lists, got $self_highlight_count"
 
 first_author_text="$(xmllint --html --xpath \
   'normalize-space(string((//p[contains(concat(" ", normalize-space(@class), " "), " publication-authors ")])[1]))' \
@@ -108,8 +108,8 @@ first_author_text="$(xmllint --html --xpath \
 inline_metadata_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-meta-row ")][p[contains(concat(" ", normalize-space(@class), " "), " publication-venue ")] and div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]])' \
   "$page" 2>/dev/null || true)"
-[[ "$inline_metadata_count" == "7" ]] || \
-  fail "expected venue and actions in one metadata row for all 7 publications, got $inline_metadata_count"
+[[ "$inline_metadata_count" == "9" ]] || \
+  fail "expected venue and actions in one metadata row for all 9 publications, got $inline_metadata_count"
 
 metadata_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-listing-metadata ")])' \

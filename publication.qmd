@@ -23,7 +23,7 @@ listing:
 ---
 
 ::: {.page-intro}
-Peer-reviewed work, manuscripts under review, and conference presentations.
+Peer-reviewed work, manuscripts under review or in preparation, and conference presentations.
 :::
 
 ## Publications
