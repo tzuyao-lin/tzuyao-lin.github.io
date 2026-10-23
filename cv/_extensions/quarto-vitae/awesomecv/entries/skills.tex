@@ -1,0 +1,7 @@
+\begin{cvskills}
+$for(entries)$
+  \cvskill
+    {$entries.what$} % what
+    {$if(entries.with)$$entries.with$$else$$for(entries.why)$$entries.why$$sep$, $endfor$$endif$} % with, or why
+$endfor$
+\end{cvskills}

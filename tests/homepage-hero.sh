@@ -98,7 +98,7 @@ assert_contains "Hi, I'm Tzu-Yao." "Hero heading does not use the approved wordi
 assert_contains 'I study <span class="gradient-text">reliability</span>' "Hero research statement is missing"
 assert_contains 'Joint PhD candidate' "Hero affiliation is missing"
 assert_matches '<a class="hero-button hero-button-primary" href="(\./)?publication\.html">' "publications call-to-action does not target the rendered publications page"
-assert_contains 'href="https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf"' "CV call-to-action is missing"
+assert_contains 'href="cv/TzuYaoLin_CV.pdf"' "CV call-to-action does not target the local PDF"
 assert_contains 'src="assets/images/home-trajectory.png"' "dense trajectory background asset is missing"
 assert_contains 'href="assets/css/home.css"' "homepage-specific stylesheet is not loaded"
 assert_contains 'src="assets/js/home.js"' "cursor glow script is not loaded"
@@ -110,6 +110,7 @@ assert_absent 'class="home-section background-section' "Background section must 
 assert_absent 'profile-2024.jpg' "portrait belongs on About Me, not the homepage Hero"
 
 assert_about_contains 'quarto-about-solana' "About Me should use Quarto's built-in Solana template"
+assert_about_contains 'href="/cv/TzuYaoLin_CV.pdf"' "About Me CV link does not target the local PDF"
 assert_about_contains 'page-layout-full' "About Me should retain the wide page layout"
 assert_about_absent 'class="grid about-hero"' "About Me should not maintain a custom Hero grid"
 assert_about_absent '<figcaption' "About Me portrait should use accessible alt text without a visible caption"

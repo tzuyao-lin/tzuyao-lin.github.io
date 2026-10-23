@@ -1,5 +1,9 @@
 [
   {
+    "listing": "/publication.html",
+    "items": []
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/posts/20250328_VHS/index.html",
@@ -7,9 +11,5 @@
       "/posts/20250330_PhD-position/index.html",
       "/posts/20230703_welcome/index.html"
     ]
-  },
-  {
-    "listing": "/publication.html",
-    "items": []
   }
 ]

@@ -1,0 +1,76 @@
+---
+format: awesomecv-pdf
+output-file: TzuYaoLin_CV.pdf
+date: last-modified
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/load-cv-data.R")
+cv <- load_cv_data("..")
+```
+
+# Education
+
+```{r}
+#| vitae:
+#|   style: detailed
+education_entries(cv$education)
+```
+
+# Publications
+
+```{r}
+#| vitae:
+#|   style: detailed
+publication_entries(cv$publications)
+```
+
+# Presentations
+
+```{r}
+#| vitae:
+#|   style: detailed
+presentation_entries(cv$presentations)
+```
+
+# Awards
+
+```{r}
+#| vitae:
+#|   style: detailed
+award_entries(cv$awards)
+```
+
+# Peer Review
+
+```{r}
+#| vitae:
+#|   style: detailed
+reviewing_entries(cv$reviewing)
+```
+
+# Skills
+
+```{r}
+#| vitae:
+#|   style: detailed
+skill_entries(cv$skills)
+```
+
+# Earlier Research Experience
+
+```{r}
+#| vitae:
+#|   style: detailed
+research_entries(cv$research)
+```
+
+# Teaching Assistant Experience
+
+```{r}
+#| vitae:
+#|   style: detailed
+teaching_entries(cv$teaching)
+```

@@ -10,6 +10,7 @@ The primary language is English, while individual posts may also be published in
   the four main website routes
 - `assets/`: shared CSS, JavaScript, images, and self-hosted fonts
 - `data/`: structured data used to build site pages
+- `cv/`: Quarto source for the academic CV PDF
 - `includes/`: custom Quarto listing templates
 - `posts/`: self-contained post bundles and their shared metadata
 - `tests/`: JavaScript and isolated-render regression tests
@@ -37,6 +38,11 @@ the website:
 ```sh
 quarto render
 ```
+
+A full render builds the HTML pages and `cv/academic-cv.qmd` in one Quarto
+project. The PDF is written directly to `docs/cv/TzuYaoLin_CV.pdf`, where both
+website CV links point. To rebuild just the CV, run
+`quarto render cv/academic-cv.qmd` from the repository root.
 
 To preview local changes:
 

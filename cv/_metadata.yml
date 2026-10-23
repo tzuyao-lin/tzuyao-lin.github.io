@@ -1,0 +1,16 @@
+metadata-files:
+  - ../data/cv/profile.yml
+
+format:
+  awesomecv-pdf:
+    papersize: a4
+    fontsize: 10pt
+    headcolor: "00295C"
+    show_footer: true
+    page_total: true
+
+execute:
+  freeze: false
+  echo: false
+  warning: false
+  message: false

@@ -11,7 +11,7 @@ about:
   links:
     - icon: file-person-fill
       text: CV
-      href: https://xup6y3ul6.github.io/CV/TzuYaoLin_CV.pdf
+      href: cv/TzuYaoLin_CV.pdf
     - text: "{{< ai orcid >}} ORCID"
       href: https://orcid.org/0000-0002-2261-448X
     - icon: linkedin

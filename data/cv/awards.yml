@@ -1,0 +1,30 @@
+- id: ntu-deans-award-masters-research
+  award: Dean's Award
+  date: "2022"
+  organization: College of Science, National Taiwan University
+  details: Top three graduates of the class for outstanding Master's research, academic year 2021–2022
+
+- id: ntu-deans-award-scholastic-achievement
+  award: Dean's Award
+  date: "2019"
+  organization: College of Science, National Taiwan University
+  details: Top 10% of the graduating class for outstanding scholastic achievement (Bachelor's), academic year 2018–2019
+
+- id: professor-fa-yu-cheng-memorial-scholarship
+  award: Professor Fa-Yu Cheng Memorial Scholarship
+  date: "2019"
+  organization: Department of Psychology, National Taiwan University
+  details: Top prize for undergraduate psychology students for outstanding academic performance, academic year 2018–2019
+
+# Temporarily hidden: semester ranking awards (2015, 2017)
+# - id: psychology-academic-excellence-award-2017
+#   award: Academic Excellence Award
+#   date: Spring 2017
+#   organization: Department of Psychology, National Taiwan University
+#   details: Awarded to students ranking top 5% in the department in the semester
+#
+# - id: forestry-academic-excellence-award-2015
+#   award: ""
+#   date: Spring 2015
+#   organization: Department of Forest and Resources Conservation, National Taiwan University
+#   details: Awarded to students ranking top 5% in the department in the semester
