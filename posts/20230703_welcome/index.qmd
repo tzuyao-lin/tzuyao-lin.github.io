@@ -12,25 +12,11 @@ Welcome to my blog. I started this space to share updates on my research, notes 
 
 Why start a personal blog? The reason is simple: I want to share what I learn instead of keeping it in my own notes.
 
-<div>
-
-<blockquote class="twitter-tweet tw-align-center">
-
-<p lang="en" dir="ltr">
-
-When you've written the same code 3 times, write a function<br><br>When you've given the same in-person advice 3 times, write a blog post
-
-</p>
-
---- David Robinson (\@drob) <a href="https://twitter.com/drob/status/928447584712253440?ref_src=twsrc%5Etfw">November 9, 2017</a>
-
-</blockquote>
-
-```{=html}
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-```
-
-</div>
+> When you've written the same code 3 times, write a function.
+>
+> When you've given the same in-person advice 3 times, write a blog post.
+>
+> --- David Robinson ([\@drob](https://x.com/drob/status/928447584712253440), November 9, 2017)
 
 I still don't know exactly what this blog will become, but that is part of the point. I would rather start now and let it take shape over time. Thanks for reading.
 

@@ -13,6 +13,10 @@ website:
   title: "Tzu-Yao Lin"
   site-url: https://tzuyao-lin.github.io/
   description: "Research, statistics, and R by Tzu-Yao Lin"
+  favicon: assets/images/favicon.svg
+  open-graph: true
+  twitter-card:
+    card-style: summary
   #google-analytics: ""
   navbar:
     left:
@@ -27,6 +31,7 @@ website:
         href: https://github.com/tzuyao-lin
 format:
   html:
+    lang: en
     theme: 
       light: flatly
       dark: darkly
