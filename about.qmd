@@ -14,6 +14,10 @@ about:
       href: cv/TzuYaoLin_CV.pdf
     - text: "{{< ai orcid >}} ORCID"
       href: https://orcid.org/0000-0002-2261-448X
+    - text: "{{< ai google-scholar >}} Google Scholar"
+      href: https://scholar.google.com/citations?user=3GX05DMAAAAJ
+    - text: "{{< ai researchgate >}} ResearchGate"
+      href: https://www.researchgate.net/profile/Tzu-Yao-Lin-3
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/tzu-yao-nick-lin/
