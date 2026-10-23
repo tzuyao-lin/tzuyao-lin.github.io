@@ -1,25 +1,25 @@
 - id: joint-phd-ku-leuven-maastricht
   degree: Joint PhD candidate
   institution: KU Leuven and Maastricht University
-  location: Leuven, Belgium and Maastricht, the Netherlands
-  start_date: "2022"
-  end_date: Present
-  details: >-
-    Research Group of Quantitative Psychology and Individual Differences;
-    Department of Methodology and Statistics
+  location: Belgium and the Netherlands
+  start_date: Oct 2022
+  end_date: Mar 2027 (expected)
+  details: |-
+    KU Leuven: Research Group of Quantitative Psychology and Individual Differences; Supervisor: Prof. Francis Tuerlinckx
+    Maastricht University: Department of Methodology and Statistics; Supervisor: Prof. Sophie Vanbelle
 
 - id: ntu-ms-psychology
   degree: MS in Psychology
   institution: National Taiwan University
   location: Taipei, Taiwan
-  start_date: September 2019
-  end_date: June 2022
-  details: "Overall GPA: 4.02/4.30"
+  start_date: Sep 2019
+  end_date: Jun 2022
+  details: "Overall GPA: 4.02/4.30. Supervisor: Prof. Yung-Fong Hsu"
 
 - id: ntu-bs-psychology-forestry
-  degree: BS in Psychology, minor in Forestry
+  degree: BS in Psychology
   institution: National Taiwan University
   location: Taipei, Taiwan
-  start_date: September 2014
-  end_date: June 2019
-  details: "Overall GPA: 4.12/4.30; minor in the School of Forestry and Resource Conservation"
+  start_date: Sep 2014
+  end_date: Jun 2019
+  details: "Overall GPA: 4.12/4.30"

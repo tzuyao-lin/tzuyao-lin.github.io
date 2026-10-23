@@ -59,23 +59,15 @@ load_cv_data <- function(repo_root = "..") {
     ),
     teaching = read_record_file(
       file.path(cv_dir, "teaching.yml"),
-      c("id", "title", "code", "semester")
+      c("id", "title", "institution", "semester")
     ),
-    coursework = read_record_file(
-      file.path(cv_dir, "coursework.yml"),
-      c("id", "title", "code", "semester", "grade")
-    ),
-    training = read_record_file(
-      file.path(cv_dir, "training.yml"),
-      c("id", "institution", "date", "course", "location")
+    reviewing = read_record_file(
+      file.path(cv_dir, "reviewing.yml"),
+      c("id", "journal", "date")
     ),
     skills = read_record_file(
       file.path(cv_dir, "skills.yml"),
       c("id", "category", "skill")
-    ),
-    extracurricular = read_record_file(
-      file.path(cv_dir, "extracurricular.yml"),
-      c("id", "organization", "date", "role", "location")
     ),
     publications = read_record_file(
       file.path(repo_root, "data", "publications.yml"),
@@ -101,7 +93,10 @@ education_entries <- function(x) {
     with = institution,
     when = span(start_date, end_date),
     where = location,
-    why = as_text(details, dplyr::n())
+    # Vitae wraps `why` in one \item; close and reopen it to get one bullet per line.
+    why = gsub(
+      "\n", "`}\\item {`{=latex}", as_text(details, dplyr::n()), fixed = TRUE
+    )
   )
 }
 
@@ -111,27 +106,24 @@ publication_entries <- function(x) {
   when <- ifelse(x$status == "under-review", "Under review", year)
   doi <- as_text(x$doi, n)
   preprint <- as_text(x$preprint, n)
-  why <- ifelse(
-    nzchar(doi),
-    paste0("[DOI](https://doi.org/", doi, ")"),
-    ifelse(nzchar(preprint), paste0("[Preprint](", preprint, ")"), "")
-  )
+  url <- ifelse(nzchar(doi), paste0("https://doi.org/", doi), preprint)
+  title <- ifelse(nzchar(url), paste0("[", x$title, "](", url, ")"), x$title)
   tibble::tibble(
-    what = x$title,
-    with = x$authors,
+    what = gsub("Lin, T.-Y.", "**Lin, T.-Y.**", x$authors, fixed = TRUE),
+    with = title,
     when = when,
     where = x$venue,
-    why = why
+    why = ""
   )
 }
 
 presentation_entries <- function(x) {
   tibble::tibble(
-    what = x$title,
-    with = x$venue,
+    what = x$venue,
+    with = x$title,
     when = format(as.Date(x$date), "%b %Y"),
     where = x$location,
-    why = x$type
+    why = ifelse(x$type == "Oral presentation", "", x$type)
   )
 }
 
@@ -151,54 +143,32 @@ research_entries <- function(x) {
     what = role,
     with = topic,
     when = span(start_date, end_date),
-    where = supervisor,
-    why = details
+    where = "Taipei, Taiwan",
+    why = paste0(details, " Supervisors: ", supervisor, ".")
   )
 }
 
 teaching_entries <- function(x) {
   dplyr::transmute(
     x,
-    what = paste0(code, ": ", title),
-    with = as_text(score, dplyr::n()),
-    when = semester
-  )
-}
-
-coursework_entries <- function(x) {
-  dplyr::transmute(
-    x,
-    what = paste0(code, ": ", title),
-    with = grade,
-    when = semester
-  )
-}
-
-training_entries <- function(x) {
-  dplyr::transmute(
-    x,
     what = institution,
-    with = course,
-    when = as.character(date),
-    where = location,
-    why = as_text(details, dplyr::n())
+    with = title,
+    when = as.character(semester)
+  )
+}
+
+reviewing_entries <- function(x) {
+  dplyr::transmute(
+    x,
+    what = "Reviewer",
+    with = journal,
+    when = as.character(date)
   )
 }
 
 skill_entries <- function(x) {
   x |>
     dplyr::group_by(category) |>
-    dplyr::summarise(with = paste(skill, collapse = ", "), .groups = "drop") |>
-    dplyr::rename(what = category)
-}
-
-extracurricular_entries <- function(x) {
-  dplyr::transmute(
-    x,
-    what = role,
-    with = organization,
-    when = as.character(date),
-    where = location,
-    why = as_text(details, dplyr::n())
-  )
+    dplyr::summarise(what = paste(skill, collapse = ", "), .groups = "drop") |>
+    dplyr::rename(with = category)
 }

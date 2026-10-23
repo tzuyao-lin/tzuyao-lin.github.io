@@ -1,42 +1,39 @@
-- id: analytical-statistical-modeling
-  category: Analytical
-  skill: Statistical modeling
-- id: analytical-computational-modeling
-  category: Analytical
-  skill: Computational modeling
-- id: analytical-bayesian-statistics
-  category: Analytical
+- id: methods-multilevel-longitudinal
+  category: Methods
+  skill: Multilevel and longitudinal modeling
+- id: methods-psychometrics-reliability
+  category: Methods
+  skill: Psychometrics and reliability
+- id: methods-bayesian-statistics
+  category: Methods
   skill: Bayesian statistics
-- id: analytical-neuroimage-analysis
-  category: Analytical
+- id: methods-computational-modeling
+  category: Methods
+  skill: Computational modeling
+- id: methods-neuroimage-analysis
+  category: Methods
   skill: Neuroimage analysis (fMRI and MEG)
 - id: programming-r
   category: Programming
   skill: R (Tidyverse, R Markdown, and Shiny)
-- id: programming-jags
-  category: Programming
-  skill: JAGS
 - id: programming-stan
   category: Programming
   skill: Stan
+- id: programming-jags
+  category: Programming
+  skill: JAGS
 - id: programming-python
   category: Programming
-  skill: Python (PyTorch)
-- id: programming-matlab
-  category: Programming
-  skill: MATLAB (SPM12 and Brainstorm)
+  skill: Python
 - id: programming-sas
   category: Programming
   skill: SAS
 - id: programming-linux
   category: Programming
   skill: Linux
-- id: tools-git
+- id: tools-git-github
   category: Tools
-  skill: Git
-- id: tools-github
-  category: Tools
-  skill: GitHub
+  skill: Git and GitHub
 - id: tools-latex
   category: Tools
   skill: LaTeX

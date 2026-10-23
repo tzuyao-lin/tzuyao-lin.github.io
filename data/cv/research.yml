@@ -1,97 +1,11 @@
-- id: hsu-risk-decision-making-experiment
+- id: ntu-neuroscience-research-assistant
   role: Research Assistant
-  topic: "Neural correlates of emotion as an arbitrator to reconcile the conflicts within dual-process in the context of decision making under risk"
-  supervisor: Prof. Yung-Fong Hsu
-  start_date: March 2021
-  end_date: Present
+  topic: Neuroimaging and mathematical models of decision-making
+  supervisor: Prof. Yung-Fong Hsu, Prof. Heng-Chiang Huang, and Prof. Yu-Ping Chen
+  start_date: "2018"
+  end_date: "2022"
   details: >-
-    We studied the mechanism of dual-processing (heuristic and analytical)
-    conflicts and the role of emotion when making a risky decision. I helped
-    design the experiment of creating a 'Mixed Prospect Binary Lottery' to
-    elicit the subject's utility functions and estimate the level of loss
-    aversion.
-
-- id: hsu-risk-decision-making-neuroimaging
-  role: Research Assistant
-  topic: "Neural correlates of emotion as an arbitrator to reconcile the conflicts within dual-process in the context of decision making under risk"
-  supervisor: Prof. Yung-Fong Hsu
-  start_date: March 2021
-  end_date: Present
-  details: >-
-    We will utilize PET-fMRI and MRS-fMRI, the state-of-the-art neuroimaging
-    techniques, to examine the effects of neurotransmitter and BOLD signals in
-    a risky situation.
-
-- id: hsu-cultural-consensus-threshold-theory
-  role: Research Assistant
-  topic: "The cultural consensus theory extends with the threshold theory: A study of ordinal categorical data analysis"
-  supervisor: Prof. Yung-Fong Hsu
-  start_date: August 2019
-  end_date: July 2020
-  details: >-
-    We incorporated the Luce-Krantz threshold theory into cultural consensus
-    theory to deal with ordinal categorical data. I axiomatized our new model
-    and used the hierarchical Bayesian framwork for the inference.
-
-- id: huang-theory-of-mind-study
-  role: Research Assistant
-  topic: "From mind reading to mind sharing: A study on neural correlates of cognitive and affective Theory of Mind and their applications to salesforce enhancement"
-  supervisor: Prof. Heng-Chiang Huang
-  start_date: January 2018
-  end_date: December 2019
-  details: >-
-    We want to know if a seller has greater abilities of cognitive and
-    affective Theory of Mind will they have a better selling performance. We
-    designed two different games to test those abilities of Theory of Mind with
-    fMRI and MEG.
-
-- id: huang-theory-of-mind-analysis
-  role: Research Assistant
-  topic: "From mind reading to mind sharing: A study on neural correlates of cognitive and affective Theory of Mind and their applications to salesforce enhancement"
-  supervisor: Prof. Heng-Chiang Huang
-  start_date: January 2018
-  end_date: December 2019
-  details: >-
-    I have played a critical role in this project by taking the initiative to
-    learn Brainstorm (a MATLAB toolbox for M/EEG data analysis) and analyzing
-    event-relative field and source estimation for our data. I also used the
-    machine learning approach to classify the neural representation of
-    numerosity (the set size of a group of items).
-
-- id: chen-economic-bubble-hyperscanning
-  role: Research Assistant
-  topic: "Coalition without trust: The intra-brain connectivity and inter-brain synchronization of herd behaviors in an economic bubble game"
-  supervisor: Prof. Yu-Ping Chen
-  start_date: January 2018
-  end_date: Present
-  details: >-
-    We observed pairs of subjects' stock trading behaviors in a simulated
-    economic bubble game. The breakthrough in this project was that we connected
-    two MRI scan machines and simultaneously collected both subjects' BOLD
-    signals.
-
-- id: chen-economic-bubble-analysis
-  role: Research Assistant
-  topic: "Coalition without trust: The intra-brain connectivity and inter-brain synchronization of herd behaviors in an economic bubble game"
-  supervisor: Prof. Yu-Ping Chen
-  start_date: January 2018
-  end_date: Present
-  details: >-
-    I learned the fMRI analysis, established the analytical procedure, and
-    recorded tutoring videos for our research team.
-
-- id: yu-memorable-tourism-experience
-  role: Learning Assistant
-  topic: Research of positive and negative memorable tourism experience
-  supervisor: Prof. Chia-Pin Yu
-  start_date: September 2016
-  end_date: January 2017
-  details: Assisted in data collection and qualitative interviews about the memorable tourism experience.
-
-- id: laplace-xitou-evapotranspiration
-  role: Research Assistant
-  topic: Characteristics of the evapotranspiration of a Japanese cedar forest in Xitou in Taiwan
-  supervisor: Researcher Sophie Laplace
-  start_date: February 2015
-  end_date: January 2016
-  details: Assisted in collecting the evapotranspiration data of tree sap flow in the Xitou experimental forest.
+    Earlier research experience in cognitive neuroscience at National Taiwan
+    University, including fMRI and MEG studies of decision-making under risk,
+    Theory of Mind, and herd behavior, and a hierarchical Bayesian extension of
+    cultural consensus theory to ordinal data (see Publications).

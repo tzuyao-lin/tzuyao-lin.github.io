@@ -10,13 +10,11 @@ read_yaml_file <- function(path) {
 
 expected_counts <- c(
   education = 3L,
-  awards = 5L,
-  research = 9L,
+  awards = 3L,
+  research = 1L,
   teaching = 4L,
-  coursework = 10L,
-  training = 3L,
-  skills = 14L,
-  extracurricular = 7L
+  reviewing = 2L,
+  skills = 13L
 )
 
 profile <- read_yaml_file(file.path(repo_root, "data", "cv", "profile.yml"))

@@ -27,7 +27,7 @@ education_entries(cv$education)
 publication_entries(cv$publications)
 ```
 
-# Conference Presentations
+# Presentations
 
 ```{r}
 #| vitae:
@@ -43,7 +43,23 @@ presentation_entries(cv$presentations)
 award_entries(cv$awards)
 ```
 
-# Research Experience
+# Peer Review
+
+```{r}
+#| vitae:
+#|   style: detailed
+reviewing_entries(cv$reviewing)
+```
+
+# Skills
+
+```{r}
+#| vitae:
+#|   style: detailed
+skill_entries(cv$skills)
+```
+
+# Earlier Research Experience
 
 ```{r}
 #| vitae:
@@ -55,38 +71,6 @@ research_entries(cv$research)
 
 ```{r}
 #| vitae:
-#|   style: brief
+#|   style: detailed
 teaching_entries(cv$teaching)
-```
-
-# Graduate-level Statistics and Modeling Coursework
-
-```{r}
-#| vitae:
-#|   style: brief
-coursework_entries(cv$coursework)
-```
-
-# Training
-
-```{r}
-#| vitae:
-#|   style: detailed
-training_entries(cv$training)
-```
-
-# Skills
-
-```{r}
-#| vitae:
-#|   style: skills
-skill_entries(cv$skills)
-```
-
-# Extracurricular Activities
-
-```{r}
-#| vitae:
-#|   style: detailed
-extracurricular_entries(cv$extracurricular)
 ```
