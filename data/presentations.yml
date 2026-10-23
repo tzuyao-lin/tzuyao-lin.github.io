@@ -1,10 +1,26 @@
+- id: okp-seminar-2026
+  date: 2026-10-06
+  title: "Fixed Raters, Random Selection: A Correlation-Based Framework for Agreement ICCs in Two-Way Mixed-Effects Designs"
+  venue: "OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences"
+  location: "KU Leuven"
+  type: "Oral presentation"
+  slides: assets/slides/OKP_20261006_Agreement%20ICC.pdf
+
+- id: maastricht-colloquia-2026
+  date: 2026-10-05
+  title: "Fixed Raters, Random Selection: A Correlation-Based Framework for Agreement ICCs in Two-Way Mixed-Effects Designs"
+  venue: "Colloquia Methodology and Statistics, Department of Methodology and Statistics"
+  location: "Maastricht University"
+  type: "Oral presentation"
+  slides: assets/slides/colloquium_20261005_Agreement%20ICC.pdf
+
 - id: imps-2026
-  date: 2026-07-21
+  date: 2026-07-22
   title: "Reliability for intensive longitudinal data: A three-level linear mixed-effect autoregressive modeling approach"
   venue: "IMPS 2026 Annual Meeting"
   location: "Seoul, South Korea"
   type: "Oral presentation"
-  slides: assets/slides/2026-07_IMPS_single-item-reliability-ILD.pdf
+  slides: assets/slides/IMPS_20260722_Single-Item%20Reliability%20for%20Intensive%20Longitudinal%20Data.pdf
 
 - id: iops-winter-2025
   date: 2025-12-05
@@ -12,7 +28,7 @@
   venue: "IOPS Winter Conference 2025"
   location: "Utrecht, the Netherlands"
   type: "Oral presentation"
-  slides: assets/slides/2025-12_IOPS-Winter_single-item-reliability-ILD.pdf
+  slides: assets/slides/IOPS_20251205_Single-Item%20Reliability%20for%20Intensive%20Longitudinal%20Data.pdf
 
 - id: okp-seminar-2025
   date: 2025-09-30
@@ -20,7 +36,7 @@
   venue: "OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences"
   location: "Leuven, Belgium"
   type: "Oral presentation"
-  slides: assets/slides/2025-09_OKP-Seminar_reliability-multilevel-ILD.pdf
+  slides: assets/slides/OKP_20250930_Reliability-for-multilevel-ILD.pdf
 
 - id: imps-2024
   date: 2024-07-19
@@ -28,7 +44,7 @@
   venue: "IMPS 2024 Annual Meeting"
   location: "Prague, Czech Republic"
   type: "Oral presentation"
-  slides: assets/slides/2024-07_IMPS_state-space-vs-LMM.pdf
+  slides: assets/slides/IMPS_2024_Tuesday_NBD_Lin.pdf
 
 - id: okp-seminar-2024
   date: 2024-03-12
@@ -36,7 +52,7 @@
   venue: "OKP Research Seminar, Research Group on Quantitative Psychology and Individual Differences"
   location: "Leuven, Belgium"
   type: "Oral presentation"
-  slides: assets/slides/2024-03_OKP-Seminar_reliability-multilevel.pdf
+  slides: assets/slides/OKP_20240312_Reliability%20for%20multilevel%20data.pdf
 
 - id: leuven-statistics-day-2023
   date: 2023-11-23
@@ -44,7 +60,7 @@
   venue: "Leuven Statistics Day: Collaboration"
   location: "Leuven, Belgium"
   type: "Oral presentation"
-  slides: assets/slides/2023-11_Leuven-Statistics-Day_reliability-multilevel.pdf
+  slides: assets/slides/LSD_20231123_Reliability%20for%20multilevel%20data.pdf
 
 - id: mathpsych-2023
   date: 2023-07-21
@@ -52,7 +68,7 @@
   venue: "MathPsych/ICCM/EMPG 2023"
   location: "Amsterdam, the Netherlands"
   type: "Oral presentation"
-  slides: assets/slides/2023-07_MathPsych_luce-krantz-CCT.pdf
+  slides: assets/slides/MathPsych_20230719_GCLK.pdf
 
 - id: eam-2023
   date: 2023-07-13
@@ -60,7 +76,7 @@
   venue: "EAM 2023 Congress of Methodology"
   location: "Ghent, Belgium"
   type: "Oral presentation"
-  slides: assets/slides/2023-07_EAM_reliability-multilevel.pdf
+  slides: assets/slides/EAM_20230713_Reliability%20for%20multilevel%20data.pdf
 
 - id: maastricht-colloquia-2023
   date: 2023-06-20
@@ -68,4 +84,4 @@
   venue: "Colloquia Methodology and Statistics, Department of Methodology and Statistics"
   location: "Maastricht, the Netherlands"
   type: "Oral presentation"
-  slides: assets/slides/2023-06_Maastricht-Colloquia_reliability-multilevel.pdf
+  slides: assets/slides/colloquium_20230620_Reliability%20for%20multilevel%20data.pdf
