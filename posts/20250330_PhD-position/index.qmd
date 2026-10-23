@@ -1,7 +1,7 @@
 ---
 title: "如何尋找歐洲 PhD 職缺：我使用過的網站與資訊管道"
 author: "Tzu-Yao Lin"
-date: 2023-07-23
+date: 2025-03-30
 date-modified: 2026-08-30
 status: "Working note"
 lang: zh-TW
@@ -10,7 +10,7 @@ categories:
   - "academia"
   - "phd"
   - "europe"
-image: find-a-phd.png
+image: find-a-phd.jpg
 ---
 
 歐洲沒有統一的 PhD 招生方式。有些博士生職位會像一般工作一樣公開招聘，附有研究主題、聘僱期間與薪資；有些則要先找到指導教授，再申請博士班或研究經費。因此，只依賴一個網站通常不夠。

@@ -154,21 +154,6 @@ main.content {
   mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.12) 7%, #000 18%, #000 82%, rgba(0, 0, 0, 0.12) 93%, transparent 100%);
 }
 
-.trajectory-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-  opacity: 0.4;
-  filter: saturate(0.42) contrast(0.9);
-  mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 58% 57%, #000 50%, rgba(0, 0, 0, 0.72) 75%, transparent 100%);
-  mask-image: radial-gradient(ellipse 78% 82% at 58% 57%, #000 50%, rgba(0, 0, 0, 0.72) 75%, transparent 100%);
-  transform: scale(1.04);
-}
-
 .trajectory-particles {
   position: absolute;
   inset: 0;
@@ -181,12 +166,6 @@ main.content {
 body.quarto-dark {
   --home-text-gradient: linear-gradient(105deg, #79c2b9 0%, #62c3cd 55%, #9ad5d8 100%);
   --home-secondary-bg: rgba(23, 28, 31, 0.74);
-}
-
-body.quarto-dark .trajectory-layer {
-  filter: saturate(0.42) brightness(1.65) contrast(0.72);
-  mix-blend-mode: screen;
-  opacity: 0.3;
 }
 
 body.quarto-dark .trajectory-particles {
@@ -210,12 +189,8 @@ body.quarto-dark .hero-button-secondary {
   }
 
   .hero-visual {
-    inset: 12% -26% -2% -28%;
+    inset: 22% -6% -2% -6%;
     opacity: 0.8;
-  }
-
-  .trajectory-layer {
-    object-position: 62% bottom;
   }
 }
 
@@ -257,7 +232,7 @@ body.quarto-dark .hero-button-secondary {
   }
 
   .hero-visual {
-    inset: 24% -70% -2% -45%;
+    inset: 38% -4% -2% -4%;
     opacity: 0.62;
   }
 }

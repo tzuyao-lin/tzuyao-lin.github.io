@@ -1,0 +1,16 @@
+---
+title: "Page not found"
+page-layout: full
+title-block-banner: false
+---
+
+::: {.page-intro}
+The page you are looking for does not exist or may have moved.
+:::
+
+::: {.not-found-links}
+- [Home](/index.html)
+- [About me](/about.html)
+- [Posts](/blog.html)
+- [Research](/publication.html)
+:::

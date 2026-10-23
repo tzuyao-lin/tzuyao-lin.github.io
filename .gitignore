@@ -17,3 +17,6 @@
 
 # Local Quarto Vitae build artifacts
 /cv/.quarto/
+
+# Brainstorming companion scratch files
+.superpowers/

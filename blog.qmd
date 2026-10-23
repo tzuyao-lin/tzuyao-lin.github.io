@@ -11,6 +11,7 @@ listing:
     - date
     - categories
   categories: true
+  feed: true
   sort-ui: true
   filter-ui: true
 page-layout: full
