@@ -3,15 +3,17 @@
 The website's Quarto project renders the full academic CV with Quarto Vitae
 and the AwesomeCV extension in this directory.
 
-From the repository root, run:
+The CV is not part of the default site render, so `quarto render` does not
+compile it. After changing the CV, its data, or the AwesomeCV extension, rebuild
+it from the repository root:
 
 ```sh
-quarto render
+quarto render cv/academic-cv.qmd
 ```
 
-This builds the site and writes the CV directly to `docs/cv/TzuYaoLin_CV.pdf`
-for GitHub Pages. To render only the CV, run
-`quarto render cv/academic-cv.qmd` from the repository root. The same project
+This writes `cv/TzuYaoLin_CV.pdf`, which is tracked in git. Commit it, then run
+`quarto render` so the site copies it to `docs/cv/TzuYaoLin_CV.pdf` for GitHub
+Pages. The footer date is the render day (`date: today`). The same project
 `renv` library is used for the site and CV.
 
 Publication and presentation records come from `../data/publications.yml` and

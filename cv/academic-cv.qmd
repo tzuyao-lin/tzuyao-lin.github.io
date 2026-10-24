@@ -1,7 +1,7 @@
 ---
 format: awesomecv-pdf
 output-file: TzuYaoLin_CV.pdf
-date: last-modified
+date: today
 ---
 
 ```{r}

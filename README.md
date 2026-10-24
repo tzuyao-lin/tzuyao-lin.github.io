@@ -39,10 +39,29 @@ the website:
 quarto render
 ```
 
-A full render builds the HTML pages and `cv/academic-cv.qmd` in one Quarto
-project. The PDF is written directly to `docs/cv/TzuYaoLin_CV.pdf`, where both
-website CV links point. To rebuild just the CV, run
-`quarto render cv/academic-cv.qmd` from the repository root.
+A full render builds the HTML pages only; it does not compile the CV. It copies
+the tracked `cv/TzuYaoLin_CV.pdf` into `docs/cv/`, where both website CV links
+point. After changing `data/cv/`, `data/publications.yml`,
+`data/presentations.yml`, or `cv/`, rebuild the CV with
+`quarto render cv/academic-cv.qmd`, commit the new `cv/TzuYaoLin_CV.pdf`, and
+run `quarto render` to publish it to `docs/`. Otherwise the published PDF goes
+stale.
+
+### Setting up a new worktree
+
+Each worktree has its own `renv/library/`, linked from the shared global renv
+cache. Rendering the site needs no R packages, because the analytic posts are
+frozen (`_freeze/`). Rendering the CV needs a small set:
+
+```r
+renv::restore(packages = c("knitr", "rmarkdown", "yaml", "dplyr", "tibble"))
+```
+
+This installs those packages and their dependencies (36 in total) at the
+versions in `renv.lock`, normally from the cache without downloading. Run a full
+`renv::restore()` only when re-executing the analytic posts, which also need
+their restricted datasets. Note that rendering a post or `posts/` directly
+(rather than the whole project) re-executes its code.
 
 To preview local changes:
 
