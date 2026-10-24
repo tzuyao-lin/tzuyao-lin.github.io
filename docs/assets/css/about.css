@@ -6,6 +6,14 @@ main.content {
 
 .quarto-about-solana .about-image {
   aspect-ratio: 4 / 5;
+  /* Feather into either theme's background while keeping the face sharp. */
+  --portrait-edge-mask:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: var(--portrait-edge-mask);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--portrait-edge-mask);
+  mask-composite: intersect;
 }
 
 main.content > section.level2 {
