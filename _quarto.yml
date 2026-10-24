@@ -4,7 +4,9 @@ project:
   render:
     - "*.qmd"
     - "posts/"
-    - cv/academic-cv.qmd
+    - "!cv/"
+  resources:
+    - cv/TzuYaoLin_CV.pdf
 
 execute:
   freeze: true
