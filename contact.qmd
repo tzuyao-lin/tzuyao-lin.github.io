@@ -1,0 +1,30 @@
+---
+title: "Contact"
+description-meta: "Contact Tzu-Yao Lin for talks, collaborations, and questions about reliability and measurement."
+page-layout: full
+title-block-banner: false
+---
+
+::: {.page-intro}
+I am happy to hear about collaborations, talk invitations, and questions about my research.
+:::
+
+## Get in touch
+
+Email is the best way to reach me:
+
+::: {.pill-links}
+- [<i class="bi bi-envelope-at-fill"></i> tzu-yao.lin@kuleuven.be](mailto:tzu-yao.lin@kuleuven.be)
+:::
+
+I can also be reached at [tzu-yao.lin@maastrichtuniversity.nl](mailto:tzu-yao.lin@maastrichtuniversity.nl). I am based between Leuven and Maastricht (Central European Time).
+
+## Collaboration and talks 
+
+I am glad to speak at seminars, workshops, and reading groups on:
+
+- Construction and measurement of reliability and agreement
+- Longitudinal and multilevel modeling
+- Mathematical and computational models of judgment and decision-making
+
+Past talks and slides are listed under [Presentations](publication.qmd#presentations).

@@ -17,7 +17,13 @@ function renderTargets(projectDir) {
 test("website render includes the site pages but not the CV", () => {
   const targets = renderTargets(repoRoot);
 
-  for (const page of ["index.qmd", "about.qmd", "blog.qmd", "publication.qmd"]) {
+  for (const page of [
+    "index.qmd",
+    "about.qmd",
+    "blog.qmd",
+    "publication.qmd",
+    "contact.qmd",
+  ]) {
     assert.ok(targets.includes(page), `missing website page: ${page}`);
   }
   assert.ok(targets.some((target) => target.startsWith(`posts${path.sep}`)));
