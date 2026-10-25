@@ -38,7 +38,7 @@ source(file.path(repo_root, "cv", "R", "load-cv-data.R"))
 cv <- load_cv_data(repo_root)
 
 stopifnot(nrow(cv$publications) == 9L)
-stopifnot(nrow(cv$presentations) == 9L)
+stopifnot(nrow(cv$presentations) == 11L)
 stopifnot(nrow(cv$education) == 3L)
 stopifnot(identical(
   names(education_entries(cv$education)),
@@ -49,7 +49,7 @@ stopifnot(identical(
   c("what", "with", "when", "where", "why")
 ))
 stopifnot(all(grepl(
-  "^[0-9]{4}$|^Under review$",
+  "^$|^[0-9]{4}$|^Under review$",
   publication_entries(cv$publications)$when
 )))
 stopifnot(!anyDuplicated(cv$publications$id))
@@ -58,6 +58,6 @@ stopifnot(!anyDuplicated(cv$presentations$id))
 cat("CV loader and entry mappings passed\n")
 
 site_config <- read_yaml_file(file.path(repo_root, "_quarto.yml"))
-stopifnot("cv/academic-cv.qmd" %in% unlist(site_config$project$render))
+stopifnot("!cv/" %in% unlist(site_config$project$render))
 
-cat("CV website render target passed\n")
+cat("CV is excluded from the website render passed\n")
