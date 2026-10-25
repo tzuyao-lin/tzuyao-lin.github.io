@@ -2,7 +2,7 @@
 title: "Tzu-Yao Lin"
 page-layout: full
 description-meta: "About Tzu-Yao Lin, a joint PhD candidate at KU Leuven and Maastricht University working on reliability in multilevel and intensive longitudinal data."
-image: assets/images/profile-painted-v2.jpg
+image: assets/images/profile-painted-v3-flow.png
 about:
   id: profile
   template: solana
@@ -26,6 +26,9 @@ about:
       text: Email
       href: mailto:tzu-yao.lin@maastrichtuniversity.nl
 css: assets/css/about.css
+include-after-body:
+  text: |
+    <script src="assets/js/about-portrait.js"></script>
 ---
 
 ::: {#profile}
