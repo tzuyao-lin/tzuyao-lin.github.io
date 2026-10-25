@@ -148,7 +148,7 @@ aboutme: >-
 - id: joint-phd-ku-leuven-maastricht
   degree: Joint PhD candidate
   institution: KU Leuven and Maastricht University
-  location: Leuven, Belgium and Maastricht, the Netherlands
+  location: Leuven, Belgium and Maastricht, Netherlands
   start_date: 2022
   end_date: Present
   details: >-
