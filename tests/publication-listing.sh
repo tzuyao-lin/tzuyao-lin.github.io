@@ -286,7 +286,7 @@ inline_presentation_meta_count="$(xmllint --html --xpath \
 
 rg -q 'Seoul, South Korea' "$page" || \
   fail "IMPS 2026 location should identify Seoul"
-rg -q 'Amsterdam, the Netherlands' "$page" || \
+rg -q 'Amsterdam, Netherlands' "$page" || \
   fail "MathPsych 2023 location should identify Amsterdam"
 rg -q 'Prague, Czech Republic' "$page" || \
   fail "IMPS 2024 location should identify Prague"

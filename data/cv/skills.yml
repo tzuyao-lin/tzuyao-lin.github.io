@@ -32,8 +32,8 @@
   category: Programming
   skill: Linux
 - id: tools-git-github
-  category: Tools
+  category: Programming
   skill: Git and GitHub
 - id: tools-latex
-  category: Tools
+  category: Programming
   skill: LaTeX

@@ -103,7 +103,6 @@ education_entries <- function(x) {
 publication_entries <- function(x) {
   n <- nrow(x)
   year <- as_text(x$year, n)
-  when <- ifelse(x$status == "under-review", "Under review", year)
   doi <- as_text(x$doi, n)
   preprint <- as_text(x$preprint, n)
   url <- ifelse(nzchar(doi), paste0("https://doi.org/", doi), preprint)
@@ -111,7 +110,7 @@ publication_entries <- function(x) {
   tibble::tibble(
     what = gsub("Lin, T.-Y.", "**Lin, T.-Y.**", x$authors, fixed = TRUE),
     with = title,
-    when = when,
+    when = year,
     where = x$venue,
     why = ""
   )

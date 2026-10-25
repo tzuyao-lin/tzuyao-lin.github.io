@@ -1,17 +1,3 @@
-- id: lin-tuerlinckx-vanbelle-aicc
-  status: under-review
-  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
-  title: "An intraclass correlation coefficient is a correlation: A tutorial"
-  venue: "Manuscript under review"
-  preprint: "https://doi.org/10.31234/osf.io/2xs9k_v1"
-  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (under review). An intraclass correlation coefficient is a correlation: A tutorial."
-  bibtex: |
-    @unpublished{lin_aicc_tutorial,
-      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
-      title = {An intraclass correlation coefficient is a correlation: A tutorial},
-      note = {Manuscript under review}
-    }
-
 - id: lin-tuerlinckx-vanbelle-fixed-raters
   status: in-preparation
   authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
@@ -36,6 +22,20 @@
       author = {Nieh, Hsi-Ping and Lo, Chungwan and Lin, Tzu-Yao},
       title = {Joint Trajectories of Screen Time, Sleep Duration, and Sweets Consumption in Early Childhood and Developmental Outcomes at Age 7: A Population-Based Prospective Longitudinal Study},
       note = {Manuscript in preparation}
+    }
+
+- id: lin-tuerlinckx-vanbelle-aicc
+  status: under-review
+  authors: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S."
+  title: "An intraclass correlation coefficient is a correlation: A tutorial"
+  venue: "Manuscript under review"
+  preprint: "https://doi.org/10.31234/osf.io/2xs9k_v1"
+  apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (under review). An intraclass correlation coefficient is a correlation: A tutorial."
+  bibtex: |
+    @unpublished{lin_aicc_tutorial,
+      author = {Lin, Tzu-Yao and Tuerlinckx, Francis and Vanbelle, Sophie},
+      title = {An intraclass correlation coefficient is a correlation: A tutorial},
+      note = {Manuscript under review}
     }
 
 - id: lin-2026-single-item
@@ -63,16 +63,18 @@
   year: 2026
   authors: "Lin, T.-Y., & Hsu, Y.-F."
   title: "Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data"
-  venue: "Journal of Mathematical Psychology"
+  venue: "Journal of Mathematical Psychology, 129, 102990"
   doi: "10.1016/j.jmp.2026.102990"
   abstract: |
     Cultural consensus theory traditionally models dichotomous responses when the culturally correct answers are unknown. This study extends the general Condorcet model with Luce–Krantz threshold theory so that respondents can express varying confidence through ordinal categories. The resulting hierarchical Bayesian model estimates consensus truths, item difficulty, informant competence, guessing bias, and the number of latent cultures.
-  apa: "Lin, T.-Y., & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. Journal of Mathematical Psychology. https://doi.org/10.1016/j.jmp.2026.102990"
+  apa: "Lin, T.-Y., & Hsu, Y.-F. (2026). Incorporating the Luce–Krantz threshold model into cultural consensus theory for ordinal categorical data. Journal of Mathematical Psychology, 129, 102990. https://doi.org/10.1016/j.jmp.2026.102990"
   bibtex: |
     @article{lin2026gclk,
       author = {Lin, Tzu-Yao and Hsu, Yung-Fong},
       title = {Incorporating the Luce--Krantz Threshold Model into Cultural Consensus Theory for Ordinal Categorical Data},
       journal = {Journal of Mathematical Psychology},
+      volume = {129},
+      pages = {102990},
       year = {2026},
       doi = {10.1016/j.jmp.2026.102990}
     }
