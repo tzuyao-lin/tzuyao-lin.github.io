@@ -37,7 +37,7 @@ cat("CV YAML counts and IDs passed\n")
 source(file.path(repo_root, "cv", "R", "load-cv-data.R"))
 cv <- load_cv_data(repo_root)
 
-stopifnot(nrow(cv$publications) == 7L)
+stopifnot(nrow(cv$publications) == 9L)
 stopifnot(nrow(cv$presentations) == 9L)
 stopifnot(nrow(cv$education) == 3L)
 stopifnot(identical(
