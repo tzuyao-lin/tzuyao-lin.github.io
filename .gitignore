@@ -20,3 +20,6 @@
 
 # Brainstorming companion scratch files
 .superpowers/
+
+# Generated website output; built and published by GitHub Actions
+/docs/
