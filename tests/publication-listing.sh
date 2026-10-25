@@ -3,7 +3,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-test_root="$(mktemp -d /private/tmp/tzuyaolin-publication-listing.XXXXXX)"
+test_root="$(mktemp -d "${TMPDIR:-/tmp}/tzuyaolin-publication-listing.XXXXXX")"
 trap 'rm -rf "$test_root"' EXIT
 
 fail() {
@@ -52,9 +52,9 @@ rsync -a \
 
 if ! (
   cd "$test_root"
-  quarto render publication.qmd >/private/tmp/tzuyaolin-publication-listing-render.log 2>&1
+  quarto render publication.qmd >"${TMPDIR:-/tmp}/tzuyaolin-publication-listing-render.log" 2>&1
 ); then
-  sed -n '1,120p' /private/tmp/tzuyaolin-publication-listing-render.log
+  sed -n "1,120p" "${TMPDIR:-/tmp}/tzuyaolin-publication-listing-render.log"
   fail "isolated publication render failed"
 fi
 

@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  QUARTO_VERSION: 1.10.18
+  R_VERSION: 4.6.1
+  RENV_PATHS_ROOT: ~/.cache/R/renv
+  CV_PACKAGES: knitr,rmarkdown,yaml,dplyr,tibble
+
+jobs:
+  site:
+    name: Tests and site render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: ${{ env.QUARTO_VERSION }}
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ env.R_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install system tools
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Cache renv packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: renv-${{ runner.os }}-${{ hashFiles('renv.lock') }}
+
+      - name: Restore the CV package set
+        run: |
+          Rscript -e 'renv::restore(packages = strsplit(Sys.getenv("CV_PACKAGES"), ",")[[1]], prompt = FALSE)'
+
+      - name: JavaScript tests
+        run: node --test tests/*.test.mjs
+
+      - name: Publication listing render test
+        run: bash tests/publication-listing.sh
+
+      - name: CV data tests
+        run: Rscript cv/tests/test-data.R .
+
+      - name: Render the website
+        run: quarto render
+
+  cv-pdf:
+    name: CV PDF is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect CV-related changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            cv:
+              - 'cv/**'
+              - 'data/cv/**'
+              - 'data/publications.yml'
+              - 'data/presentations.yml'
+              - 'scripts/check-cv-pdf.sh'
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        if: steps.changes.outputs.cv == 'true'
+        with:
+          version: ${{ env.QUARTO_VERSION }}
+          tinytex: true
+
+      - uses: r-lib/actions/setup-r@v2
+        if: steps.changes.outputs.cv == 'true'
+        with:
+          r-version: ${{ env.R_VERSION }}
+
+      - name: Cache renv packages
+        if: steps.changes.outputs.cv == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: renv-${{ runner.os }}-${{ hashFiles('renv.lock') }}
+
+      - name: Restore the CV package set
+        if: steps.changes.outputs.cv == 'true'
+        run: |
+          Rscript -e 'renv::restore(packages = strsplit(Sys.getenv("CV_PACKAGES"), ",")[[1]], prompt = FALSE)'
+
+      - name: Install poppler
+        if: steps.changes.outputs.cv == 'true'
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Compare the tracked PDF with a fresh render
+        if: steps.changes.outputs.cv == 'true'
+        run: bash scripts/check-cv-pdf.sh

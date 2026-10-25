@@ -19,7 +19,10 @@ The primary language is English, while individual posts may also be published in
 - `_freeze/`: tracked Quarto computation results used to render analytical
   posts without re-running restricted-data analyses
 - `renv/` and `renv.lock`: reproducible R environment metadata
-- `docs/`: generated website published through GitHub Pages
+- `docs/`: generated website output, ignored by git and built and published
+  by GitHub Actions
+- `scripts/`: helper scripts used by CI
+- `.github/workflows/`: CI checks and GitHub Pages deployment
 
 ## Build locally
 
@@ -43,9 +46,10 @@ A full render builds the HTML pages only; it does not compile the CV. It copies
 the tracked `cv/TzuYaoLin_CV.pdf` into `docs/cv/`, where both website CV links
 point. After changing `data/cv/`, `data/publications.yml`,
 `data/presentations.yml`, or `cv/`, rebuild the CV with
-`quarto render cv/academic-cv.qmd`, commit the new `cv/TzuYaoLin_CV.pdf`, and
-run `quarto render` to publish it to `docs/`. Otherwise the published PDF goes
-stale.
+`quarto render cv/academic-cv.qmd` and commit the new `cv/TzuYaoLin_CV.pdf`.
+The CI `cv-pdf` job re-renders the CV on such changes and fails the pull
+request if the tracked PDF's text differs (`scripts/check-cv-pdf.sh`, which
+ignores the date footer), so the published PDF cannot go stale.
 
 ### Setting up a new worktree
 
@@ -69,7 +73,10 @@ To preview local changes:
 quarto preview
 ```
 
-The rendered website is written to `docs/`. GitHub Pages currently publishes the `docs/` directory from the `main` branch.
+The rendered website is written to `docs/`, which is not tracked. Do not commit
+it: the `Deploy` workflow renders the site on every push to `main` and publishes
+it through GitHub Pages (Settings → Pages → Source: GitHub Actions). The `CI`
+workflow runs the tests and a full render on every pull request.
 
 When an R package is deliberately installed or updated, verify the site and
 then record the new environment:
