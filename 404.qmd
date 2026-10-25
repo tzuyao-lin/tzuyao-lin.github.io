@@ -13,4 +13,5 @@ The page you are looking for does not exist or may have moved.
 - [About me](/about.html)
 - [Posts](/blog.html)
 - [Research](/publication.html)
+- [Contact](/contact.html)
 :::

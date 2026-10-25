@@ -30,6 +30,8 @@ website:
         text: "Posts"
       - href: publication.qmd
         text: "Research"
+      - href: contact.qmd
+        text: "Contact"
     right:
       - icon: github
         href: https://github.com/tzuyao-lin

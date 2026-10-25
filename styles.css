@@ -287,7 +287,8 @@ body.quarto-light .navbar-toggler-icon {
   text-transform: uppercase;
 }
 
-.not-found-links ul {
+.not-found-links ul,
+.pill-links ul {
   list-style: none;
   padding-left: 0;
   display: flex;
@@ -295,7 +296,8 @@ body.quarto-light .navbar-toggler-icon {
   gap: 0.75rem;
 }
 
-.not-found-links a {
+.not-found-links a,
+.pill-links a {
   display: inline-block;
   padding: 0.45rem 1rem;
   border: 1px solid currentColor;
