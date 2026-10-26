@@ -1,19 +1,11 @@
 <%
-/* Minimal renderer for publications.yml. */
-
-const orderedItems = items.slice().sort(function(a, b) {
-  const rank = { "under-review": 2, "in-preparation": 1 };
-  const aRank = rank[a.status] || 0;
-  const bRank = rank[b.status] || 0;
-  if (aRank !== bRank) return bRank - aRank;
-  return Number(b.year || 0) - Number(a.year || 0);
-});
+/* Minimal renderer for publications.yml. Entries render in file order. */
 %>
 
 <div class="publication-listing list">
 
 <% /* Keep rendered HTML left-aligned so Pandoc does not treat it as a code block. */ %>
-<% orderedItems.forEach(function(item) {
+<% items.forEach(function(item) {
   const statusLabels = { "under-review": "Under review", "in-preparation": "In preparation" };
   const yearLabel = statusLabels[item.status] || String(item.year || "");
   const encodedBibtex = encodeURIComponent(item.bibtex || "");
