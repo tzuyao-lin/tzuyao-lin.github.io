@@ -102,11 +102,11 @@ title_count="$(xmllint --html --xpath \
 
 rg -q 'class="publication-entry-year"' "$page" || \
   fail "publication year metadata is missing"
-review_label="$(xmllint --html --xpath \
-  'normalize-space(string((//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry-year ")])[1]))' \
+review_count="$(xmllint --html --xpath \
+  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry-year ")][normalize-space(.)="Under review"])' \
   "$page" 2>/dev/null || true)"
-[[ "$review_label" == "Under review" ]] || \
-  fail "expected the review status to use sentence case, got: $review_label"
+[[ "$review_count" == "1" ]] || \
+  fail "expected one entry labelled sentence-case 'Under review', got: $review_count"
 if rg -q 'publication-year-group|publication-year-heading|publication-card' "$page"; then
   fail "publication output should be a flat list without year groups or cards"
 fi
