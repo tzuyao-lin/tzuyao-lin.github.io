@@ -130,6 +130,7 @@
   title: "Reliability for multilevel data: A correlation approach"
   venue: "Psychological Methods"
   doi: "10.1037/met0000738"
+  post: "posts/20261102_multilevel-reliability/"
   abstract: |
     This article proposes reliability coefficients for multilevel data based on the expected correlation between repeated measurements. The approach is compared with existing generalizability-theory definitions across common nested designs, clarifying why competing definitions can produce inconsistent cluster-level reliability estimates.
   apa: "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S. (2025). Reliability for multilevel data: A correlation approach. Psychological Methods. https://doi.org/10.1037/met0000738"

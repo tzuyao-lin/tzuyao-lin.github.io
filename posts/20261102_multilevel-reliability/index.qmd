@@ -1,0 +1,46 @@
+---
+title: "Reliability for Multilevel Data: A Correlation Approach"
+author: "Tzu-Yao Lin"
+date: 2026-11-02
+description: "Why two generalizability-theory definitions of cluster-level reliability disagree for the same design, and how defining reliability as a correlation between replicates resolves it."
+categories:
+  - "psychometrics"
+  - "reliability"
+  - "multilevel"
+bibliography: bibliography.bib
+csl: apa.csl
+---
+
+Reliability asks how consistent a measurement instrument is when we repeat it, whether by retesting or by using different raters. In classical test theory, a reliability coefficient is defined as the proportion of observed-score variance that reflects true differences between persons, that is, the true-score variance. Alternatively, under parallel-measurement assumptions, it also equals the correlation between two parallel measurements.
+
+Things get complicated once data are nested. Think of students within schools, each rated by one or more raters. The rating design can take different forms. Raters may be crossed with students and schools, so that every rater scores every student in every school. Or raters may be nested within students, so that each student is scored by their own set of raters and every rater scores only one student. Then, we want reliability at *each* level: how well can we distinguish students (**person-level reliability**), and how well can we distinguish schools (**cluster-level reliability**) against the error/noise variance?
+
+Two recent papers, @hove2022 and @schoenbrodt2022, answer this using generalizability theory. Their approach is variance partitioning: the observed-score variance is decomposed into components for persons, clusters, raters, and their interactions, and each reliability coefficient is a ratio of selected components. Yet for the *same design and model*, their cluster-level reliabilities differ. For example, in a Person(Cluster) × Rater design, both keep cluster variance as the target signal. For absolute decisions, Schönbrodt et al. put all the remaining components in the denominator, including person-level variance and measurement error. While ten Hove et al. exclude both. A practitioner cannot tell which to report, or why they disagree.
+
+# The correlation approach
+
+In our paper, we go back to the simplest definition: reliability is the **correlation between two replicates**. Three rules then determine every coefficient:
+
+1. **Relative vs. absolute.** For relative decisions, condition on the raters, so rater leniency cannot matter. For absolute decisions, do not.
+2. **Which level we target.** For person-level reliability, condition on the cluster. For cluster-level reliability, the question is whether person-to-person variation within a cluster counts as noise. If it does, we get *manifest* cluster-level reliability, whose absolute version matches the coefficient from Schönbrodt et al.'s approach. If we instead fix the same person and let the cluster vary, we get *latent* cluster-level reliability. The latent version is larger, but not automatically better: it fits when the cluster construct should not depend on which persons happen to be in it.
+3. **Single vs. average scores.** The rules above describe the correlation between two single scores. When scores are averaged over raters (or persons), the correlation is taken between two averages, and the corresponding variance components are divided by the number of raters (or persons) averaged.
+
+For the Person(Cluster) × Rater design, @tbl-summary writes the six single-score coefficients as correlations. Here $Y_{i(k)j}$ is the score of person $i$ in cluster $k$ given by rater $j$, and the terms after $\mid$ are held fixed.
+
+| | Person-level | Manifest cluster-level | Latent cluster-level |
+|:--|:--:|:--:|:--:|
+| Relative reliability | $\operatorname{Cor}(Y_{i(k)j}, Y_{i(k)j'} \mid k, j, j')$ | $\operatorname{Cor}(Y_{i(k)j}, Y_{i'(k)j'} \mid j, j')$ | $\operatorname{Cor}(Y_{i(k)j}, Y_{i(k)j'} \mid i(k), j, j')$ |
+| Absolute reliability | $\operatorname{Cor}(Y_{i(k)j}, Y_{i(k)j'} \mid k)$ | $\operatorname{Cor}(Y_{i(k)j}, Y_{i'(k)j'})$ | $\operatorname{Cor}(Y_{i(k)j}, Y_{i(k)j'} \mid i(k))$ |
+
+: The correlation representation of person-level and cluster-level reliabilities. {#tbl-summary}
+
+Reading across a row, the only change is what we hold fixed. The person-level and latent cluster-level coefficients correlate two scores of the *same* person, with the cluster or the person fixed respectively. The manifest cluster-level coefficient correlates scores of two *different* persons, $i$ and $i'$, from the same random cluster.
+
+
+# Why the differences matter
+
+The gaps are not cosmetic. When raters are nested within persons, applying ten Hove et al.'s exclusion rule leaves $\sigma^2_C / \sigma^2_C = 1$, so their cluster-level coefficient is uninformative. The correlation approach still gives meaningful values: $\sigma^2_C / (\sigma^2_C + \sigma^2_{S(C)} + \sigma^2_\epsilon)$ for manifest reliability, and $\sigma^2_C / (\sigma^2_C + \sigma^2_\epsilon)$ for latent reliability.
+
+Because every coefficient is a correlation, the same recipe can be easily extended to complicated designs. Venn diagrams show which variance components sit in the numerator and which only in the denominator, so the differences between definitions can be read off at a glance. For the full derivations, the Venn diagram of every coefficient, and the average-score formulas, please see our paper, @lin2025.
+
+# References
