@@ -188,14 +188,16 @@ rg -q 'href="https://doi.org/10.31234/osf.io/2xs9k_v1"' "$page" || \
 post_count="$(xmllint --html --xpath \
   'count(//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")])' \
   "$page" 2>/dev/null || true)"
-[[ "$post_count" == "2" ]] || fail "expected 2 related post links, got $post_count"
+[[ "$post_count" == "3" ]] || fail "expected 3 related post links, got $post_count"
 rg -q 'href="posts/20240918_CDP/"' "$page" || \
   fail "coffee and polygenic-risk related post is missing"
+rg -q 'href="posts/20261102_multilevel-reliability/"' "$page" || \
+  fail "multilevel reliability related post is missing"
 
 post_last_count="$(xmllint --html --xpath \
   'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")][.//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")]]/*[last()][self::a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")] or self::p[a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")]]])' \
   "$page" 2>/dev/null || true)"
-[[ "$post_last_count" == "2" ]] || \
+[[ "$post_last_count" == "3" ]] || \
   fail "related post links should be the final action, got $post_last_count"
 
 inline_abstract_count="$(xmllint --html --xpath \
