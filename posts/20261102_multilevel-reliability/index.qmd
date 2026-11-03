@@ -8,7 +8,6 @@ categories:
   - "reliability"
   - "multilevel"
 bibliography: bibliography.bib
-csl: apa.csl
 image: RM.jpg
 image-alt: "Three clusters, each containing two persons, with solid and hollow circles joined by double-headed arrows representing replicate measurements at cluster and person levels."
 ---
