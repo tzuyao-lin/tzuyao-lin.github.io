@@ -9,11 +9,13 @@ categories:
   - "multilevel"
 bibliography: bibliography.bib
 csl: apa.csl
+image: RM.jpg
+image-alt: "Three clusters, each containing two persons, with solid and hollow circles joined by double-headed arrows representing replicate measurements at cluster and person levels."
 ---
 
 Reliability asks how consistent a measurement instrument is when we repeat it, whether by retesting or by using different raters. In classical test theory, a reliability coefficient is defined as the proportion of observed-score variance that reflects true differences between persons, that is, the true-score variance. Alternatively, under parallel-measurement assumptions, it also equals the correlation between two parallel measurements.
 
-Things get complicated once data are nested. Think of students within schools, each rated by one or more raters. The rating design can take different forms. Raters may be crossed with students and schools, so that every rater scores every student in every school. Or raters may be nested within students, so that each student is scored by their own set of raters and every rater scores only one student. Then, we want reliability at *each* level: how well can we distinguish students (**person-level reliability**), and how well can we distinguish schools (**cluster-level reliability**) against the error/noise variance?
+Things get complicated once data are nested. Think of students within schools, each rated by one or more raters. The rating design can take different forms. Raters may be crossed with students and schools, so that every rater scores every student in every school. Or raters may be nested within students, so that each student is scored by their own set of raters and every rater scores only one student. Then, we want reliability at *each* level: how well can we distinguish students (**person-level reliability**), and how well can we distinguish schools (**cluster-level reliability**) against the error/noise?
 
 Two recent papers, @hove2022 and @schoenbrodt2022, answer this using generalizability theory. Their approach is variance partitioning: the observed-score variance is decomposed into components for persons, clusters, raters, and their interactions, and each reliability coefficient is a ratio of selected components. Yet for the *same design and model*, their cluster-level reliabilities differ. For example, in a Person(Cluster) × Rater design, both keep cluster variance as the target signal. For absolute decisions, Schönbrodt et al. put all the remaining components in the denominator, including person-level variance and measurement error. While ten Hove et al. exclude both. A practitioner cannot tell which to report, or why they disagree.
 
