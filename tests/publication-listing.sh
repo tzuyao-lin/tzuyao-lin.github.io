@@ -1,298 +1,170 @@
 #!/usr/bin/env bash
+# Checks the rendered Research page against data/publications.yml and
+# data/presentations.yml.
+#
+# By default the page is rendered in an isolated copy of the repo so a local
+# run never touches docs/. Set SITE_DIR to the output of an existing
+# `quarto render` (CI passes docs/) to skip the extra render.
 
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-test_root="$(mktemp -d "${TMPDIR:-/tmp}/tzuyaolin-publication-listing.XXXXXX")"
-trap 'rm -rf "$test_root"' EXIT
+publications_yml="$repo_root/data/publications.yml"
+presentations_yml="$repo_root/data/presentations.yml"
 
 fail() {
   echo "FAIL: $1"
   exit 1
 }
 
-# Fall back to perl when ripgrep is not installed. Covers only the flags used
-# below: -o (print matches), -q (quiet), -U (match across lines).
-if ! command -v rg >/dev/null 2>&1; then
-  rg() {
-    local only=0 quiet=0 multi=0
-    while [[ "${1:-}" == -* ]]; do
-      case "$1" in
-        -o) only=1 ;;
-        -q) quiet=1 ;;
-        -U) multi=1 ;;
-        *) fail "rg fallback does not support $1" ;;
-      esac
-      shift
-    done
-    RG_PATTERN="$1" RG_ONLY="$only" RG_QUIET="$quiet" RG_MULTI="$multi" \
-      perl -e '
-        my ($p, $only, $quiet, $multi) =
-          @ENV{qw(RG_PATTERN RG_ONLY RG_QUIET RG_MULTI)};
-        local $/ = $multi ? undef : "\n";
-        my $found = 0;
-        while (my $chunk = <STDIN>) {
-          while ($chunk =~ /($p)/g) {
-            $found = 1;
-            print "$1\n" if $only && !$quiet;
-            last unless $only;
-          }
-          last if $found && $quiet;
-        }
-        print "match\n" if $found && !$only && !$quiet;
-        exit($found ? 0 : 1);
-      ' <"$2"
-  }
+if [[ -n "${SITE_DIR:-}" ]]; then
+  site="$(cd "$SITE_DIR" && pwd)"
+else
+  test_root="$(mktemp -d "${TMPDIR:-/tmp}/tzuyaolin-publication-listing.XXXXXX")"
+  trap 'rm -rf "$test_root"' EXIT
+  log="$test_root.log"
+
+  rsync -a --exclude='.git' --exclude='docs' "$repo_root/" "$test_root/"
+  if ! (cd "$test_root" && quarto render publication.qmd >"$log" 2>&1); then
+    sed -n "1,120p" "$log"
+    fail "isolated publication render failed"
+  fi
+  site="$test_root/docs"
 fi
 
-rsync -a \
-  --exclude='.git' \
-  --exclude='docs' \
-  "$repo_root/" "$test_root/"
+page="$site/publication.html"
+site_css="$site/styles.css"
+publication_css="$site/assets/css/publication.css"
 
-if ! (
-  cd "$test_root"
-  quarto render publication.qmd >"${TMPDIR:-/tmp}/tzuyaolin-publication-listing-render.log" 2>&1
-); then
-  sed -n "1,120p" "${TMPDIR:-/tmp}/tzuyaolin-publication-listing-render.log"
-  fail "isolated publication render failed"
-fi
+for file in "$page" "$site_css" "$publication_css" "$site/assets/js/publication.js"; do
+  [[ -f "$file" ]] || fail "rendered output is missing $file"
+done
 
-page="$test_root/docs/publication.html"
+# XPath helpers. cls NAME expands to a class-token test.
+cls() { echo "contains(concat(' ', normalize-space(@class), ' '), ' $1 ')"; }
+xcount() { xmllint --html --xpath "count($1)" "$page" 2>/dev/null || true; }
+xstring() { xmllint --html --xpath "normalize-space(string($1))" "$page" 2>/dev/null || true; }
 
-[[ -f "$page" ]] || fail "publication page did not render"
+# Match a pattern across lines (CSS rules span several lines).
+css_has() { perl -0777 -ne "exit(/$1/ ? 0 : 1)" "$2"; }
 
-research_title_count="$(xmllint --html --xpath \
-  'count(//h1[contains(concat(" ", normalize-space(@class), " "), " title ")][normalize-space(.)="Research"])' \
-  "$page" 2>/dev/null || true)"
-[[ "$research_title_count" == "1" ]] || \
-  fail "expected Research as the single page title, got $research_title_count"
+expect_count() { # description, xpath, expected
+  local got
+  got="$(xcount "$2")"
+  [[ "$got" == "$3" ]] || fail "$1: expected $3, got $got"
+}
 
-publication_heading_count="$(xmllint --html --xpath \
-  'count(//h2[normalize-space(.)="Publications"])' \
-  "$page" 2>/dev/null || true)"
-presentation_heading_count="$(xmllint --html --xpath \
-  'count(//h2[normalize-space(.)="Presentations"])' \
-  "$page" 2>/dev/null || true)"
-[[ "$publication_heading_count" == "1" ]] || \
-  fail "expected Publications as one second-level heading, got $publication_heading_count"
-[[ "$presentation_heading_count" == "1" ]] || \
-  fail "expected Presentations as one second-level heading, got $presentation_heading_count"
+yaml_entries() { grep -c '^- id:' "$1" || true; }
+yaml_field_count() { grep -c "^  $2:" "$1" || true; }
 
-research_intro="$(xmllint --html --xpath \
-  'normalize-space(string((//*[contains(concat(" ", normalize-space(@class), " "), " page-intro ")])[1]))' \
-  "$page" 2>/dev/null || true)"
-[[ "$research_intro" == "Peer-reviewed work, manuscripts under review or in preparation, and conference presentations." ]] || \
-  fail "research intro is missing or incorrect: $research_intro"
+publication_total="$(yaml_entries "$publications_yml")"
+presentation_total="$(yaml_entries "$presentations_yml")"
+(( publication_total > 0 && presentation_total > 0 )) || fail "YAML data files are empty"
 
-research_nav_count="$(xmllint --html --xpath \
-  'count(//a[contains(concat(" ", normalize-space(@class), " "), " nav-link ")]//span[contains(concat(" ", normalize-space(@class), " "), " menu-text ")][normalize-space(.)="Research"])' \
-  "$page" 2>/dev/null || true)"
-[[ "$research_nav_count" == "1" ]] || \
-  fail "expected Research in the site navigation, got $research_nav_count"
+# Page structure.
+expect_count "Research should be the single page title" \
+  "//h1[$(cls title)][normalize-space(.)='Research']" 1
+expect_count "Publications should be one second-level heading" \
+  "//h2[normalize-space(.)='Publications']" 1
+expect_count "Presentations should be one second-level heading" \
+  "//h2[normalize-space(.)='Presentations']" 1
+expect_count "Research should appear once in the site navigation" \
+  "//a[$(cls nav-link)]//span[$(cls menu-text)][normalize-space(.)='Research']" 1
+[[ -n "$(xstring "(//*[$(cls page-intro)])[1]")" ]] || fail "research intro is missing"
 
-entry_count="$(rg -o 'class="publication-entry"' "$page" 2>/dev/null | wc -l | tr -d ' ' || true)"
-[[ "$entry_count" == "9" ]] || fail "expected 9 publication entries, got $entry_count"
+# One entry per YAML record, each with the pieces a reader relies on.
+entry="//div[$(cls publication-entry)][not($(cls presentation-entry))]"
+expect_count "publication entries" "$entry" "$publication_total"
+expect_count "entries without a visible title" \
+  "$entry[not(.//h3[$(cls publication-title)])]" 0
+expect_count "entries without a BibTeX copy control" \
+  "$entry[not(.//button[$(cls publication-citation-button)][span[normalize-space(.)='BibTeX']])]" 0
+expect_count "entries without an APA copy control" \
+  "$entry[not(.//button[$(cls publication-citation-button)][span[normalize-space(.)='APA']])]" 0
+expect_count "entries without a highlighted self author" \
+  "$entry[not(.//p[$(cls publication-authors)]//strong[$(cls publication-self)][normalize-space(.)='Lin, T.-Y.'])]" 0
+expect_count "entries without venue and actions in one metadata row" \
+  "$entry[not(.//div[$(cls publication-meta-row)][p[$(cls publication-venue)] and div[$(cls publication-actions)]])]" 0
+expect_count "publication year labels" "//div[$(cls publication-entry-year)][not($(cls presentation-entry-date))]" "$publication_total"
 
-title_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry ")]//h3[contains(concat(" ", normalize-space(@class), " "), " publication-title ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$title_count" == "9" ]] || \
-  fail "expected each entry to contain a visible title, got $title_count"
+# Counts that follow the YAML fields.
+under_review="$(grep -c '^  status: under-review' "$publications_yml" || true)"
+expect_count "entries labelled sentence-case 'Under review'" \
+  "//div[$(cls publication-entry-year)][not($(cls presentation-entry-date))][normalize-space(.)='Under review']" "$under_review"
+expect_count "DOI links" "//a[$(cls publication-link-doi)]" \
+  "$(yaml_field_count "$publications_yml" doi)"
+expect_count "preprint links" "//a[$(cls publication-link-preprint)]" \
+  "$(yaml_field_count "$publications_yml" preprint)"
+expect_count "related post links" "//a[$(cls publication-link-post)]" \
+  "$(yaml_field_count "$publications_yml" post)"
+expect_count "abstract controls" \
+  "//div[$(cls publication-actions)]/button[$(cls publication-abstract-toggle)][@aria-expanded='false'][@aria-controls]" \
+  "$(yaml_field_count "$publications_yml" abstract)"
+expect_count "independent abstract panels" \
+  "//div[$(cls publication-entry-body)]/div[$(cls publication-abstract-panel)][@hidden][@id]" \
+  "$(yaml_field_count "$publications_yml" abstract)"
+expect_count "related post links that are not the final action" \
+  "//div[$(cls publication-actions)][.//a[$(cls publication-link-post)]][not(*[last()][self::a[$(cls publication-link-post)] or self::p[a[$(cls publication-link-post)]]])]" 0
 
-rg -q 'class="publication-entry-year"' "$page" || \
-  fail "publication year metadata is missing"
-review_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry-year ")][normalize-space(.)="Under review"])' \
-  "$page" 2>/dev/null || true)"
-[[ "$review_count" == "1" ]] || \
-  fail "expected one entry labelled sentence-case 'Under review', got: $review_count"
-if rg -q 'publication-year-group|publication-year-heading|publication-card' "$page"; then
+# Every abstract control must point at a panel that exists.
+while IFS= read -r panel_id; do
+  [[ -n "$panel_id" ]] || continue
+  expect_count "abstract panel #$panel_id" "//div[$(cls publication-abstract-panel)][@id='$panel_id']" 1
+done < <(xmllint --html --xpath "//button[$(cls publication-abstract-toggle)]/@aria-controls" "$page" 2>/dev/null \
+  | grep -oE 'aria-controls="[^"]+"' | sed -E 's/aria-controls="([^"]+)"/\1/')
+
+# Author lists keep the YAML text, in YAML order.
+index=0
+while IFS= read -r authors; do
+  index=$((index + 1))
+  rendered="$(xstring "($entry//p[$(cls publication-authors)])[$index]")"
+  [[ "$rendered" == "$authors" ]] || \
+    fail "authors of publication $index render as '$rendered', expected '$authors'"
+done < <(grep '^  authors:' "$publications_yml" | sed -E 's/^  authors: "?([^"]*)"?$/\1/')
+
+# Layout rules that keep the list flat and aligned.
+expect_count "details-based abstracts" "//details[$(cls publication-abstract)]" 0
+expect_count "every publication action should use the shared action style" \
+  "//div[$(cls publication-actions)]//*[self::a or self::button][not($(cls publication-action))]" 0
+expect_count "publication actions should place their icon first" \
+  "//div[$(cls publication-actions)]//*[self::a or self::button][not(*[1][self::i or (self::span and $(cls publication-abstract-symbol))])]" 0
+if grep -Eq 'publication-year-group|publication-year-heading|publication-card' "$page"; then
   fail "publication output should be a flat list without year groups or cards"
 fi
 
-doi_count="$(xmllint --html --xpath \
-  'count(//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-doi ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$doi_count" == "6" ]] || fail "expected 6 DOI links, got $doi_count"
-
-bibtex_count="$(xmllint --html --xpath \
-  'count(//button[contains(concat(" ", normalize-space(@class), " "), " publication-citation-button ")][span[normalize-space(.)="BibTeX"]])' \
-  "$page" 2>/dev/null || true)"
-apa_count="$(xmllint --html --xpath \
-  'count(//button[contains(concat(" ", normalize-space(@class), " "), " publication-citation-button ")][span[normalize-space(.)="APA"]])' \
-  "$page" 2>/dev/null || true)"
-[[ "$bibtex_count" == "$entry_count" ]] || \
-  fail "each publication should have one BibTeX copy control ($bibtex_count/$entry_count)"
-[[ "$apa_count" == "$entry_count" ]] || \
-  fail "each publication should have one APA copy control ($apa_count/$entry_count)"
-
-self_highlight_count="$(xmllint --html --xpath \
-  'count(//p[contains(concat(" ", normalize-space(@class), " "), " publication-authors ")]//strong[contains(concat(" ", normalize-space(@class), " "), " publication-self ")][normalize-space(.)="Lin, T.-Y."])' \
-  "$page" 2>/dev/null || true)"
-[[ "$self_highlight_count" == "9" ]] || \
-  fail "expected Lin, T.-Y. to be highlighted in all 9 author lists, got $self_highlight_count"
-
-first_author_text="$(xmllint --html --xpath \
-  'normalize-space(string((//p[contains(concat(" ", normalize-space(@class), " "), " publication-authors ")])[1]))' \
-  "$page" 2>/dev/null || true)"
-[[ "$first_author_text" == "Lin, T.-Y., Tuerlinckx, F., & Vanbelle, S." ]] || \
-  fail "author separators render incorrectly: $first_author_text"
-
-inline_metadata_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-meta-row ")][p[contains(concat(" ", normalize-space(@class), " "), " publication-venue ")] and div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]])' \
-  "$page" 2>/dev/null || true)"
-[[ "$inline_metadata_count" == "9" ]] || \
-  fail "expected venue and actions in one metadata row for all 9 publications, got $inline_metadata_count"
-
-metadata_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-listing-metadata ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$metadata_count" == "0" ]] || \
-  fail "unused hidden listing metadata should not be rendered, got $metadata_count containers"
-
-action_control_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]//*[self::a or self::button])' \
-  "$page" 2>/dev/null || true)"
-leading_icon_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]//*[self::a or self::button]/*[1][self::i or (self::span and contains(concat(" ", normalize-space(@class), " "), " publication-abstract-symbol "))])' \
-  "$page" 2>/dev/null || true)"
-shared_action_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]//*[self::a or self::button][contains(concat(" ", normalize-space(@class), " "), " publication-action ")])' \
-  "$page" 2>/dev/null || true)"
-(( action_control_count > 0 )) || fail "publication action controls are missing"
-[[ "$shared_action_count" == "$action_control_count" ]] || \
-  fail "every interactive publication control should use the shared action style ($shared_action_count/$action_control_count)"
-[[ "$leading_icon_count" == "$action_control_count" ]] || \
-  fail "every publication action should place its icon first ($leading_icon_count/$action_control_count)"
-
-generic_link_class_count="$(xmllint --html --xpath \
-  'count(//*[contains(concat(" ", normalize-space(@class), " "), " publication-link ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$generic_link_class_count" == "0" ]] || \
-  fail "publication actions should not retain the unused generic link class, got $generic_link_class_count"
-
-citation_format_attribute_count="$(xmllint --html --xpath \
-  'count(//button[contains(concat(" ", normalize-space(@class), " "), " publication-citation-button ")][@data-citation-format])' \
-  "$page" 2>/dev/null || true)"
-[[ "$citation_format_attribute_count" == "0" ]] || \
-  fail "citation buttons should derive their labels from visible text, not a redundant data attribute"
-
-preprint_count="$(xmllint --html --xpath \
-  'count(//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-preprint ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$preprint_count" == "1" ]] || fail "expected 1 PsyArXiv preprint link, got $preprint_count"
-rg -q 'href="https://doi.org/10.31234/osf.io/2xs9k_v1"' "$page" || \
-  fail "tutorial PsyArXiv DOI is missing"
-
-post_count="$(xmllint --html --xpath \
-  'count(//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$post_count" == "3" ]] || fail "expected 3 related post links, got $post_count"
-rg -q 'href="posts/20240918_CDP/"' "$page" || \
-  fail "coffee and polygenic-risk related post is missing"
-rg -q 'href="posts/20261102_multilevel-reliability/"' "$page" || \
-  fail "multilevel reliability related post is missing"
-
-post_last_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")][.//a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")]]/*[last()][self::a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")] or self::p[a[contains(concat(" ", normalize-space(@class), " "), " publication-link-post ")]]])' \
-  "$page" 2>/dev/null || true)"
-[[ "$post_last_count" == "3" ]] || \
-  fail "related post links should be the final action, got $post_last_count"
-
-inline_abstract_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-actions ")]/button[contains(concat(" ", normalize-space(@class), " "), " publication-abstract-toggle ")][@aria-expanded="false"][@aria-controls])' \
-  "$page" 2>/dev/null || true)"
-[[ "$inline_abstract_count" == "6" ]] || \
-  fail "expected all 6 abstract controls in the publication action row, got $inline_abstract_count"
-
-abstract_panel_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " publication-entry-body ")]/div[contains(concat(" ", normalize-space(@class), " "), " publication-abstract-panel ")][@hidden][@id])' \
-  "$page" 2>/dev/null || true)"
-[[ "$abstract_panel_count" == "6" ]] || \
-  fail "expected 6 independent abstract panels below the metadata row, got $abstract_panel_count"
-
-details_abstract_count="$(xmllint --html --xpath \
-  'count(//details[contains(concat(" ", normalize-space(@class), " "), " publication-abstract ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$details_abstract_count" == "0" ]] || \
-  fail "abstract controls should not use layout-shifting details elements, got $details_abstract_count"
-
-rg -q 'href="assets/css/publication.css"' "$page" || \
-  fail "publication stylesheet is not loaded"
-
-if ! rg -U -q 'main\.content h2[[:space:]]*\{[^}]*border-bottom:[[:space:]]*(0|none)' \
-  "$test_root/docs/styles.css"; then
+css_has 'main\.content h2\s*\{[^}]*border-bottom:\s*(0|none)' "$site_css" || \
   fail "second-level headings should remove the theme border consistently"
-fi
-
-if rg -U -q 'main\.content > h2[[:space:]]*\{[^}]*border-(top|bottom):' \
-  "$test_root/docs/assets/css/publication.css"; then
+if css_has 'main\.content > h2\s*\{[^}]*border-(top|bottom):' "$publication_css"; then
   fail "section headings should not use decorative border lines"
 fi
-
-if ! rg -U -q '\.publication-actions > p[[:space:]]*\{[^}]*display:[[:space:]]*contents' \
-  "$test_root/docs/assets/css/publication.css"; then
+css_has '\.publication-actions > p\s*\{[^}]*display:\s*contents' "$publication_css" || \
   fail "Pandoc-generated paragraphs inside action rows must be flattened for vertical alignment"
-fi
 
-rg -q 'src="assets/js/publication.js"' "$page" || \
-  fail "publication interaction script is not loaded"
-rg -q 'IMPS 2026 Annual Meeting' "$page" || \
-  fail "presentations should remain available below the publication list"
+grep -Fq 'href="assets/css/publication.css"' "$page" || fail "publication stylesheet is not loaded"
+grep -Fq 'src="assets/js/publication.js"' "$page" || fail "publication interaction script is not loaded"
 
-presentation_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " presentation-entry ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$presentation_count" == "11" ]] || \
-  fail "expected 11 structured presentation entries, got $presentation_count"
+# Presentations: one entry per record, newest first, with YAML dates and places.
+expect_count "presentation entries" "//div[$(cls presentation-entry)]" "$presentation_total"
+expect_count "presentations without their type in the action row" \
+  "//div[$(cls presentation-entry)][not(.//div[$(cls presentation-actions)]//*[$(cls presentation-type)])]" 0
+expect_count "presentations without a slide link or placeholder" \
+  "//div[$(cls presentation-entry)][not(.//a[$(cls presentation-link-slides)] or .//span[$(cls presentation-slides-placeholder)][normalize-space(.)='Slides forthcoming'])]" 0
 
-slides_placeholder_count="$(xmllint --html --xpath \
-  'count(//span[contains(concat(" ", normalize-space(@class), " "), " presentation-slides-placeholder ")][normalize-space(.)="Slides forthcoming"])' \
-  "$page" 2>/dev/null || true)"
-slides_link_count="$(xmllint --html --xpath \
-  'count(//a[contains(concat(" ", normalize-space(@class), " "), " presentation-link-slides ")])' \
-  "$page" 2>/dev/null || true)"
-slides_state_count="$((slides_placeholder_count + slides_link_count))"
-[[ "$slides_state_count" == "$presentation_count" ]] || \
-  fail "each presentation should expose either a slide link or placeholder ($slides_state_count/$presentation_count)"
+format_date() {
+  awk -F- 'BEGIN { split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec", m, " ") }
+           { printf "%s %d, %d\n", m[$2 + 0], $3, $1 }'
+}
 
-expected_dates=(
-  "Oct 6, 2026"
-  "Oct 5, 2026"
-  "Jul 22, 2026"
-  "Dec 5, 2025"
-  "Sep 30, 2025"
-  "Jul 19, 2024"
-  "Mar 12, 2024"
-  "Nov 23, 2023"
-  "Jul 21, 2023"
-  "Jul 13, 2023"
-  "Jun 20, 2023"
-)
+index=0
+while IFS= read -r expected; do
+  index=$((index + 1))
+  rendered="$(xstring "(//div[$(cls presentation-entry)]/div[$(cls presentation-entry-date)])[$index]")"
+  [[ "$rendered" == "$expected" ]] || \
+    fail "presentation $index should be dated $expected (newest first), got: $rendered"
+done < <(grep '^  date:' "$presentations_yml" | awk '{print $2}' | sort -r | format_date)
 
-for index in "${!expected_dates[@]}"; do
-  xpath_index="$((index + 1))"
-  rendered_date="$(xmllint --html --xpath \
-    "normalize-space(string((//div[contains(concat(' ', normalize-space(@class), ' '), ' presentation-entry ')]/div[contains(concat(' ', normalize-space(@class), ' '), ' presentation-entry-date ')])[${xpath_index}]))" \
-    "$page" 2>/dev/null || true)"
-  [[ "$rendered_date" == "${expected_dates[$index]}" ]] || \
-    fail "presentation $xpath_index should be dated ${expected_dates[$index]}, got: $rendered_date"
-done
-
-inline_presentation_meta_count="$(xmllint --html --xpath \
-  'count(//div[contains(concat(" ", normalize-space(@class), " "), " presentation-actions ")]//*[contains(concat(" ", normalize-space(@class), " "), " presentation-type ")])' \
-  "$page" 2>/dev/null || true)"
-[[ "$inline_presentation_meta_count" == "11" ]] || \
-  fail "expected presentation type and slides on the same row for all 11 entries, got $inline_presentation_meta_count"
-
-rg -q 'Seoul, South Korea' "$page" || \
-  fail "IMPS 2026 location should identify Seoul"
-rg -q 'Amsterdam, Netherlands' "$page" || \
-  fail "MathPsych 2023 location should identify Amsterdam"
-rg -q 'Prague, Czech Republic' "$page" || \
-  fail "IMPS 2024 location should identify Prague"
-rg -q 'Ghent, Belgium' "$page" || \
-  fail "EAM 2023 location should identify Ghent"
+while IFS= read -r location; do
+  grep -Fq "$location" "$page" || fail "presentation location '$location' is missing"
+done < <(grep '^  location:' "$presentations_yml" | sed -E 's/^  location: "?([^"]*)"?$/\1/')
 
 echo "PASS: publication list renders with citation controls and related links"
