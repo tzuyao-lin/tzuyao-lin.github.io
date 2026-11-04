@@ -26,9 +26,6 @@ about:
       text: Email
       href: mailto:tzu-yao.lin@kuleuven.be
 css: assets/css/about.css
-include-after-body:
-  text: |
-    <script src="assets/js/about-portrait.js"></script>
 ---
 
 ::: {#profile}

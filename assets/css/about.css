@@ -22,40 +22,6 @@ main.content {
   mask-composite: intersect;
 }
 
-.quarto-about-solana button.about-image {
-  position: relative;
-  display: block;
-  flex-shrink: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  cursor: pointer;
-  line-height: 0;
-  touch-action: pan-y;
-}
-
-.quarto-about-solana button.about-image > img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.quarto-about-solana button.about-image > canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.quarto-about-solana button.about-image:focus-visible {
-  outline: 2px solid var(--site-accent);
-  outline-offset: -12px;
-}
-
 main.content > section.level2 {
   grid-column: page-start / page-end;
   width: min(100%, 47rem);

@@ -14,8 +14,6 @@ The primary language is English, while individual posts may also be published in
 - `includes/`: custom Quarto listing templates
 - `posts/`: self-contained post bundles and their shared metadata
 - `tests/`: JavaScript and isolated-render regression tests
-- `_project/`: internal specifications and implementation plans that Quarto
-  excludes from the website
 - `_freeze/`: tracked Quarto computation results used to render analytical
   posts without re-running restricted-data analyses
 - `renv/` and `renv.lock`: reproducible R environment metadata
