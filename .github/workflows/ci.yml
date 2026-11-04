@@ -36,27 +36,17 @@ jobs:
       - name: Install system tools
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
 
-      - name: Cache renv packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.RENV_PATHS_ROOT }}
-          key: renv-${{ runner.os }}-${{ hashFiles('renv.lock') }}
-
-      - name: Restore the CV package set
-        run: |
-          Rscript -e 'renv::restore(packages = strsplit(Sys.getenv("CV_PACKAGES"), ",")[[1]], prompt = FALSE)'
-
       - name: JavaScript tests
         run: node --test tests/*.test.mjs
 
-      - name: Publication listing render test
-        run: bash tests/publication-listing.sh
-
-      - name: CV data tests
-        run: Rscript cv/tests/test-data.R .
-
       - name: Render the website
         run: quarto render
+
+      - name: Publication listing test
+        run: SITE_DIR=docs bash tests/publication-listing.sh
+
+      - name: CV PDF is part of the site output
+        run: test -f docs/cv/TzuYaoLin_CV.pdf
 
   cv-pdf:
     name: CV PDF is up to date
@@ -98,6 +88,10 @@ jobs:
         if: steps.changes.outputs.cv == 'true'
         run: |
           Rscript -e 'renv::restore(packages = strsplit(Sys.getenv("CV_PACKAGES"), ",")[[1]], prompt = FALSE)'
+
+      - name: CV data tests
+        if: steps.changes.outputs.cv == 'true'
+        run: Rscript cv/tests/test-data.R .
 
       - name: Install poppler
         if: steps.changes.outputs.cv == 'true'

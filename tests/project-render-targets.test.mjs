@@ -14,7 +14,7 @@ function renderTargets(projectDir) {
   return project.files.input.map((file) => path.relative(projectDir, file));
 }
 
-test("website render includes the site pages but not the CV", () => {
+test("website render includes the site pages but nothing under cv/", () => {
   const targets = renderTargets(repoRoot);
 
   for (const page of [
@@ -28,7 +28,7 @@ test("website render includes the site pages but not the CV", () => {
   }
   assert.ok(targets.some((target) => target.startsWith(`posts${path.sep}`)));
   // The CV is rendered on demand: `quarto render cv/academic-cv.qmd`.
-  assert.ok(!targets.includes(path.join("cv", "academic-cv.qmd")));
+  assert.ok(!targets.some((target) => target.startsWith(`cv${path.sep}`)));
   assert.ok(
     existsSync(path.join(repoRoot, "cv", "TzuYaoLin_CV.pdf")),
     "tracked CV PDF missing; render it with `quarto render cv/academic-cv.qmd`",

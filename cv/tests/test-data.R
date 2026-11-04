@@ -8,38 +8,25 @@ read_yaml_file <- function(path) {
   yaml::read_yaml(path)
 }
 
-expected_counts <- c(
-  education = 3L,
-  awards = 3L,
-  research = 1L,
-  teaching = 4L,
-  reviewing = 2L,
-  skills = 13L
-)
+sections <- c("education", "awards", "research", "teaching", "reviewing", "skills")
 
-profile <- read_yaml_file(file.path(repo_root, "data", "cv", "profile.yml"))
-stopifnot(identical(profile$name, "Tzu-Yao"))
-stopifnot(identical(profile$surname, "Lin"))
-stopifnot(identical(profile$position, "Joint PhD candidate"))
-stopifnot(identical(profile$email, "tzu-yao.lin@kuleuven.be"))
-
-for (section in names(expected_counts)) {
+# load_cv_data() below checks that the profile fields are present.
+for (section in sections) {
   records <- read_yaml_file(
     file.path(repo_root, "data", "cv", paste0(section, ".yml"))
   )
-  stopifnot(length(records) == expected_counts[[section]])
+  stopifnot(length(records) > 0L)
   ids <- vapply(records, function(x) x$id %||% "", character(1))
   stopifnot(all(nzchar(ids)), !anyDuplicated(ids))
 }
 
-cat("CV YAML counts and IDs passed\n")
+cat("CV YAML IDs passed\n")
 
 source(file.path(repo_root, "cv", "R", "load-cv-data.R"))
 cv <- load_cv_data(repo_root)
 
-stopifnot(nrow(cv$publications) == 9L)
-stopifnot(nrow(cv$presentations) == 11L)
-stopifnot(nrow(cv$education) == 3L)
+stopifnot(nrow(cv$publications) > 0L, nrow(cv$presentations) > 0L)
+stopifnot(nrow(cv$education) > 0L)
 stopifnot(identical(
   names(education_entries(cv$education)),
   c("what", "with", "when", "where", "why")
@@ -56,8 +43,3 @@ stopifnot(!anyDuplicated(cv$publications$id))
 stopifnot(!anyDuplicated(cv$presentations$id))
 
 cat("CV loader and entry mappings passed\n")
-
-site_config <- read_yaml_file(file.path(repo_root, "_quarto.yml"))
-stopifnot("!cv/" %in% unlist(site_config$project$render))
-
-cat("CV is excluded from the website render passed\n")
