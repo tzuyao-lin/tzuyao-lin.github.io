@@ -45,11 +45,8 @@ jobs:
       - name: Publication listing test
         run: SITE_DIR=docs bash tests/publication-listing.sh
 
-      - name: CV PDF is part of the site output
-        run: test -f docs/cv/TzuYaoLin_CV.pdf
-
   cv-pdf:
-    name: CV PDF is up to date
+    name: CV PDF renders
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -64,7 +61,7 @@ jobs:
               - 'data/cv/**'
               - 'data/publications.yml'
               - 'data/presentations.yml'
-              - 'scripts/check-cv-pdf.sh'
+              - 'renv.lock'
 
       - uses: quarto-dev/quarto-actions/setup@v2
         if: steps.changes.outputs.cv == 'true'
@@ -93,10 +90,8 @@ jobs:
         if: steps.changes.outputs.cv == 'true'
         run: Rscript cv/tests/test-data.R .
 
-      - name: Install poppler
+      - name: Render the CV PDF
         if: steps.changes.outputs.cv == 'true'
-        run: sudo apt-get update && sudo apt-get install -y poppler-utils
-
-      - name: Compare the tracked PDF with a fresh render
-        if: steps.changes.outputs.cv == 'true'
-        run: bash scripts/check-cv-pdf.sh
+        run: |
+          quarto render cv/academic-cv.qmd
+          test -f cv/TzuYaoLin_CV.pdf

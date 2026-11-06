@@ -4,17 +4,21 @@ The website's Quarto project renders the full academic CV with Quarto Vitae
 and the AwesomeCV extension in this directory.
 
 The CV is not part of the default site render, so `quarto render` does not
-compile it. After changing the CV, its data, or the AwesomeCV extension, rebuild
-it from the repository root:
+compile it. `cv/TzuYaoLin_CV.pdf` is git-ignored: the Deploy workflow renders it
+with `quarto render cv/academic-cv.qmd` before the site render, so every deploy
+publishes a fresh PDF at `docs/cv/TzuYaoLin_CV.pdf`. The footer date is the
+deploy day (`date: today`). The CI workflow renders the CV whenever its inputs
+change, to catch build failures before merging. The same project `renv`
+library is used for the site and CV.
+
+To preview locally (needs TinyTeX), run from the repository root:
 
 ```sh
 quarto render cv/academic-cv.qmd
 ```
 
-This writes `cv/TzuYaoLin_CV.pdf`, which is tracked in git. Commit it, then run
-`quarto render` so the site copies it to `docs/cv/TzuYaoLin_CV.pdf` for GitHub
-Pages. The footer date is the render day (`date: today`). The same project
-`renv` library is used for the site and CV.
+Then run `quarto render` to copy the PDF into `docs/cv/`. Check the PDF by eye
+after changing layout: fonts on macOS and the Ubuntu runner can differ slightly.
 
 Publication and presentation records come from `../data/publications.yml` and
 `../data/presentations.yml`. Other CV records come from `../data/cv/`. Keep
