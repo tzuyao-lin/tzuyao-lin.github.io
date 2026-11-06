@@ -18,6 +18,9 @@
 # Local Quarto Vitae build artifacts
 /cv/.quarto/
 
+# CV PDF is built by GitHub Actions at deploy time
+/cv/TzuYaoLin_CV.pdf
+
 # Brainstorming companion scratch files
 .superpowers/
 

@@ -1,6 +1,5 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import test from "node:test";
@@ -27,10 +26,6 @@ test("website render includes the site pages but nothing under cv/", () => {
     assert.ok(targets.includes(page), `missing website page: ${page}`);
   }
   assert.ok(targets.some((target) => target.startsWith(`posts${path.sep}`)));
-  // The CV is rendered on demand: `quarto render cv/academic-cv.qmd`.
+  // The CV is rendered separately: `quarto render cv/academic-cv.qmd`.
   assert.ok(!targets.some((target) => target.startsWith(`cv${path.sep}`)));
-  assert.ok(
-    existsSync(path.join(repoRoot, "cv", "TzuYaoLin_CV.pdf")),
-    "tracked CV PDF missing; render it with `quarto render cv/academic-cv.qmd`",
-  );
 });

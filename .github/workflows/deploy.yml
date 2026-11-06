@@ -10,6 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  RENV_PATHS_ROOT: ~/.cache/R/renv
+  CV_PACKAGES: knitr,rmarkdown,yaml,dplyr,tibble
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -23,14 +27,31 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.10.18
+          tinytex: true
 
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: 4.6.1
 
-      # Analytical posts are frozen (_freeze/), so no R packages are needed.
+      # Analytical posts are frozen (_freeze/); only the CV needs R packages.
+      - name: Cache renv packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: renv-${{ runner.os }}-${{ hashFiles('renv.lock') }}
+
+      - name: Restore the CV package set
+        run: |
+          Rscript -e 'renv::restore(packages = strsplit(Sys.getenv("CV_PACKAGES"), ",")[[1]], prompt = FALSE)'
+
+      - name: Render the CV PDF
+        run: quarto render cv/academic-cv.qmd
+
       - name: Render the website
         run: quarto render
+
+      - name: CV PDF is part of the site output
+        run: test -f docs/cv/TzuYaoLin_CV.pdf
 
       - uses: actions/upload-pages-artifact@v3
         with:

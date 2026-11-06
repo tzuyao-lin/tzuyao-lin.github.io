@@ -40,14 +40,13 @@ the website:
 quarto render
 ```
 
-A full render builds the HTML pages only; it does not compile the CV. It copies
-the tracked `cv/TzuYaoLin_CV.pdf` into `docs/cv/`, where both website CV links
-point. After changing `data/cv/`, `data/publications.yml`,
-`data/presentations.yml`, or `cv/`, rebuild the CV with
-`quarto render cv/academic-cv.qmd` and commit the new `cv/TzuYaoLin_CV.pdf`.
-The CI `cv-pdf` job re-renders the CV on such changes and fails the pull
-request if the tracked PDF's text differs (`scripts/check-cv-pdf.sh`, which
-ignores the date footer), so the published PDF cannot go stale.
+A full render builds the HTML pages only; it does not compile the CV. The
+git-ignored `cv/TzuYaoLin_CV.pdf` is built by the Deploy workflow
+(`quarto render cv/academic-cv.qmd`) before the site render, then copied into
+`docs/cv/`, where both website CV links point. The CI `cv-pdf` job renders the
+CV when `cv/`, `data/cv/`, `data/publications.yml`, `data/presentations.yml`,
+or `renv.lock` change, so a broken CV fails the pull request. To preview
+locally, run `quarto render cv/academic-cv.qmd` first.
 
 ### Setting up a new worktree
 
