@@ -1,39 +1,39 @@
 - id: methods-multilevel-longitudinal
-  category: Methods
+  category: Quantitative Methods
   skill: Multilevel and longitudinal modeling
 - id: methods-psychometrics-reliability
-  category: Methods
+  category: Quantitative Methods
   skill: Psychometrics and reliability
 - id: methods-bayesian-statistics
-  category: Methods
+  category: Quantitative Methods
   skill: Bayesian statistics
 - id: methods-computational-modeling
-  category: Methods
+  category: Quantitative Methods
   skill: Computational modeling
 - id: methods-neuroimage-analysis
-  category: Methods
+  category: Quantitative Methods
   skill: Neuroimage analysis (fMRI and MEG)
 - id: programming-r
-  category: Programming
-  skill: R (Tidyverse, R Markdown, and Shiny)
+  category: Programming & Tools
+  skill: R (incl. Shiny)
 - id: programming-stan
-  category: Programming
+  category: Programming & Tools
   skill: Stan
 - id: programming-jags
-  category: Programming
+  category: Programming & Tools
   skill: JAGS
 - id: programming-python
-  category: Programming
+  category: Programming & Tools
   skill: Python
 - id: programming-sas
-  category: Programming
+  category: Programming & Tools
   skill: SAS
 - id: programming-linux
-  category: Programming
+  category: Programming & Tools
   skill: Linux
 - id: tools-git-github
-  category: Programming
-  skill: Git and GitHub
+  category: Programming & Tools
+  skill: Git
 - id: tools-latex
-  category: Programming
+  category: Programming & Tools
   skill: LaTeX

@@ -8,6 +8,13 @@ format:
     headcolor: "00295C"
     show_footer: true
     page_total: true
+    # Template default except bottom (1.8cm), trimmed to keep the CV at 3 pages.
+    geometry:
+      - left=1.5cm
+      - top= 1.0cm
+      - right=1.5cm
+      - bottom=1.5cm
+      - footskip=.5cm
 
 execute:
   freeze: false
