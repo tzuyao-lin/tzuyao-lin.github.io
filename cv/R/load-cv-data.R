@@ -167,7 +167,9 @@ reviewing_entries <- function(x) {
 
 skill_entries <- function(x) {
   x |>
+    dplyr::mutate(category = factor(category, levels = unique(category))) |>
     dplyr::group_by(category) |>
     dplyr::summarise(what = paste(skill, collapse = ", "), .groups = "drop") |>
+    dplyr::mutate(category = as.character(category)) |>
     dplyr::rename(with = category)
 }

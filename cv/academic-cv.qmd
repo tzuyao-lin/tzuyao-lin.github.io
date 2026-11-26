@@ -35,20 +35,20 @@ publication_entries(cv$publications)
 presentation_entries(cv$presentations)
 ```
 
-# Awards
-
-```{r}
-#| vitae:
-#|   style: detailed
-award_entries(cv$awards)
-```
-
 # Peer Review
 
 ```{r}
 #| vitae:
 #|   style: detailed
 reviewing_entries(cv$reviewing)
+```
+
+# Awards
+
+```{r}
+#| vitae:
+#|   style: detailed
+award_entries(cv$awards)
 ```
 
 # Skills
